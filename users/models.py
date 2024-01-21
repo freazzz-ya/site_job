@@ -10,6 +10,8 @@ class Worker(AbstractUser):
     job = models.ManyToManyField(
         to=Job,
         related_name='job',
+        blank=True,
+        null=True,
     )
     email = models.EmailField(
         unique=True,
@@ -32,4 +34,20 @@ class Worker(AbstractUser):
         related_name='balance',
         on_delete=models.CASCADE,
         verbose_name=_('balance'),
+        blank=True,
+        null=True,
     )
+    description_for_profil = models.TextField(
+        verbose_name=_('description'),
+        max_length=UserModelConstant.TEXT_FIELD_MAX_LEN,
+        default=UserModelConstant.DEFAULT_TEXT_FOR_DESCRIPTION,
+    )
+    image = models.ImageField(
+        upload_to='images/',
+        verbose_name=_('image'),
+        default='images/nou.jpg',
+    )
+
+    class Meta:
+        verbose_name = _('worker')
+        verbose_name_plural = _('workers')

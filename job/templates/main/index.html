@@ -55,9 +55,13 @@
                   <li><a href="#investors-section" class="nav-link">Инcтрумены</a></li>
                   <li><a href="#about-section" class="nav-link">О нас</a></li>
                   <li><a href="#services-section" class="nav-link">Сервисы</a></li>
-                  <li><a href="#press-section" class="nav-link">Нейросети</a></li>
-                  <li><a href="#blog-section" class="nav-link">Профиль</a></li>
+                  <li><a href="/job/neuronet/" class="nav-link">Нейросети</a></li>
                   <li><a href="#contact-section" class="nav-link">Контакты</a></li>
+                  {% if user.is_authenticated %}
+                  <li><a href="/job/finance/" class="nav-link">Профиль</a></li>
+                  {% else %}
+                  <li><a href="/users/auth/login/" class="nav-link">Войти</a></li>
+                  {% endif %}
                 </ul>
               </nav>
           
@@ -81,11 +85,14 @@
             <div class="col-md-12 col-lg-7 text-center">
               <h1>Инвестиции с пользой</h1>  
               <p>Не легко деньги нажить, а легко прожить.</p>
+              {% if user.is_authenticated %}
               <p><a href="finance/" class="btn btn-white-outline border-w-2 btn-md">Расчет</a></p>
+              {% else %}
+              <p><a href="/users/auth/registration/" class="btn btn-white-outline border-w-2 btn-md">Расчет</a></p>
+              {% endif %}
             </div>
           </div>
         </div>
-
       </div>
 
       <div class="site-section-cover overlay img-bg-section" style="background-image: url('../static/images/hero_2.jpg'); " >
@@ -94,18 +101,16 @@
             <div class="col-md-12 col-lg-7 text-center">
               <h1>Копилка</h1>      
               <p>Живется, у кого денежка ведется.</p>    
+              {% if user.is_authenticated %}
               <p><a href="finance/" class="btn btn-white-outline border-w-2 btn-md">Расчет</a></p>
+              {% else %}
+              <p><a href="/users/auth/registration/" class="btn btn-white-outline border-w-2 btn-md">Расчет</a></p>
+              {% endif %}
             </div>
           </div>
         </div>
-
       </div>
-      
-
     </div>
-    
-
-
     <div class="pt-5" id="investors-section">
       <div class="container">
         <div class="row">
@@ -416,30 +421,49 @@
         <div class="row">
           <div class="col-12 text-center mb-5">
             <div class="block-heading-1" >
+              {% if user.is_authenticated %}
               <a href="finance/">
               <span>Профиль</span>
               <h2>Пользователя</h2>
             </a>
+            {% else %}
+            <a href="/users/auth/registration/">
+              <span>Профиль</span>
+              <h2>Пользователя</h2>
+            </a>
+            {% endif %}
             </div>
           </div>
         </div>
         <div class="row">
           <div class="col-lg-6">
             <div>
+              {% if user.is_authenticated %}
               <a href="finance/" class="mb-4 d-block"><img src='{% static "images/who.jpg" %}' alt="Image" class="img-fluid rounded"></a>
               <h2><a href="finance/">Зарегистрируйся и начни считать</a></h2>
+              <p><a href="finance/" >Погнали</a></p>
+              {% else %}
+              <a href="finance/" class="mb-4 d-block"><img src='{% static "images/who.jpg" %}' alt="Image" class="img-fluid rounded"></a>
+              <h2><a href="/users/auth/registration/">Зарегистрируйся и начни считать</a></h2>
+              <p><a href="/users/auth/registration/" >Погнали</a></p>
+              {% endif %}
               <p class="text-muted mb-3 text-uppercase small"></p>
               <p>Для того, чтобы начать считать, зарегистрируйся или войди в свой профиль</p>
-              <p><a href="finance/" >Погнали</a></p>
             </div>
           </div>
           <div class="col-lg-6">
             <div>
+              {% if user.is_authenticated %}
               <a href="finance/" class="mb-4 d-block"><img src='{% static "images/copilka.jpg" %}' alt="Image" class="img-fluid rounded"></a>
               <h2><a href="finance/">Финансовая аналитика и подсчет ваших финансов</a></h2>
+              <p><a href="finance/">Узнать больше</a></p>
+              {% else %}
+              <a href="/users/auth/registration/" class="mb-4 d-block"><img src='{% static "images/copilka.jpg" %}' alt="Image" class="img-fluid rounded"></a>
+              <h2><a href="/users/auth/registration/">Финансовая аналитика и подсчет ваших финансов</a></h2>
+              <p><a href="/users/auth/registration/">Узнать больше</a></p>
+              {% endif %}       
               <p class="text-muted mb-3 text-uppercase small"></p>
               <p>Тут вы начнете считать свои финансы и вести подсчеты. Также тут будет происходить анализ ваших финансов и всевозможные рекомендации, касательно инвестирвания.</p>
-              <p><a href="finance/">Узнать больше</a></p>
             </div>
           </div>
 

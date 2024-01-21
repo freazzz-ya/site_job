@@ -49,8 +49,8 @@ class Job(models.Model):
 
     class Meta:
         ordering = ('name',)
-        verbose_name = _('worker')
-        verbose_name_plural = _('workers',)
+        verbose_name = _('job')
+        verbose_name_plural = _('jobs')
 
     def __str__(self) -> str:
         return f'{self.name}'
