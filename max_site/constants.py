@@ -15,3 +15,16 @@ class UserModelConstant(DjobModelsConstant):
                                    "но мы уверены, что это очень "\
                                    "хороший и позитивный человек, " \
                                    "который скоро добьется финансовых успехов."
+
+
+class NeuralNetworkModelConstant(UserModelConstant):
+    """Константы для модели Neural_network"""
+    DEFAULT_TEXT_FOR_NEURAL_NETWORK = "Дефолтный текст для нейросети",
+
+
+class MoneyFormConstant(NeuralNetworkModelConstant):
+    """Константы для формы Money"""
+    HELP_TEXT_MONEY_FORM = 'Данное поле обязательное для заполнения'
+    INT_FIELD_MAX_VALUE_MONEY_PERIOD = 90
+    HELP_TEXT_MONEY_FORM_PERIOD = 'Указывать в днях. '\
+                                  'Максимальный период - 90 дней!'

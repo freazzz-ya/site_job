@@ -1,0 +1,46 @@
+[
+    {
+        "model": "users.worker",
+        "pk": 1,
+        "fields": {
+            "password": "pbkdf2_sha256$720000$bRZfrP3W2QFG0M6d3c0Zxx$WRo9U48TQKnUJCO4yGA35vZwLpguw4/i3hx7c0Ezr3s=",
+            "last_login": "2024-01-25T18:37:54.506Z",
+            "is_superuser": true,
+            "username": "admin",
+            "first_name": "",
+            "last_name": "",
+            "is_staff": true,
+            "is_active": true,
+            "date_joined": "2024-01-25T17:56:44.407Z",
+            "email": "m2@mail.ru",
+            "telegram_id": null,
+            "description_for_profil": "������ ������������ ������ � ���� �� �������, �� �� �������, ��� ��� ����� ������� � ���������� �������, ������� ����� �������� ���������� �������.",
+            "image": "images/nou.jpg",
+            "role": "Custom",
+            "groups": [],
+            "user_permissions": []
+        }
+    },
+    {
+        "model": "users.worker",
+        "pk": 2,
+        "fields": {
+            "password": "pbkdf2_sha256$720000$3KNKFDSdztfqD5LWNSPiR4$hed3vbyzzuzCM1LFGeqYhd1bX42yqVkIVaifGrVutV4=",
+            "last_login": "2024-01-25T19:09:15.489Z",
+            "is_superuser": false,
+            "username": "max14",
+            "first_name": "������",
+            "last_name": "��������",
+            "is_staff": false,
+            "is_active": true,
+            "date_joined": "2024-01-25T17:59:32.889Z",
+            "email": "slava.kpss3991@mail.ru",
+            "telegram_id": 121331,
+            "description_for_profil": "���� ����� ����. ����� ����������",
+            "image": "images/Ga8g-6-raS0.jpg",
+            "role": "Custom",
+            "groups": [],
+            "user_permissions": []
+        }
+    }
+]

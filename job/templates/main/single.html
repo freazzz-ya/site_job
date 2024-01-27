@@ -1,4 +1,5 @@
 {% load static %}
+{% load django_bootstrap5 %}
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -102,6 +103,72 @@
             <p>роме того, ведение учета финансов может помочь вам выявить непродуктивные траты, что позволит оптимизировать ваш бюджет. Это может включать в себя изучение ежемесячных расходов на развлечения, рестораны, или другие предметы, которые, возможно, можно было бы уменьшить или исключить, например, путем приготовления пищи дома вместо ежедневного похода в ресторан.</p>
             <p>Когда вы знаете, сколько у вас денег, где они находятся и на что они тратятся, это также помогает вам более осознанно управлять своими финансами и планировать на будущее. Вы можете задуматься, какие цели вы хотите достичь, сколько вам нужно сберечь, чтобы их достичь, и каким образом вы сможете это сделать. </p>
             <p>Так что, в конечном итоге, ведение учета финансов - это не просто о манипулировании цифрами. Это о том, чтобы стать более осознанным в отношении своих доходов и расходов, планировать на будущее и иметь возможность влиять на свою финансовую ситуацию.</p>
+            <h4 style="cursor:pointer; text-decoration: underline;" onClick="expandit('ans1')">Расчитать свой заработок</h4>
+            <div id = "ans1" style="display:none">
+            <div class="col-lg-12">
+              <ul class="list-unstyled">
+                <div class="row mb-2 d-flex align-items-center">
+                  <div class="col-md-6 mb-2">
+                    <div class="card" style="width: 22rem;">
+                      <div class="card-header">
+                        Подсчет ваших средств
+                      </div>
+                      <div class="card-body">
+                        <form method="post" enctype="multipart/form-data">
+                          {% csrf_token %}
+                          {% bootstrap_form form %}
+                          {% bootstrap_button button_type="submit" content="Создать" %}
+                        </form>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <img src='{% static "images/job_prof.jpg" %}' alt="Image placeholder" class="img-fluid mb-4 w-100">
+                  </div>
+                </div>
+              
+                <div class="row mb-2 d-flex align-items-center">
+                  <div class="col-md-6 mb-2">
+                    <div class="card" style="width: 22rem;">
+                      <div class="card-header">
+                        Подсчет ваших средств
+                      </div>
+                      <div class="card-body">
+                        <form method="post" enctype="multipart/form-data">
+                          {% csrf_token %}
+                          {% bootstrap_form form %}
+                          {% bootstrap_button button_type="submit" content="Создать" %}
+                        </form>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <img src='{% static "images/neiro_prof1.jpg" %}' alt="Image placeholder" class="img-fluid mb-4 w-100">
+                  </div>
+                </div>
+                <div class="row mb-2 d-flex align-items-center">
+                  <div class="col-md-6 mb-2">
+                    <div class="card" style="width: 22rem;">
+                      <div class="card-header">
+                        Подсчет ваших средств
+                      </div>
+                      <div class="card-body">
+                        <form method="post" enctype="multipart/form-data">
+                          {% csrf_token %}
+                          {% bootstrap_form form %}
+                          {% bootstrap_button button_type="submit" content="Создать" %}
+                        </form>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <img src='{% static "images/other_dohod.jpg" %}' alt="Image placeholder" class="img-fluid mb-4 w-100">
+                  </div>
+                </div>
+            </ul>
+          </div>
+        </div>
+        
             <div class="pt-5">
             </div>
           </div>
@@ -126,8 +193,30 @@
             </div>
             <div class="sidebar-box">
               <img src='{{ user.image.url }}' alt="Image placeholder" class="img-fluid mb-4 w-50 rounded-circle">
+              <div style="border: 1px solid black; padding: 10px;">
               <h3 class="text-black">Все о авторе {{ user.username }}</h3>
-              <p>{{ user.description_for_profil }}</p>
+              {% if user.first_name %}
+              <p>Имя: {{ user.first_name }}</p>
+                 {% endif%}
+              {% if user.last_name %}
+              <p>Фамилия: {{ user.last_name }}</p>
+                    {% endif%}
+              {% if user.is_staff %}
+              <p>Статус: Админ</p>
+              {% else %}
+              <p>Статус: Пользователь</p>
+              {% endif %}
+              
+              <p>Почта: {{ user.email }}</p>
+              <p>Дата регистрации: {{ user.date_joined }}</p>
+            </div>
+            <br>
+            <h3 class="text-black">Описание профиля</h3>
+            <p>{{ user.description_for_profil|slice:":40" }} ...</p>
+              <p>{{ user.job }}</p>
+              <br>
+              <p style="font-weight: bold; font-size: 30px; color: black;">{{ user.balance }}</p>
+              <img src='{% static "images/ruble.jpg" %}' alt="Image placeholder" class="img-fluid mb-4 w-50 rounded-circle">
               <p><a href="#" class="btn btn-primary btn-md">Read More</a></p>
             </div>
             <div class="sidebar-box">
@@ -138,8 +227,6 @@
         </div>
       </div>
     </section>
-
-
     <footer class="site-footer">
       <div class="container">
         <div class="row">
@@ -152,7 +239,6 @@
               <div class="col-md-4 ml-auto">
                 <h2 class="footer-heading mb-4">Вкладки</h2>
                 <nav class="site-navigation text-center ml-auto" role="navigation">
-
                   <ul class="site-menu main-menu js-clone-nav ml-auto d-none d-lg-block">
                     <li><a href="/job/#home-section" class="nav-link">Дом</a></li>
                     <li><a href="/job/#investors-section" class="nav-link">Инcтрумены</a></li>
@@ -164,11 +250,9 @@
                   </ul>
                 </nav>
               </div>
-              
             </div>
           </div>
           <div class="col-md-4 ml-auto">
-
             <div class="mb-5">
               <div class="mb-5">
                 <h2 class="footer-heading mb-4">Будь в курсе</h2>
@@ -183,8 +267,6 @@
                   </div>
                 </div>
               </div>
-
-
               <h2 class="footer-heading mb-4">Наши социальные сети</h2>
                 <a href="#about-section" class="smoothscroll pl-0 pr-3"><span class="icon-facebook"></span></a>
                 <a href="#" class="pl-3 pr-3"><span class="icon-twitter"></span></a>
@@ -220,7 +302,9 @@
   <script src='{% static "js/jquery.waypoints.min.js" %}'></script>
   <script src='{% static "js/jquery.animateNumber.min.js" %}'></script>
   <script src='{% static "js/aos.js" %}'></script>
+  <script src='{% static "js/prof.js" %}'></script>
 
+  
   <script src='{% static "js/main.js" %}'></script>
     
   </body>

@@ -1,0 +1,24 @@
+[
+    {
+        "model": "job.neural_network",
+        "pk": 12,
+        "fields": {
+            "title": "ChatGPT",
+            "image": "images/network/7bb18bd55b206a3bcb37aaa3c608f5aa_cBSKMsH_wRixh8k.jpg",
+            "description": "�������� ���� ChatGPT � ������ � ��� �������������� ������������ ������������ � ������ ������� �� �������� �������. ��� ����� ������ ���������� �������� ����� ��������� ������, ������� ��� ���������� ���������� ��������������� ���������.",
+            "url": "https://openai.com/chatgpt",
+            "date_joined": "2024-01-25T18:54:44.235Z"
+        }
+    },
+    {
+        "model": "job.neural_network",
+        "pk": 14,
+        "fields": {
+            "title": "Midjourne",
+            "image": "images/network/mj23_w0MNtE0.jpg",
+            "description": "������������� ��������� �������� �������� ����������� ��� ������ � ���� ������ � �� ��������� ������. ����� Midjourney �������� �������� ��������������� ��� �����������, ��������������, ������������ � ������ �����.",
+            "url": "https://www.midjourney.com/home",
+            "date_joined": "2024-01-25T19:06:21.091Z"
+        }
+    }
+]
