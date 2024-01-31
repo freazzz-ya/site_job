@@ -4,7 +4,7 @@
         "pk": 1,
         "fields": {
             "password": "pbkdf2_sha256$720000$bRZfrP3W2QFG0M6d3c0Zxx$WRo9U48TQKnUJCO4yGA35vZwLpguw4/i3hx7c0Ezr3s=",
-            "last_login": "2024-01-25T18:37:54.506Z",
+            "last_login": "2024-01-26T20:03:41.531Z",
             "is_superuser": true,
             "username": "admin",
             "first_name": "",
@@ -26,7 +26,7 @@
         "pk": 2,
         "fields": {
             "password": "pbkdf2_sha256$720000$3KNKFDSdztfqD5LWNSPiR4$hed3vbyzzuzCM1LFGeqYhd1bX42yqVkIVaifGrVutV4=",
-            "last_login": "2024-01-25T19:09:15.489Z",
+            "last_login": "2024-01-27T18:04:28.847Z",
             "is_superuser": false,
             "username": "max14",
             "first_name": "������",
@@ -38,6 +38,28 @@
             "telegram_id": 121331,
             "description_for_profil": "���� ����� ����. ����� ����������",
             "image": "images/Ga8g-6-raS0.jpg",
+            "role": "Custom",
+            "groups": [],
+            "user_permissions": []
+        }
+    },
+    {
+        "model": "users.worker",
+        "pk": 3,
+        "fields": {
+            "password": "pbkdf2_sha256$720000$6eZjWrlkV0iIWjpFo6Kj5n$GKuvWKVvWAo+x+bKIKx/a0tiAfJGcqlkw5ZYktZzQNA=",
+            "last_login": "2024-01-27T19:37:19.714Z",
+            "is_superuser": false,
+            "username": "Карина",
+            "first_name": "Карина",
+            "last_name": "Сафонова",
+            "is_staff": false,
+            "is_active": true,
+            "date_joined": "2024-01-27T19:01:40.631Z",
+            "email": "llo@mail.ru",
+            "telegram_id": 23323232,
+            "description_for_profil": "Данный пользователь ничего о себе не написал, но мы уверены, что это очень хороший и позитивный человек, который скоро добьется финансовых успехов.",
+            "image": "images/zjEDwmxGkJ0.jpg",
             "role": "Custom",
             "groups": [],
             "user_permissions": []

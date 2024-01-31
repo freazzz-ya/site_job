@@ -1,6 +1,7 @@
-from django.utils import timezone
 from django.db import models
-from django.core.validators import MinValueValidator, MaxValueValidator
+from django.core.validators import (
+    MinValueValidator, MaxValueValidator, MinLengthValidator,
+    )
 from django.utils.translation import gettext_lazy as _
 
 from users.models import Worker
@@ -25,7 +26,7 @@ class Neural_network(models.Model):
     description = models.TextField(
         max_length=NeuralNetworkModelConstant.CHAR_FIELD_MAX_LEN,
         verbose_name=_('Описание'),
-        default='Обычное описание для нейросети',
+        default=NeuralNetworkModelConstant.DEFAULT_TEXT_FOR_DESCRIPTION,
     )
     url = models.URLField(
         verbose_name=_('Url адрес'),
@@ -43,57 +44,6 @@ class Neural_network(models.Model):
 
     def __str__(self):
         return f'Neural network {self.title}'
-
-
-class Job(models.Model):
-    """Модель работы"""
-    class Busyness(models.TextChoices):
-        main = 'Main', 'Main job'
-        part_time = 'Part-time', 'Part-time job'
-
-    class Duration(models.TextChoices):
-        day = 'Day', 'working time duration - day'
-        month = 'Month', 'working time duration - month'
-
-    title = models.CharField(
-        max_length=DjobModelsConstant.CHAR_FIELD_MAX_LEN,
-        verbose_name=_('Название работы'),
-        unique=True,
-    )
-    duration = models.CharField(
-        max_length=DjobModelsConstant.CHAR_FIELD_MAX_LEN,
-        verbose_name=_('Оплата за определенный период'),
-        choices=Duration.choices,
-        default=Duration.day,
-    )
-    busyness = models.CharField(
-        max_length=DjobModelsConstant.CHAR_FIELD_MAX_LEN,
-        verbose_name=_('Занятость'),
-        choices=Busyness.choices,
-        default=Busyness.part_time,
-    )
-    payment = models.IntegerField(
-        verbose_name=_('Оплата'),
-        validators=[
-            MinValueValidator(
-                limit_value=DjobModelsConstant.INT_FIELD_MIN_VALUE,
-                message=f'Не может быть меньше '
-                        f'{DjobModelsConstant.INT_FIELD_MIN_VALUE}'),
-            MaxValueValidator(
-                limit_value=DjobModelsConstant.INT_FIELD_MAX_VALUE,
-                message=f'Не может быть больше '
-                        f'{DjobModelsConstant.INT_FIELD_MAX_VALUE}',
-                    )
-        ],
-    )
-
-    class Meta:
-        verbose_name = _('Работа')
-        verbose_name_plural = _('Работы')
-        ordering = ('id',)
-
-    def __str__(self):
-        return f'{self.title}'
 
 
 class Balance(models.Model):
@@ -123,85 +73,68 @@ class Balance(models.Model):
         return f'{self.amount_balance} {self.last_updated}'
 
 
-# class Payment(models.Model):
-#     """Модель оплаты"""
-#     worker = models.ForeignKey(
-#         to=Worker,
-#         on_delete=models.CASCADE,
-#         related_name='payment',
-#         verbose_name=_('Работник'),
-#     )
-#     neural_network = models.ManyToManyField(
-#         to=Neural_network, through='Payment_network',
-#         related_name='payments',
-#         verbose_name=_('Нейросеть'),
-#     )
-#     job = models.ManyToManyField(
-#         to=Job,
-#         related_name='payments',
-#         verbose_name=_('Работа'),
-#     )
-#     balance = models.ManyToManyField(
-#         to=Balance,
-#         related_name='payments',
-#         verbose_name=_('Баланс'),
-#     )
-#     last_updated = models.DateTimeField(
-#         auto_now=True,
-#         verbose_name=_('last_updated',)
-#     )
+class Job(models.Model):
+    """Модель работы"""
+    title = models.CharField(
+        max_length=DjobModelsConstant.CHAR_FIELD_MAX_LEN,
+        verbose_name='Работа',
+        unique=True,
+    )
+    discription = models.TextField(
+        max_length=DjobModelsConstant.TEXT_FIELD_MAX_LEN,
+        default=DjobModelsConstant.DEFAULT_TEXT_FOR_DESCRIPTION,
+        verbose_name=_('Описание')
+    )
 
-#     class Meta:
-#         ordering = ('id',)
-#         verbose_name = _('Оплата')
-#         verbose_name_plural = _('Оплаты')
+    class Meta:
+        verbose_name = _('Основная мод работы')
+        verbose_name_plural = _('Основные мод работы')
+        db_table = 'Job'
+        ordering = ('id',)
 
-#     def __str__(self) -> str:
-#         return f'Оплата {self.worker}'
+    def __str__(self):
+        return f'Работа {self.title}'
 
 
-# class Payment_network(models.Model):
-#     payment = models.ForeignKey(
-#         to=Payment,
-#         related_name='payment_networks',
-#         verbose_name=_('Оплата'),
-#         on_delete=models.CASCADE,
-#     )
-#     network = models.ForeignKey(
-#         to=Neural_network,
-#         related_name='payment_networks',
-#         verbose_name=_('Нейросеть'),
-#         on_delete=models.CASCADE,
-#     )
-#     payment_in_money = models.IntegerField(
-#         verbose_name=_('Оплата'),
-#         validators=[
-#             MinValueValidator(
-#                 limit_value=DjobModelsConstant.INT_FIELD_MIN_VALUE,
-#                 message=f'Не может быть меньше '
-#                         f'{DjobModelsConstant.INT_FIELD_MIN_VALUE}'),
-#             MaxValueValidator(
-#                 limit_value=DjobModelsConstant.INT_FIELD_MAX_VALUE,
-#                 message=f'Не может быть больше '
-#                         f'{DjobModelsConstant.INT_FIELD_MAX_VALUE}',
-#                     )
-#         ],
-#     )
+class Other_Source_model(models.Model):
+    """Модель других источников"""
+    title = models.CharField(
+        max_length=DjobModelsConstant.CHAR_FIELD_MAX_LEN,
+        verbose_name='Подработка',
+        unique=True,
+    )
+    discription = models.TextField(
+        max_length=DjobModelsConstant.TEXT_FIELD_MAX_LEN,
+        default=DjobModelsConstant.DEFAULT_TEXT_FOR_DESCRIPTION,
+        verbose_name=_('Описание')
+    )
 
-#     class Meta:
-#         ordering = ('id',)
-#         verbose_name = _('Нейросеть в оплате')
-#         verbose_name_plural = _('Нейросети в оплате')
+    class Meta:
+        verbose_name = _('Другой ист дохода')
+        verbose_name_plural = _('Другие ист дохода')
+        db_table = 'Other_Source'
+        ordering = ('id',)
 
-#     def __str__(self):
-#         return f'{self.payment} {self.network}'
+    def __str__(self):
+        return f'{self.title}'
 
 
 class Job_Payment(models.Model):
-    job = models.ManyToManyField(
+    class Busyness(models.TextChoices):
+        main = 'Основная', 'Основная работа'
+        part_time = 'Подработка', 'Частичная занятость'
+
+    worker = models.ForeignKey(
+        to=Worker,
+        on_delete=models.CASCADE,
+        related_name='job',
+        verbose_name='Работник',
+    )
+    job = models.ForeignKey(
         to=Job,
-        related_name='payments',
-        verbose_name=_('Работа'),
+        on_delete=models.CASCADE,
+        verbose_name=_('работы'),
+        related_name='jobs',
     )
     payment_in_money = models.IntegerField(
         verbose_name=_('Оплата'),
@@ -216,4 +149,188 @@ class Job_Payment(models.Model):
                         f'{DjobModelsConstant.INT_FIELD_MAX_VALUE}',
                     )
         ],
+        default=0,
     )
+    duration = models.IntegerField(
+        verbose_name=_('сумма дней'),
+        validators=[
+            MinValueValidator(
+                limit_value=DjobModelsConstant.INT_FIELD_MIN_VALUE_DURATION,
+                message=f'Не может быть меньше '
+                        f'{DjobModelsConstant.INT_FIELD_MIN_VALUE_DURATION}'),
+            MaxValueValidator(
+                limit_value=DjobModelsConstant.INT_FIELD_DAY_MAX_VALUE,
+                message=f'Не может быть больше '
+                        f'{DjobModelsConstant.INT_FIELD_MAX_VALUE}',
+                    )
+        ],
+        default=0,
+    )
+    busyness = models.CharField(
+        max_length=DjobModelsConstant.CHAR_FIELD_MAX_LEN,
+        verbose_name=_('Занятость'),
+        choices=Busyness.choices,
+        default=Busyness.part_time,
+    )
+    total_amount = models.IntegerField(
+        verbose_name=_('Общая сумма'),
+        validators=[
+            MinValueValidator(
+                limit_value=DjobModelsConstant.INT_FIELD_MIN_VALUE,
+                message=f'Не может быть меньше '
+                        f'{DjobModelsConstant.INT_FIELD_MIN_VALUE}'),
+            MaxValueValidator(
+                limit_value=DjobModelsConstant.INT_FIELD_MAX_VALUE,
+                message=f'Не может быть больше '
+                        f'{DjobModelsConstant.INT_FIELD_MAX_VALUE}',
+                    )
+        ],
+        default=0,
+    )
+    last_updated = models.DateTimeField(
+        auto_now=True,
+        verbose_name=_('last_updated',)
+    )
+
+    class Meta:
+        db_table = 'job_payment'
+        ordering = ('id',)
+        verbose_name = _('Работа',)
+        verbose_name_plural = _('Работы',)
+
+    def __str__(self) -> str:
+        return f'{self.job} {self.worker}'
+
+
+class Network_Payment(models.Model):
+    class Busyness(models.TextChoices):
+        main = 'Основная', 'Основная работа'
+        part_time = 'Подработка', 'Частичная занятость'
+
+    worker = models.ForeignKey(
+        to=Worker,
+        on_delete=models.CASCADE,
+        related_name='network',
+        verbose_name='Работник',
+    )
+    network = models.ForeignKey(
+        to=Neural_network,
+        on_delete=models.CASCADE,
+        verbose_name=_('нейросети'),
+        related_name='networks',
+    )
+    payment_in_money = models.IntegerField(
+        verbose_name=_('Оплата'),
+        validators=[
+            MinValueValidator(
+                limit_value=DjobModelsConstant.INT_FIELD_MIN_VALUE,
+                message=f'Не может быть меньше '
+                        f'{DjobModelsConstant.INT_FIELD_MIN_VALUE}'),
+            MaxValueValidator(
+                limit_value=DjobModelsConstant.INT_FIELD_MAX_VALUE,
+                message=f'Не может быть больше '
+                        f'{DjobModelsConstant.INT_FIELD_MAX_VALUE}',
+                    )
+        ],
+        default=0,
+    )
+    duration = models.IntegerField(
+        verbose_name=_('сумма дней'),
+        validators=[
+            MinValueValidator(
+                limit_value=DjobModelsConstant.INT_FIELD_MIN_VALUE_DURATION,
+                message=f'Не может быть меньше '
+                        f'{DjobModelsConstant.INT_FIELD_MIN_VALUE_DURATION}'),
+            MaxValueValidator(
+                limit_value=DjobModelsConstant.INT_FIELD_DAY_MAX_VALUE,
+                message=f'Не может быть больше '
+                        f'{DjobModelsConstant.INT_FIELD_MAX_VALUE}',
+                    )
+        ],
+        default=0,
+    )
+    busyness = models.CharField(
+        max_length=DjobModelsConstant.CHAR_FIELD_MAX_LEN,
+        verbose_name=_('Занятость'),
+        choices=Busyness.choices,
+        default=Busyness.part_time,
+    )
+    last_updated = models.DateTimeField(
+        auto_now=True,
+        verbose_name=_('last_updated',)
+    )
+
+    class Meta:
+        ordering = ('id',)
+        verbose_name = _('Нейросеть оплаты',)
+        verbose_name_plural = _('Нейросети оплаты',)
+
+    def __str__(self) -> str:
+        return f'{self.network} {self.worker}'
+
+
+class Other_Source(models.Model):
+    class Busyness(models.TextChoices):
+        main = 'Основная', 'Основная работа'
+        part_time = 'Подработка', 'Частичная занятость'
+
+    worker = models.ForeignKey(
+        to=Worker,
+        on_delete=models.CASCADE,
+        related_name='other_sources',
+        verbose_name='Работник',
+    )
+    other_source = models.ForeignKey(
+        to=Other_Source_model,
+        on_delete=models.CASCADE,
+        verbose_name=_('другие источники'),
+        related_name='other_sources',
+    )
+    payment_in_money = models.IntegerField(
+        verbose_name=_('Оплата'),
+        validators=[
+            MinValueValidator(
+                limit_value=DjobModelsConstant.INT_FIELD_MIN_VALUE_DURATION,
+                message=f'Не может быть меньше '
+                        f'{DjobModelsConstant.INT_FIELD_MIN_VALUE_DURATION}'),
+            MaxValueValidator(
+                limit_value=DjobModelsConstant.INT_FIELD_MAX_VALUE,
+                message=f'Не может быть больше '
+                        f'{DjobModelsConstant.INT_FIELD_MAX_VALUE}',
+                    )
+        ],
+        default=0,
+    )
+    duration = models.IntegerField(
+        verbose_name=_('сумма дней'),
+        validators=[
+            MinValueValidator(
+                limit_value=DjobModelsConstant.INT_FIELD_MIN_VALUE,
+                message=f'Не может быть меньше '
+                        f'{DjobModelsConstant.INT_FIELD_MIN_VALUE}'),
+            MaxValueValidator(
+                limit_value=DjobModelsConstant.INT_FIELD_DAY_MAX_VALUE,
+                message=f'Не может быть больше '
+                        f'{DjobModelsConstant.INT_FIELD_MAX_VALUE}',
+                    )
+        ],
+        default=0,
+    )
+    busyness = models.CharField(
+        max_length=DjobModelsConstant.CHAR_FIELD_MAX_LEN,
+        verbose_name=_('Занятость'),
+        choices=Busyness.choices,
+        default=Busyness.part_time,
+    )
+    last_updated = models.DateTimeField(
+        auto_now=True,
+        verbose_name=_('last_updated',)
+    )
+
+    class Meta:
+        ordering = ('id',)
+        verbose_name = _('Другой источник оплаты',)
+        verbose_name_plural = _('Другие источники оплаты',)
+
+    def __str__(self) -> str:
+        return f'{self.other_source} {self.worker}'

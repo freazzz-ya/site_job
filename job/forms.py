@@ -1,10 +1,13 @@
-from django import forms 
+from PIL import Image
+from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.core.exceptions import ValidationError
 
-from users.models import Worker
-from job.models import Neural_network, Balance, Job_Payment, Job
-from max_site.constants import MoneyFormConstant
+from users.models import Worker, Special
+from job.models import (
+    Neural_network, Job_Payment, Job,
+    Network_Payment, Other_Source, Other_Source_model,
+    )
 
 
 class CustomUserCreationForm(UserCreationForm):
@@ -14,6 +17,21 @@ class CustomUserCreationForm(UserCreationForm):
             'username', 'email', 'description_for_profil',
             'image', 'telegram_id', 'first_name', 'last_name',
         )
+
+    def save(self, commit=True):
+        instance = super().save(commit=False)
+        # Проверяем, загружено ли изображение
+        if self.cleaned_data.get('image'):
+            img = Image.open(self.cleaned_data['image'])
+            img.thumbnail((300, 200))  # Изменяем размер до 300x200
+            # Перезаписываем изображение в поле image
+            instance.image.save(
+                self.cleaned_data['image'].name,
+                self.cleaned_data['image'], save=False
+            )
+        if commit:
+            instance.save()
+        return instance
 
 
 class NeuralNetworkForm(forms.ModelForm):
@@ -41,70 +59,48 @@ class NeuralNetworkForm(forms.ModelForm):
         return title
 
 
-class JobForm(forms.Form):
-    job = forms.CharField(
-        max_length=256,
-        min_length=1,
-        required=True,
-        label='работа',
-        strip=True,
-        initial='Работенка',
-        localize=True,
-    )
-    payment = forms.IntegerField(
-        max_value=100000,
-        min_value=1,
-        required=True,
-        label='Оплата',
-    )
-
+class NetworkForm(forms.ModelForm):
     class Meta:
+        model = Network_Payment
         fields = [
-            'job', 'payment',
+            'network', 'payment_in_money',
+            'duration', 'busyness',
         ]
 
 
-class NetworkForm(forms.Form):
-    neuralnetwork = forms.CharField(
-        max_length=256,
-        min_length=1,
-        label='Нейросеть',
-        required=True,
-        strip=True,
-        initial='Нейро',
-        localize=True,
-    )
-    payment = forms.IntegerField(
-        max_value=100000,
-        min_value=1,
-        required=True,
-        label='Оплата',
-    )
-
+class Other_Source_Form(forms.ModelForm):
     class Meta:
+        model = Other_Source
         fields = [
-            'neuralnetwork', 'payment',
+            'other_source', 'payment_in_money',
+            'duration', 'busyness',
         ]
 
 
-class Other_Source_Form(forms.Form):
-    other_source = forms.CharField(
-        max_length=256,
-        min_length=1,
-        required=True,
-        label='Другой источник дохода',
-        strip=True,
-        initial='иное',
-        localize=True,
-    )
-    payment = forms.IntegerField(
-        max_value=100000,
-        min_value=1,
-        required=True,
-        label='Оплата',
-    )
-
+class Job_Reg_Form(forms.ModelForm):
     class Meta:
+        model = Job
+        fields = '__all__'
+
+
+class Other_Source_Reg_Form(forms.ModelForm):
+    class Meta:
+        model = Other_Source_model
+        fields = '__all__'
+
+
+class JobForm(forms.ModelForm):
+    class Meta:
+        model = Job_Payment
         fields = [
-            'other_source', 'payment',
+            'job', 'payment_in_money',
+            'duration', 'busyness',
+        ]
+
+
+class SpecialForm(forms.ModelForm):
+    class Meta:
+        model = Special
+        fields = [
+            'user', 'text',
         ]

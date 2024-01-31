@@ -1,0 +1,109 @@
+{% extends "base.html" %}
+{% load static %}
+{% load django_bootstrap5 %}
+{% block content %}
+<div class="site-section-cover overlay img-bg-section"
+  style="background-image: url('../../../static/images/img_2.jpg');">
+  <div class="container">
+    <div class="row align-items-center justify-content-center">
+      <div class="col-md-6" style="border: 1px solid black; padding: 10px;">
+        
+          <div >
+            <p style="color: #01070e;"> Данные о пользователе: {{user.username}} </p>
+          </div>
+          <div class="Midjourney">
+            <p style="color: #01070e;">id : {{user.id}} </p>
+            <p style="color: #01070e;">Последний вход в систему: {{user.last_login}} </p>
+            <p style="color: #01070e;">Имя: {{user.first_name}} </p>
+            <p style="color: #01070e;">Фамилия: {{user.last_name}} </p>
+            <p style="color: #01070e;">Дата регистрации: {{user.date_joined}} </p>
+            <p style="color: #01070e;">Почта: {{user.email}} </p>
+            <p style="color: #01070e;">Роль: {{user.role}} </p>
+          </div>
+        
+      </div>
+      <div class="col-md-4 offset-md-2">
+        <img src="{{ user.image.url }}" alt="Image placeholder"
+          class="img-fluid mb-5 w-75 rounded-circle border border-dark">
+        <p style="color: #01070e; font-size: 16px;">Описание профиля: {{ user.description_for_profil }}</p>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="Midjourney">
+  <div class="row">
+    <div class="col-md-10 mx-auto blog-content">
+      <br>
+      <h1 class="mb-4" data-aos="fade-up" data-aos-delay="100"
+       style="color: #01070e; text-decoration: underline;">Общая заработанная сумма: {{ total_amount }} рублей за {{ day_amount }} дня (ей)
+      </h1>
+      <section class="site-section">
+        <div class="row">
+          <div class="col-md-6 order-md-2">
+            <img src='{% static "images/other_dohod.jpg" %}' alt="Image placeholder" class="img-fluid mb-4 w-100">
+          </div>
+          <div class="col-md-6 order-md-1">
+            <p style="color: #01070e;">Сумма прочих доходов: {{ sum_other }} </p>
+            <p style="color: #01070e;">Общее кол-во дней: {{ day_other }}</p>
+            {% for i in job_value %}
+          <div style="border: 1px solid black; padding: 10px;">
+            <p style="color: #01070e;">Заработанные: {{i.payment_in_money}} </p>
+            <p style="color: #01070e;">Тип заработка: {{i.busyness}} </p>
+            <p style="color: #01070e;">Дата добавления: {{i.last_updated}} </p>
+            <p style="color: #01070e;">За период времени в днях: {{i.duration}} </p>
+            <p style="color: #01070e;">Работа: {{i.job.title}}  </p>
+          </div>
+            {% endfor %}
+          </div>
+        </div>
+      </section>
+      <section class="site-section">
+        <div class="row">
+          <div class="col-md-6 order-md-2">
+            <img src='{% static "images/job_prof.jpg" %}' alt="Image placeholder" class="img-fluid mb-4 w-100">
+          </div>
+          <div class="col-md-6 order-md-1">
+            <p style="color: #01070e;">Сумма доходов с работы: {{ sum_job }} </p>
+            <p style="color: #01070e;">Общее кол-во дней: {{ day_job }}</p>
+            {% for i in network_value %}
+            <div style="border: 1px solid black; padding: 10px;">
+              <p style="color: #01070e;">Заработанные: {{i.payment_in_money}} </p>
+              <p style="color: #01070e;">Тип заработка: {{i.busyness}} </p>
+              <p style="color: #01070e;">Дата добавления: {{i.last_updated}} </p>
+              <p style="color: #01070e;">За период времени в днях: {{i.duration}} </p>
+              <p style="color: #01070e;">Нейросеть: {{i.network.title}}  </p>
+            </div>
+            {% endfor %}
+          </div>
+        </div>
+      </section>
+      <section class="site-section">
+        <div class="row">
+          <div class="col-md-6 order-md-2">
+            <img src='{% static "images/neiro_prof1.jpg" %}' alt="Image placeholder" class="img-fluid mb-4 w-100">
+          </div>
+          <div class="col-md-6 order-md-1">
+            <p style="color: #01070e;">Сумма прочих доходов: {{ sum_network }}</p>
+            <p style="color: #01070e;">Общее кол-во дней: {{ day_network }}</p>
+            {% for i in other_value %}
+            <div style="border: 1px solid black; padding: 10px;">
+              <p style="color: #01070e;">Заработанные: {{i.payment_in_money}} </p>
+              <p style="color: #01070e;">Тип заработка: {{i.busyness}} </p>
+              <p style="color: #01070e;">Дата добавления: {{i.last_updated}} </p>
+              <p style="color: #01070e;">За период времени в днях: {{i.duration}} </p>
+              <p style="color: #01070e;">Подработка: {{i.other_source.title}}  </p>
+            </div>
+            {% endfor %}
+          </div>
+          
+        </div>
+        
+      </section>
+      <h4 style="color: #01070e;">НАСТАВЛЕНИЕ:Каждая группа представлена в 4 записях</h4>
+    </div>
+    
+  </div>
+</div>
+{% endblock %}
+
+<script src='{% static "js/body.js" %}'></script>

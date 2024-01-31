@@ -34,19 +34,41 @@
         </div>
         <div class="site-mobile-menu-body"></div>
       </div>
-      <header class="site-navbar js-sticky-header site-navbar-target" role="banner">
+   <header class="site-navbar js-sticky-header site-navbar-target" role="banner">
 
-        <div class="container">
-          <div class="row align-items-center position-relative">
-              
-              <div class="site-logo">
-                <a href="/job/" class="text-black"><span class="text-primary">piggy bank</a>
-              </div>
-            <div class="toggle-button d-inline-block d-lg-none"><a href="/job/" class="site-menu-toggle py-5 js-menu-toggle text-black"><span class="icon-menu h3"></span></a></div>
-  
-          </div>
+      <div class="container">
+        <div class="row align-items-center position-relative">
+          
+            
+            <div class="site-logo">
+              <a href="/job/" class="text-black"><span class="text-primary">piggy bank</a>
+            </div>
+            
+              <nav class="site-navigation text-center ml-auto" role="navigation">
+
+                <ul class="site-menu main-menu js-clone-nav ml-auto d-none d-lg-block">
+                  <li><a href="/job/" class="nav-link">Дом</a></li>
+                  <li><a href="/job/" class="nav-link">Инcтрумены</a></li>
+                  <li><a href="/job/" class="nav-link">О нас</a></li>
+                  <li><a href="/job/" class="nav-link">Сервисы</a></li>
+                  <li><a href="/job/neuronet/" class="nav-link">Нейросети</a></li>
+                  <li><a href="/job/" class="nav-link">Контакты</a></li>
+                  {% if user.is_authenticated %}
+                  <li><a href="/job/finance/" class="nav-link">Профиль</a></li>
+                  {% else %}
+                  <li><a href="/users/auth/login/" class="nav-link">Войти</a></li>
+                  {% endif %}
+                </ul>
+              </nav>
+          
+            
+
+          <div class="toggle-button d-inline-block d-lg-none"><a href="#" class="site-menu-toggle py-5 js-menu-toggle text-black"><span class="icon-menu h3"></span></a></div>
+
         </div>
-      </header>
+      </div>
+      
+    </header>
       {% block content %}{% endblock %}
       <footer class="site-footer">
         <div class="container">
