@@ -18,7 +18,7 @@ class UserModelConstant(DjobModelsConstant):
                                    "но мы уверены, что это очень "\
                                    "хороший и позитивный человек, " \
                                    "который скоро добьется финансовых успехов."
-
+    DEFAULT_TEXT_FOR_COMMENT = "Дефолтное описание для комментария"
 
 class NeuralNetworkModelConstant(UserModelConstant):
     """Константы для модели Neural_network"""

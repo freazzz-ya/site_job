@@ -1,12 +1,12 @@
 from django.db import models
 from django.core.validators import (
-    MinValueValidator, MaxValueValidator, MinLengthValidator,
+    MinValueValidator, MaxValueValidator,
     )
 from django.utils.translation import gettext_lazy as _
 
 from users.models import Worker
 from max_site.constants import (
-    DjobModelsConstant, UserModelConstant, NeuralNetworkModelConstant
+    DjobModelsConstant, UserModelConstant, NeuralNetworkModelConstant,
     )
 
 
@@ -17,20 +17,23 @@ class Neural_network(models.Model):
         verbose_name=_('Название'),
         help_text=_('Max 256'),
         unique=True,
+        error_messages={
+            'unique': 'Название уже существует такое',
+        }
     )
     image = models.ImageField(
         upload_to='images/network/',
         verbose_name=_('Изображение'),
-        default='images/network/default.jpg',
+        default='images/network/default_Uf.jpg',
     )
     description = models.TextField(
-        max_length=NeuralNetworkModelConstant.CHAR_FIELD_MAX_LEN,
+        max_length=NeuralNetworkModelConstant.TEXT_FIELD_MAX_LEN,
         verbose_name=_('Описание'),
-        default=NeuralNetworkModelConstant.DEFAULT_TEXT_FOR_DESCRIPTION,
+        default=DjobModelsConstant.DEFAULT_TEXT_FOR_DESCRIPTION,
+        help_text='Максимальная длинна - 1000 символов',
     )
     url = models.URLField(
         verbose_name=_('Url адрес'),
-        max_length=NeuralNetworkModelConstant.CHAR_FIELD_MAX_LEN,
     )
     date_joined = models.DateTimeField(
         verbose_name=_("Дата создания"),
@@ -189,7 +192,12 @@ class Job_Payment(models.Model):
     )
     last_updated = models.DateTimeField(
         auto_now=True,
-        verbose_name=_('last_updated',)
+        verbose_name=_('Последнее обновление',)
+    )
+    comment = models.TextField(
+        max_length=DjobModelsConstant.TEXT_FIELD_MAX_LEN,
+        default=UserModelConstant.DEFAULT_TEXT_FOR_COMMENT,
+        verbose_name=_('Комментарий')
     )
 
     class Meta:
@@ -249,6 +257,11 @@ class Network_Payment(models.Model):
         ],
         default=0,
     )
+    comment = models.TextField(
+        max_length=DjobModelsConstant.TEXT_FIELD_MAX_LEN,
+        default=UserModelConstant.DEFAULT_TEXT_FOR_COMMENT,
+        verbose_name=_('Комментарий')
+    )
     busyness = models.CharField(
         max_length=DjobModelsConstant.CHAR_FIELD_MAX_LEN,
         verbose_name=_('Занятость'),
@@ -257,7 +270,7 @@ class Network_Payment(models.Model):
     )
     last_updated = models.DateTimeField(
         auto_now=True,
-        verbose_name=_('last_updated',)
+        verbose_name=_('Последнее обновление',)
     )
 
     class Meta:
@@ -316,6 +329,11 @@ class Other_Source(models.Model):
         ],
         default=0,
     )
+    comment = models.TextField(
+        max_length=DjobModelsConstant.TEXT_FIELD_MAX_LEN,
+        default=UserModelConstant.DEFAULT_TEXT_FOR_COMMENT,
+        verbose_name=_('Комментарий')
+    )
     busyness = models.CharField(
         max_length=DjobModelsConstant.CHAR_FIELD_MAX_LEN,
         verbose_name=_('Занятость'),
@@ -324,7 +342,7 @@ class Other_Source(models.Model):
     )
     last_updated = models.DateTimeField(
         auto_now=True,
-        verbose_name=_('last_updated',)
+        verbose_name=_('Последнее обновление',)
     )
 
     class Meta:

@@ -52,6 +52,7 @@
             <p style="color: #01070e;">Дата добавления: {{i.last_updated}} </p>
             <p style="color: #01070e;">За период времени в днях: {{i.duration}} </p>
             <p style="color: #01070e;">Работа: {{i.job.title}}  </p>
+            <p style="color: #01070e;">Комметарий: {{i.comment}}  </p>
           </div>
             {% endfor %}
           </div>
@@ -72,6 +73,7 @@
               <p style="color: #01070e;">Дата добавления: {{i.last_updated}} </p>
               <p style="color: #01070e;">За период времени в днях: {{i.duration}} </p>
               <p style="color: #01070e;">Нейросеть: {{i.network.title}}  </p>
+              <p style="color: #01070e;">Комметарий: {{i.comment}}  </p>
             </div>
             {% endfor %}
           </div>
@@ -92,18 +94,16 @@
               <p style="color: #01070e;">Дата добавления: {{i.last_updated}} </p>
               <p style="color: #01070e;">За период времени в днях: {{i.duration}} </p>
               <p style="color: #01070e;">Подработка: {{i.other_source.title}}  </p>
+              <p style="color: #01070e;">Комметарий: {{i.comment}}  </p>
             </div>
             {% endfor %}
           </div>
-          
-        </div>
-        
+        </div>       
       </section>
       <h4 style="color: #01070e;">НАСТАВЛЕНИЕ:Каждая группа представлена в 4 записях</h4>
     </div>
-    
   </div>
 </div>
 {% endblock %}
-
 <script src='{% static "js/body.js" %}'></script>
+<script src='{% static "js/graphic.js" %}'></script>

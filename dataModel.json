@@ -60,7 +60,7 @@
             "telegram_id": 23323232,
             "description_for_profil": "Данный пользователь ничего о себе не написал, но мы уверены, что это очень хороший и позитивный человек, который скоро добьется финансовых успехов.",
             "image": "images/zjEDwmxGkJ0.jpg",
-            "role": "Custom",
+            "role": "Special",
             "groups": [],
             "user_permissions": []
         }

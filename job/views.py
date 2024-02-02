@@ -1,3 +1,4 @@
+from django.core.exceptions import ValidationError
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from PIL import Image
@@ -29,14 +30,12 @@ def neiro_view(request):
     if request.method == 'POST':
         form = NeuralNetworkForm(request.POST, request.FILES)
         if form.is_valid():
-            # Сначала получаем экземпляр без сохранения в БД
-            instance = form.save(commit=False)
+            instance = form.save(commit=False)  # Сначала получаем экземпляр без сохранения в БД
             if instance.image:  # Проверяем, загружено ли изображение
                 img = Image.open(instance.image)
                 img.thumbnail((300, 200))  # Изменяем размер до 300x300
                 img.save(instance.image.path)  # Перезаписываем изображение
             instance.save()
-        return redirect('/job/finance/')
     else:
         form = NeuralNetworkForm()
     context = {
@@ -163,19 +162,22 @@ def finance_list(request):
         ).values_list(
             'payment_in_money', 'busyness',
             'last_updated', 'duration', 'worker',
-            ).reverse()[:5]
+            'comment',
+            ).reverse()
     job = Job_Payment.objects.filter(
         worker__id=request.user.id
         ).values_list(
             'payment_in_money', 'busyness',
             'last_updated', 'duration',
-            ).reverse()[:5]
+            'comment',
+            ).reverse()
     network = Network_Payment.objects.filter(
         worker__id=request.user.id
         ).values_list(
             'payment_in_money', 'busyness',
             'last_updated', 'duration',
-            ).reverse()[:5]
+            'comment',
+            ).reverse()
     day_other = sum(Other_Source.objects.filter(
         worker_id=request.user.id
         ).values_list('duration', flat=True))

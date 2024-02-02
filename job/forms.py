@@ -1,3 +1,6 @@
+import base64
+
+from django.core.files.base import ContentFile
 from PIL import Image
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
@@ -8,6 +11,20 @@ from job.models import (
     Neural_network, Job_Payment, Job,
     Network_Payment, Other_Source, Other_Source_model,
     )
+
+class Base64ImageField(forms.ImageField):
+    """
+    Сериализатор для обработки изображений, представленных в кодировке
+    base64, которые могут быть отправлены клиентом при создании или обновлении
+    объекта.
+    """
+    def to_internal_value(self, data):
+        if isinstance(data, str) and data.startswith('data:image'):
+            format, imgstr = data.split(';base64,')
+            ext = format.split('/')[-1]
+            data = ContentFile(base64.b64decode(imgstr), name='temp.' + ext)
+
+        return super().to_internal_value(data)
 
 
 class CustomUserCreationForm(UserCreationForm):
@@ -36,6 +53,15 @@ class CustomUserCreationForm(UserCreationForm):
 
 class NeuralNetworkForm(forms.ModelForm):
     """Форма для модели нейросеть."""
+    title = forms.CharField(
+        required=True,
+        error_messages={
+            'unique': 'должно быть уникальным',
+        },
+        label='Название',
+        help_text='Поле должно быть уникальным',
+    )
+
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.fields['description'].empty_label = 'Напишите описание поля'
@@ -64,7 +90,7 @@ class NetworkForm(forms.ModelForm):
         model = Network_Payment
         fields = [
             'network', 'payment_in_money',
-            'duration', 'busyness',
+            'duration', 'busyness', 'comment',
         ]
 
 
@@ -73,7 +99,7 @@ class Other_Source_Form(forms.ModelForm):
         model = Other_Source
         fields = [
             'other_source', 'payment_in_money',
-            'duration', 'busyness',
+            'duration', 'busyness', 'comment',
         ]
 
 
@@ -95,6 +121,7 @@ class JobForm(forms.ModelForm):
         fields = [
             'job', 'payment_in_money',
             'duration', 'busyness',
+            'comment',
         ]
 
 
