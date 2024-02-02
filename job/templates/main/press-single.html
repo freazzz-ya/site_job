@@ -1,0 +1,248 @@
+{% load static %}
+{% load django_bootstrap5 %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Нейросети - будущее уже наступило</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link href="https://fonts.googleapis.com/css?family=Nunito:300,400,700" rel="stylesheet">
+
+    <link rel="stylesheet" href='{% static "fonts/icomoon/style.css" %}'>
+
+    <link rel="stylesheet" href='{% static "css/bootstrap.min.css" %}'>
+    <link rel="stylesheet" href='{% static "css/magnific-popup.css" %}'>
+    <link rel="stylesheet" href='{% static "css/jquery-ui.css" %}'>
+    <link rel="stylesheet" href='{% static "css/owl.carousel.min.css" %}'>
+    <link rel="stylesheet" href='{% static "css/owl.theme.default.min.css" %}'>
+
+    <link rel="stylesheet" href='{% static "css/bootstrap-datepicker.css" %}'>
+
+    <link rel="stylesheet" href='{% static "fonts/flaticon/font/flaticon.css" %}'>
+
+    <link rel="stylesheet" href='{% static "css/aos.css" %}'>
+
+    <link rel="stylesheet" href='{% static "css/style.css" %}'>
+    
+  </head>
+  <body data-spy="scroll" data-target=".site-navbar-target" data-offset="300">
+  
+  <div class="site-wrap"  id="home-section">
+
+    <div class="site-mobile-menu site-navbar-target">
+      <div class="site-mobile-menu-header">
+        <div class="site-mobile-menu-close mt-3">
+          <span class="icon-close2 js-menu-toggle"></span>
+        </div>
+      </div>
+      <div class="site-mobile-menu-body"></div>
+    </div>
+   
+      
+    <header class="site-navbar js-sticky-header site-navbar-target" role="banner">
+
+      <div class="container">
+        <div class="row align-items-center position-relative">
+          
+            
+            <div class="site-logo">
+              <a href="/job/" class="text-black"><span class="text-primary">PIGGY BANK</a>
+            </div>
+              <nav class="site-navigation text-center ml-auto" role="navigation">
+
+                <ul class="site-menu main-menu js-clone-nav ml-auto d-none d-lg-block">
+                <li><a href="#press-section" class="nav-link">Обзор</a></li>
+                {% if user.is_authenticated %}
+                <li><a href="#pre-section" class="nav-link">Создать нейросеть</a></li>
+                <li><a href="/job/finance/" class="nav-link">Профиль</a></li>
+                {% else %}
+                <li><a href="/users/auth/registration/" class="nav-link">Профиль</a></li>
+                {% endif %}
+              </ul>
+              </nav>
+          
+            <!-- </div> -->
+
+          <div class="toggle-button d-inline-block d-lg-none"><a href="#" class="site-menu-toggle py-5 js-menu-toggle text-black"><span class="icon-menu h3"></span></a></div>
+
+        </div>
+      </div>
+    </header>
+    <div class="site-section-cover overlay inner-page bg-light" style="background-image: url('/static/images/hero_2.jpg')" data-aos="fade">   
+      <div class="container">
+        <div class="row align-items-center justify-content-center text-center">
+          <div class="col-lg-10">
+            <div class="box-shadow-content">
+              <div class="block-heading-1">
+                <span class="d-block mb-3 text-white"  data-aos="fade-up"><span class="mx-2">&bullet;</span> </span>
+                <h1 class="mb-4" data-aos="fade-up" data-aos-delay="100">Все самое главное о нейросетях</h1>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <section class="site-section">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-10 mx-auto blog-content">
+            <p class="lead">Нейросети - это компьютерные системы, которые используют алгоритмы машинного обучения для анализа и обработки данных. Они являются одной из самых важных технологий в области искусственного интеллекта.</p>
+            <p><img src='{% static "/images/neiro.jpg" %}' alt="Image" class="img-fluid"></p>
+            <p>История нейросетей началась в 1943 году, когда Уоррен МакКаллок и Уолтер Питтс создали первую модель нейрона. Они предположили, что нейроны могут быть связаны друг с другом, чтобы создать сложные сети, которые могут выполнять сложные вычисления. Однако на тот момент компьютеры были слишком медленными, чтобы обрабатывать такие сложные сети.</p>
+
+            <blockquote><p>В 1950-х годах Фрэнк Розенблатт создал персептрон - первую нейронную сеть, которая могла обучаться. Он использовал ее для распознавания образов, что стало первым примером применения нейронных сетей в практических задачах.</p></blockquote>
+
+            <p>Однако в 1960-х годах исследования в области нейронных сетей замедлились, так как было доказано, что простые нейронные сети не могут решать сложные задачи. Но в 1980-х годах исследователи начали разрабатывать более сложные алгоритмы машинного обучения, которые позволяли создавать более мощные нейронные сети.</p>
+            <p>Сегодня нейросети используются во многих областях, таких как распознавание речи, обработка изображений, прогнозирование тенденций на рынке и многое другое. Например, Google использует нейросети для распознавания речи и перевода текста, а Facebook использует их для определения содержания фотографий и видео.</p>
+            <p>Еще один пример применения нейросетей - это автономные автомобили. Нейросети могут обрабатывать данные с камер и датчиков, чтобы определять, куда ехать и как избегать препятствий.</p>
+            <p>В целом, нейросети - это мощный инструмент, который может помочь в решении сложных задач и улучшении производительности во многих областях. С развитием технологий и увеличением доступности данных, нейросети будут продолжать играть важную роль в искусственном интеллекте и будут использоваться все шире и шире.</p>        
+          </div>
+          
+        </div>
+      </div>
+    </section>
+
+    <div class="site-section" id="press-section">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-6 mb-1 mb-lg-1">
+          </div>
+          <div class="col-lg-12">
+            <ul class="list-unstyled">
+              {% for network in networks %}
+              {% if forloop.counter0|divisibleby:2 %}
+              <li class="mb-2 d-block d-md-flex">              
+                <div class="col-md-6">
+                  <h2 class="h4"><a href="" class="text-black">{{ network.title }}</a></h2>
+                  <span class="d-block text-secondary mb-4">Добавлена в базу {{ network.date_joined }}</span>
+                  <p>{{ network.description }}</p>
+                  <a href="{{ network.url }}" style="text-decoration: underline;">Узнать больше</a>
+                </div>
+                <div class="col-md-6 mb-4">
+                  <img src="{{ network.image.url }}" alt="Image" class="img-fluid d-block mx-auto" style="width: 100%; height: auto;">
+                </div>            
+              </li>
+              {% else %}
+              <li class="mb-2 d-block d-md-flex">  
+                <div class="col-md-6 mb-4">
+                  <img src="{{ network.image.url }}" alt="Image" class="img-fluid d-block mx-auto" style="width: 100%; height: auto;">
+                </div>            
+                <div class="col-md-6">
+                  <h2 class="h4"><a href="" class="text-black">{{ network.title }}</a></h2>
+                  <span class="d-block text-secondary mb-4">Добавлена в базу {{ network.date_joined }}</span> 
+                  <p>{{ network.description }}</p>
+                  <a href="{{ network.url }}" style="text-decoration: underline;">Узнать больше</a>
+                </div>            
+              </li>
+              
+              {% endif %}
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+    </div>
+    </div>
+    {% if user.is_authenticated %}
+    <section class="site-section" id="pre-section">
+        <h4 style="cursor:pointer; text-decoration: underline; text-align: center;" class="col-lg-6 mb-1 mb-lg-1" onClick="expandit('ans1')">Открыть форму для создания</h4>
+        
+      <div id = "ans1" style="display:none">
+    <div class="col d-flex justify-content-center">
+      <div class="card" style="width: 40rem;">
+        <div class="card-header">
+          Создание нейросети
+        </div>
+        <div class="card-body">
+          <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            {% bootstrap_form form %}
+            {% bootstrap_button button_type="submit" content="Создать" %}
+          </form>
+        </div>  
+      </div>
+    </div>
+  </section>
+</div>
+  {% endif %}
+  <footer class="site-footer">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6">
+          <div class="row">
+            <div class="col-md-8">
+              <h2 class="footer-heading mb-4">О нас</h2>
+              <p>Перспективная, быстрорастущая команда разработчиков, нацеленная на успех.</p>
+            </div>
+            <div class="col-md-4 ml-auto">
+              <h2 class="footer-heading mb-4">Вкладки</h2>
+              <nav class="site-navigation text-center ml-auto" role="navigation">
+                <ul class="site-menu main-menu js-clone-nav ml-auto d-none d-lg-block">
+                  <li><a href="/job/#home-section" class="nav-link">Дом</a></li>
+                  <li><a href="/job/#investors-section" class="nav-link">Инcтрумены</a></li>
+                  <li><a href="/job/#about-section" class="nav-link">О нас</a></li>
+                  <li><a href="/job/#services-section" class="nav-link">Сервисы</a></li>
+                  <li><a href="/job/#press-section" class="nav-link">Нейросети</a></li>
+                  <li><a href="/job/finance/" class="nav-link">Профиль</a></li>
+                  <li><a href="/job/#contact-section" class="nav-link">Контакты</a></li>
+                </ul>
+              </nav>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4 ml-auto">
+          <div class="mb-5">
+            <div class="mb-5">
+              <h2 class="footer-heading mb-4">Будь в курсе</h2>
+              <p>Частые акции и интересные предлжения.</p>
+            </div>
+            <h2 class="footer-heading mb-4">Подпишись на рассылку и ничего не пропусти!</h2>
+            <form action="#" method="post">
+              <div class="input-group mb-3">
+                <input type="text" class="form-control border-secondary text-black bg-transparent" placeholder="Введите Email" aria-label="Enter Email" aria-describedby="button-addon2">
+                <div class="input-group-append">
+                  <button class="btn btn-primary text-white" type="button" id="button-addon2">Подписка</button>
+                </div>
+              </div>
+            </div>
+            <h2 class="footer-heading mb-4">Наши социальные сети</h2>
+              <a href="#about-section" class="smoothscroll pl-0 pr-3"><span class="icon-facebook"></span></a>
+              <a href="#" class="pl-3 pr-3"><span class="icon-twitter"></span></a>
+              <a href="#" class="pl-3 pr-3"><span class="icon-instagram"></span></a>
+              <a href="#" class="pl-3 pr-3"><span class="icon-linkedin"></span></a>
+          </form>
+        </div>
+      </div>
+      <div class="row pt-5 mt-5 text-center">
+        <div class="col-md-12">
+          <div class="border-top pt-5">
+          <p>
+          <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+          Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="icon-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank" >Colorlib</a>
+          <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+          </p>
+          </div>
+        </div>
+        
+      </div>
+    </div>
+  </footer>
+
+  </div>
+
+  <script src='{% static "js/jquery-3.3.1.min.js" %}'></script>
+  <script src='{% static "js/jquery-ui.js" %}'></script>
+  <script src='{% static "js/popper.min.js" %}'></script>
+  <script src='{% static "js/bootstrap.min.js" %}'></script>
+  <script src='{% static "js/owl.carousel.min.js" %}'></script>
+  <script src='{% static "js/jquery.magnific-popup.min.js" %}'></script>
+  <script src='{% static "js/jquery.sticky.js" %}'></script>
+  <script src='{% static "js/jquery.waypoints.min.js" %}'></script>
+  <script src='{% static "js/jquery.animateNumber.min.js" %}'></script>
+  <script src='{% static "js/aos.js" %}'></script>
+
+  <script src='{% static "js/prof.js" %}'></script>
+  <script src='{% static "js/main.js" %}'></script>
+    
+  </body>
+</html>

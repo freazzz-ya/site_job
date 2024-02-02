@@ -1,0 +1,608 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>piggy bank &mdash; Сайт для накопления</title>
+    <meta charset="utf-8">
+    <link rel="shortcut icon" href='{% static "images/icon.jpg" %}' type="image/x-icon">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link href="https://fonts.googleapis.com/css?family=Nunito:300,400,700" rel="stylesheet">
+
+    <link rel="stylesheet" href="{% static "fonts/icomoon/style.css" %}">
+
+    <link rel="stylesheet" href="{% static "css/bootstrap.min.css" %}">
+    <link rel="stylesheet" href="{% static "css/magnific-popup.css" %}">
+    <link rel="stylesheet" href="{% static "css/jquery-ui.css" %}">
+    <link rel="stylesheet" href="{% static "css/owl.carousel.min.css" %}">
+    <link rel="stylesheet" href="{% static "css/owl.theme.default.min.css" %}">
+    <link rel="stylesheet" href="{% static "css/bootstrap-datepicker.css" %}">
+    <link rel="stylesheet" href="{% static "fonts/flaticon/font/flaticon.css" %}">
+
+    <link rel="stylesheet" href="{% static "css/aos.css" %}">
+
+    <link rel="stylesheet" href="{% static "css/style.css" %}">
+    
+  </head>
+  <body data-spy="scroll" data-target=".site-navbar-target" data-offset="300">
+  
+  <div class="site-wrap"  id="home-section">
+
+    <div class="site-mobile-menu site-navbar-target">
+      <div class="site-mobile-menu-header">
+        <div class="site-mobile-menu-close mt-3">
+          <span class="icon-close2 js-menu-toggle"></span>
+        </div>
+      </div>
+      <div class="site-mobile-menu-body"></div>
+    </div>
+   
+      
+    <header class="site-navbar js-sticky-header site-navbar-target" role="banner">
+
+      <div class="container">
+        <div class="row align-items-center position-relative">
+          
+            
+            <div class="site-logo">
+              <a href="" class="text-black"><span class="text-primary">piggy bank</a>
+            </div>
+            
+              <nav class="site-navigation text-center ml-auto" role="navigation">
+
+                <ul class="site-menu main-menu js-clone-nav ml-auto d-none d-lg-block">
+                  <li><a href="#home-section" class="nav-link">Дом</a></li>
+                  <li><a href="#investors-section" class="nav-link">Инcтрумены</a></li>
+                  <li><a href="#about-section" class="nav-link">О нас</a></li>
+                  <li><a href="#services-section" class="nav-link">Сервисы</a></li>
+                  
+                  <li><a href="#contact-section" class="nav-link">Контакты</a></li>
+                  <li><a href="/job/neuronet/" class="nav-link">Нейросети</a></li>
+                  {% if user.is_authenticated %}
+                  <li><a href="/job/finance/" class="nav-link">Профиль</a></li>
+                  {% else %}
+                  <li><a href="/users/auth/login/" class="nav-link">Войти</a></li>
+                  {% endif %}
+                </ul>
+              </nav>
+          
+            
+
+          <div class="toggle-button d-inline-block d-lg-none"><a href="#" class="site-menu-toggle py-5 js-menu-toggle text-black"><span class="icon-menu h3"></span></a></div>
+
+        </div>
+      </div>
+      
+    </header>
+    
+    <div class="owl-carousel slide-one-item">
+      
+
+      
+
+      <div class="site-section-cover overlay img-bg-section" style="background-image: url('../static/images/hero_1.jpg'); " >
+        <div class="container">
+          <div class="row align-items-center justify-content-center">
+            <div class="col-md-12 col-lg-7 text-center">
+              <h1>Инвестиции с пользой</h1>  
+              <p>Не легко деньги нажить, а легко прожить.</p>
+              {% if user.is_authenticated %}
+              <p><a href="finance/" class="btn btn-white-outline border-w-2 btn-md">Расчет</a></p>
+              {% else %}
+              <p><a href="/users/auth/registration/" class="btn btn-white-outline border-w-2 btn-md">Расчет</a></p>
+              {% endif %}
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="site-section-cover overlay img-bg-section" style="background-image: url('../static/images/hero_2.jpg'); " >
+        <div class="container">
+          <div class="row align-items-center justify-content-center">
+            <div class="col-md-12 col-lg-7 text-center">
+              <h1>Копилка</h1>      
+              <p>Живется, у кого денежка ведется.</p>    
+              {% if user.is_authenticated %}
+              <p><a href="finance/" class="btn btn-white-outline border-w-2 btn-md">Расчет</a></p>
+              {% else %}
+              <p><a href="/users/auth/registration/" class="btn btn-white-outline border-w-2 btn-md">Расчет</a></p>
+              {% endif %}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="pt-5" id="investors-section">
+      <div class="container">
+        <div class="row">
+          <div class="col-12 text-center">
+            <div class="block-heading-1">
+              <h2>Инструменты инвестирования</h2>
+            </div>
+          </div>
+        </div>
+        <div class="row align-items-center">
+          <div class="col-md-3">
+            <img src='{% static "images/ac-nc-67336.jpg" %}' alt="Image" class="img-fluid">
+          </div>
+          <div class="col-md-3">
+            <img src='{% static "images/creyf-s.jpg" %}' alt="Image" class="img-fluid">
+          </div>
+          <div class="col-md-3">
+            <img src='{% static "images/showa-3.jpg" %}' alt="Image" class="img-fluid">
+          </div>
+          <div class="col-md-3">
+            <img src='{% static "images/trimble-2.jpg" %}' alt="Image" class="img-fluid">
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="site-section" id="about-section">
+      <div class="container">
+        <div class="row mb-5">
+          <div class="col-lg-6 mb-4">
+            <figure class="block-img-video-1" data-aos="fade">
+              <a href="https://www.youtube.com/watch?v=ZKv0KWD4IgE" class="popup-vimeo">
+                <span class="icon"><span class="icon-play"></span></span>
+                <img src='{% static "images/hero_1.jpg" %}' alt="Image" class="img-fluid">
+              </a>
+            </figure>
+          </div>
+          <div class="col-lg-5 ml-auto">
+            <h2 class="text-primary mb-4">Все, что нужно знать о нас.</h2>
+            <p>Добро пожаловать на наш сайт.</p>
+            <p>Тут вы научитесь считать свои деньги, узнаете как правильно их инвестировать.</p>
+            <p>Сможете вести учет своих финансов и рассказывать о различных видах заработка на нейросетях.</p>
+            <p>Данный сайт находится по настоящее время в раработке.</p>
+            <p>С любовью, создатель сайта - MAX14.</p>
+            <!-- <p><a href="#">Read More</a></p> -->
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6 mb-4 col-lg-0 col-lg-3">
+            <div class="block-counter-1">
+              <span class="number"><span data-number="5">0</span></span>
+              <span class="caption">Опыт работы</span>
+            </div>
+          </div>
+          <div class="col-md-6 mb-4 col-lg-0 col-lg-3">
+            <div class="block-counter-1">
+              <span class="number"><span data-number='{{ count_networks }}'>0</span></span>
+              <span class="caption">Количество нейросетей</span>
+            </div>
+          </div>
+          <div class="col-md-6 mb-4 col-lg-0 col-lg-3">
+            <div class="block-counter-1">
+              <span class="number"><span data-number="{{ count_worker }}">0</span></span>
+              <span class="caption">Количество зарегистрированных пользователей сайта</span>
+            </div>
+          </div>
+          <div class="col-md-6 mb-4 col-lg-0 col-lg-3">
+            <div class="block-counter-1">
+              <span class="number"><span data-number="35">0</span></span>
+              <span class="caption">Количество уникальных пользователей за день</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="site-section bg-light" id="services-section">
+      <div class="container">
+        <div class="row mb-5">
+          <div class="col-12">
+            <div class="block-heading-1">
+              <h2>Наши сервисы</h2>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6 col-lg-4 mb-4">
+            <span class="icon-signal d-block mb-3 display-3 text-secondary"></span>
+            <h3 class="text-primary h4 mb-2">Бизнес аналитика</h3>
+            <p>Исследование информации о работе компании, на основании которой менеджеры выявляют проблемы и пути их решения.</p>
+          </div>
+          <div class="col-md-6 col-lg-4 mb-4">
+            <span class="icon-anchor d-block mb-3 display-3 text-secondary"></span>
+            <h3 class="text-primary h4 mb-2">Инвестиционные решения</h3>
+            <p>Решение, которое принимается на основе тщательного анализа перспективы вложения финансовых средств в развитие конкретного объекта или реализации идеи. </p>
+          </div>
+          <div class="col-md-6 col-lg-4 mb-4">
+            <span class="icon-magnet d-block mb-3 display-3 text-secondary"></span>
+            <h3 class="text-primary h4 mb-2">Индивидуальный подход</h3>
+            <p>Поиск наилучшего решения для кокретной ситуации.</p>
+          </div>
+
+          <div class="col-md-6 col-lg-4 mb-4">
+            <span class="icon-briefcase d-block mb-3 display-3 text-secondary"></span>
+            <h3 class="text-primary h4 mb-2">Анализ работы</h3>
+            <p>Выбор и анализ работы.</p>
+          </div>
+          <div class="col-md-6 col-lg-4 mb-4">
+            <span class="icon-money d-block mb-3 display-3 text-secondary"></span>
+            <h3 class="text-primary h4 mb-2">Анализ финансовой деятельности</h3>
+            <p>Подсчет финансов.</p>
+          </div>
+          <div class="col-md-6 col-lg-4 mb-4">
+            <span class="icon-umbrella d-block mb-3 display-3 text-secondary"></span>
+            <h3 class="text-primary h4 mb-2">Нейросети</h3>
+            <p>Поиск решения различных задач при помощи нейросетей.</p>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+
+
+    <div class="site-section" id="team-section">
+      <div class="container">
+        <div class="row mb-5">
+          <div class="col-12">
+            <div class="block-heading-1">
+              <h2>Наши лидеры - наставники</h2>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-lg-4 col-md-6 mb-4 mb-lg-0" data-aos="fade-up">
+            <div class="block-team-member-1 text-center rounded">
+              <figure>
+                <img src='{% static "images/person_1.jpg" %}' alt="Image" class="img-fluid rounded-circle">
+              </figure>
+              <h3 class="font-size-20 text-black">Зина Зоявкина</h3>
+              <span class="d-block font-gray-5 letter-spacing-1 text-uppercase font-size-12 mb-3">Рекрутер</span>
+              <p class="px-3 mb-3">Когда у руководителя в компании появляется потребность в новом сотруднике, он передает информацию руководителю найма в HR-отдел. </p>
+              <div class="block-social-1">
+                <a href="#" class="btn border-w-2 rounded primary-primary-outline--hover"><span class="icon-facebook"></span></a>
+                <a href="#" class="btn border-w-2 rounded primary-primary-outline--hover"><span class="icon-twitter"></span></a>
+                <a href="#" class="btn border-w-2 rounded primary-primary-outline--hover"><span class="icon-instagram"></span></a>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6 mb-4 mb-lg-0" data-aos="fade-up" data-aos-delay="100">
+            <div class="block-team-member-1 text-center rounded">
+              <figure>
+                <img src='{% static "images/person_2.jpg" %}' alt="Image" class="img-fluid rounded-circle">
+              </figure>
+              <h3 class="font-size-20 text-black">Эвелина Павелкина</h3>
+              <span class="d-block font-gray-5 letter-spacing-1 text-uppercase font-size-12 mb-3">Проект менеджер</span>
+              <p class="px-3 mb-3">Организатор, составитель ключевых дэдлайнов проекта. Если проект четко ограничен по времени — им руководит проджект-менеджер, если постоянный — им управляет другой сотрудник.</p>
+              <div class="block-social-1">
+                <a href="#" class="btn border-w-2 rounded primary-primary-outline--hover"><span class="icon-facebook"></span></a>
+                <a href="#" class="btn border-w-2 rounded primary-primary-outline--hover"><span class="icon-twitter"></span></a>
+                <a href="#" class="btn border-w-2 rounded primary-primary-outline--hover"><span class="icon-instagram"></span></a>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6 mb-4 mb-lg-0" data-aos="fade-up" data-aos-delay="200">
+            <div class="block-team-member-1 text-center rounded">
+              <figure>
+                <img src='{% static "images/person_3.jpg" %}' alt="Image" class="img-fluid rounded-circle">
+              </figure>
+              <h3 class="font-size-20 text-black">Дмитрий Хачевский</h3>
+              <span class="d-block font-gray-5 letter-spacing-1 text-uppercase font-size-12 mb-3">Программист, эксперт по нейросетям</span>
+              <p class="px-3 mb-3">Один из основателей проекта, опыт работы 4 года.</p>
+              <div class="block-social-1">
+                <a href="#" class="btn border-w-2 rounded primary-primary-outline--hover"><span class="icon-facebook"></span></a>
+                <a href="#" class="btn border-w-2 rounded primary-primary-outline--hover"><span class="icon-twitter"></span></a>
+                <a href="#" class="btn border-w-2 rounded primary-primary-outline--hover"><span class="icon-instagram"></span></a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="site-section" id="press-section">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-4 mb-5 mb-lg-0">
+            <div class="block-heading-1">
+              <h2 class="h4"><a href="neuronet/" class="text-black" style="text-decoration: underline;">Нейросети</a></h2>
+            </div>
+          </div>
+          <div class="col-lg-8">
+            <ul class="list-unstyled">
+              <li class="mb-4 d-block d-md-flex">
+                <div class="mr-5 mb-4">
+                  <img src='{% static "images/yandex.png" %}' alt="Image" class="img-fluid">
+                </div>
+                <div>
+                  <h2 class="h4"><a href="neuronet/" class="text-black">YandexGPT</a></h2>
+                  <span class="d-block text-secondary mb-4">Apr 19, 2019</span>
+                  <p>Работает прямо на главной странице поисковика. Может генерировать тексты на заданные темы на разных языках и т.д.</p>
+                </div>
+              </li>
+
+              <li class="mb-4 d-block d-md-flex">
+                <div class="mr-5 mb-4">
+                  <img src='{% static "images/Midjourney.jpg" %}' alt="Image" class="img-fluid">
+                </div>
+                <div>
+                  <h2 class="h4"><a href="neuronet/" class="text-black">Midjourney</a></h2>
+                  <span class="d-block text-secondary mb-4">Apr 19, 2019</span>
+                  <p>меет рисовать не только по тексту, но и на основе пользовательских картинок. Можно указать и стиль иллюстрации — например, аниме.</p>
+                </div>
+              </li>
+
+              <li class="mb-4 d-block d-md-flex">
+                <div class="mr-5 mb-4">
+                  <img src='{% static "images/Scenario.jpg" %}' alt="Image" class="img-fluid">
+                </div>
+                <div>
+                  <h2 class="h4"><a href="neuronet/" class="text-black">Scenario</a></h2>
+                  <span class="d-block text-secondary mb-4">Apr 19, 2019</span>
+                  <p>Нейросеть, позволяющая создавать игровые активы: реалистичных персонажей, окружение, текстуры и уровни.</p>
+                </div>
+              </li>
+
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="site-section block-13 overlay bg-image" id="testimonials-section" data-aos="fade" style="background-image: url('../static/images/hero_1.jpg');">
+      <div class="container">
+        
+        <div class="text-center mb-5">
+          <div class="block-heading-1">
+            <h2 class="text-white">Отзывы</h2>
+          </div>
+        </div>
+
+        <div class="owl-carousel nonloop-block-13">
+          <div>
+            <div class="block-testimony-1 text-center">
+              
+              <blockquote class="mb-4">
+                <p>&ldquo;Я очень доволен, что наткнулся на этот сайт, который занимается финансовой грамотностью.&rdquo;</p>
+                <p>&ldquo; Я всегда был немного неуверен в своих финансовых знаниях, но благодаря информации на этом сайте я стал более уверенным и осведомленным в этой области.&rdquo;</p>
+              </blockquote>
+
+              <figure>
+                <img src='{% static "images/person_4.jpg" %}' alt="Image" class="img-fluid rounded-circle mx-auto">
+              </figure>
+              <h3 class="font-size-20 text-white">Денис Безволосов</h3>
+            </div>
+          </div>
+
+          <div>
+            <div class="block-testimony-1 text-center">
+              <blockquote class="mb-4">
+                <p>&ldquo;Я очень благодарен этому сайту за то, что он помог мне разобраться в финансовых вопросах.&rdquo;</p>
+                <p>&ldquo;Стал более осведомленным и научился принимать более обдуманные решения. Мне очень понравилось, как информация представлена на сайте - все просто и понятно, без лишних деталей. Кроме того, на сайте есть множество полезных инструментов и ресурсов, которые помогают мне управлять своими финансами более эффективно.&rdquo;</p>
+              </blockquote>
+
+              <figure>
+                <img src='{% static "images/pok.jpg" %}' alt="Image" class="img-fluid rounded-circle mx-auto">
+              </figure>
+              <h3 class="font-size-20 text-white">Карина Медева</h3>
+            </div>
+          </div>
+
+          <div>
+            <div class="block-testimony-1 text-center">
+              <blockquote class="mb-4">
+                <p>&ldquo;На сайте есть множество полезных статей и советов, которые помогают мне принимать обоснованные финансовые решения. Я также использовал некоторые из инструментов на сайте, такие как калькуляторы расходов и инвестиционные калькуляторы, и они оказались очень полезными.&rdquo;</p>
+              </blockquote>
+
+              <figure>
+                <img src='{% static "images/pok1.jpg" %}' alt="Image" class="img-fluid rounded-circle mx-auto">
+              </figure>
+              <h3 class="font-size-20 text-white">Илон Впопин</h3>
+            </div>
+          </div>
+
+          <div>
+            <div class="block-testimony-1 text-center">
+              <blockquote class="mb-4">
+                <p>&ldquo;. Раньше я не очень хорошо разбирался в финансовых вопросах и часто был неуверен в своих решениях. Но после того, как я начал изучать материал на этом сайте, моя финансовая грамотность значительно улучшилась.&rdquo;</p>
+              </blockquote>
+
+              <figure>
+                <img src='{% static "images/pok2.jpg" %}' alt="Image" class="img-fluid rounded-circle mx-auto">
+              </figure>
+              <h3 class="font-size-20 text-white">Вячеслав Цой</h3>
+            </div>
+          </div>
+
+
+        </div>
+
+      </div>
+    </div>
+
+    <div class="site-section" id="blog-section">
+      <div class="container">
+        <div class="row">
+          <div class="col-12 text-center mb-5">
+            <div class="block-heading-1" >
+              {% if user.is_authenticated %}
+              <a href="finance/">
+              <span>Профиль</span>
+              <h2>Пользователя</h2>
+            </a>
+            {% else %}
+            <a href="/users/auth/registration/">
+              <span>Профиль</span>
+              <h2>Пользователя</h2>
+            </a>
+            {% endif %}
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-lg-6">
+            <div>
+              {% if user.is_authenticated %}
+              <a href="finance/" class="mb-4 d-block"><img src='{% static "images/who.jpg" %}' alt="Image" class="img-fluid rounded"></a>
+              <h2><a href="finance/">Зарегистрируйся и начни считать</a></h2>
+              <p><a href="finance/" >Погнали</a></p>
+              {% else %}
+              <a href="finance/" class="mb-4 d-block"><img src='{% static "images/who.jpg" %}' alt="Image" class="img-fluid rounded"></a>
+              <h2><a href="/users/auth/registration/">Зарегистрируйся и начни считать</a></h2>
+              <p><a href="/users/auth/registration/" >Погнали</a></p>
+              {% endif %}
+              <p class="text-muted mb-3 text-uppercase small"></p>
+              <p>Для того, чтобы начать считать, зарегистрируйся или войди в свой профиль</p>
+            </div>
+          </div>
+          <div class="col-lg-6">
+            <div>
+              {% if user.is_authenticated %}
+              <a href="finance/" class="mb-4 d-block"><img src='{% static "images/copilka.jpg" %}' alt="Image" class="img-fluid rounded"></a>
+              <h2><a href="finance/">Финансовая аналитика и подсчет ваших финансов</a></h2>
+              <p><a href="finance/">Узнать больше</a></p>
+              {% else %}
+              <a href="/users/auth/registration/" class="mb-4 d-block"><img src='{% static "images/copilka.jpg" %}' alt="Image" class="img-fluid rounded"></a>
+              <h2><a href="/users/auth/registration/">Финансовая аналитика и подсчет ваших финансов</a></h2>
+              <p><a href="/users/auth/registration/">Узнать больше</a></p>
+              {% endif %}       
+              <p class="text-muted mb-3 text-uppercase small"></p>
+              <p>Тут вы начнете считать свои финансы и вести подсчеты. Также тут будет происходить анализ ваших финансов и всевозможные рекомендации, касательно инвестирвания.</p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+
+    <div class="site-section bg-light" id="contact-section">
+      <div class="container">
+        <div class="row">
+          <div class="col-12 text-center mb-5">
+            <div class="block-heading-1">
+              <h2>Контакты</h2>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-lg-6 mb-5">
+            <form action="#" method="post">
+              <div class="form-group row">
+                <div class="col-md-6 mb-4 mb-lg-0">
+                  <input type="text" class="form-control" placeholder="Имя">
+                </div>
+                <div class="col-md-6">
+                  <input type="text" class="form-control" placeholder="Фамилия">
+                </div>
+              </div>
+
+              <div class="form-group row">
+                <div class="col-md-12">
+                  <input type="text" class="form-control" placeholder="Email">
+                </div>
+              </div>
+
+              <div class="form-group row">
+                <div class="col-md-12">
+                  <textarea name="" id="" class="form-control" placeholder="Напиши ваше сообщение." cols="30" rows="10"></textarea>
+                </div>
+              </div>
+              <div class="form-group row">
+                <div class="col-md-6 ml-auto">
+                  <input type="submit" class="btn btn-block btn-primary text-white py-3 px-5" value="Send Message">
+                </div>
+              </div>
+            </form>
+          </div>
+          <div class="col-lg-4 ml-auto">
+            <h2 class="text-black">Вы можете отправить ваше предложение о сотрудничестве, рекламе или о вашей проблеме.</h2>
+          
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <footer class="site-footer">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-6">
+            <div class="row">
+              <div class="col-md-8">
+                <h2 class="footer-heading mb-4">О нас</h2>
+                <p>Перспективная, быстрорастущая команда разработчиков, нацеленная на успех.</p>
+              </div>
+              <div class="col-md-4 ml-auto">
+                <h2 class="footer-heading mb-4">Вкладки</h2>
+                <nav class="site-navigation text-center ml-auto" role="navigation">
+
+                  <ul class="site-menu main-menu js-clone-nav ml-auto d-none d-lg-block">
+                    <li><a href="#home-section" class="nav-link">Дом</a></li>
+                    <li><a href="#investors-section" class="nav-link">Инcтрумены</a></li>
+                    <li><a href="#about-section" class="nav-link">О нас</a></li>
+                    <li><a href="#services-section" class="nav-link">Сервисы</a></li>
+                    <li><a href="#press-section" class="nav-link">Нейросети</a></li>
+                    <li><a href="#blog-section" class="nav-link">Профиль</a></li>
+                    <li><a href="#contact-section" class="nav-link">Контакты</a></li>
+                  </ul>
+                </nav>
+              </div>
+              
+            </div>
+          </div>
+          <div class="col-md-4 ml-auto">
+
+            <div class="mb-5">
+              <div class="mb-5">
+                <h2 class="footer-heading mb-4">Будь в курсе</h2>
+                <p>Частые акции и интересные предлжения.</p>
+              </div>
+              <h2 class="footer-heading mb-4">Подпишись на рассылку и ничего не пропусти!</h2>
+              <form action="#" method="post">
+                <div class="input-group mb-3">
+                  <input type="text" class="form-control border-secondary text-black bg-transparent" placeholder="Введите Email" aria-label="Enter Email" aria-describedby="button-addon2">
+                  <div class="input-group-append">
+                    <button class="btn btn-primary text-white" type="button" id="button-addon2">Подписка</button>
+                  </div>
+                </div>
+              </div>
+
+
+              <h2 class="footer-heading mb-4">Наши социальные сети</h2>
+                <a href="#about-section" class="smoothscroll pl-0 pr-3"><span class="icon-facebook"></span></a>
+                <a href="#" class="pl-3 pr-3"><span class="icon-twitter"></span></a>
+                <a href="#" class="pl-3 pr-3"><span class="icon-instagram"></span></a>
+                <a href="#" class="pl-3 pr-3"><span class="icon-linkedin"></span></a>
+            </form>
+          </div>
+        </div>
+        <div class="row pt-5 mt-5 text-center">
+          <div class="col-md-12">
+            <div class="border-top pt-5">
+            <p>
+            <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+            Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="icon-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank" >Colorlib</a>
+            <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+            </p>
+            </div>
+          </div>
+          
+        </div>
+      </div>
+    </footer>
+
+  </div>
+
+  <script src='{% static "js/jquery-3.3.1.min.js" %}'></script>
+  <script src='{% static "js/jquery-ui.js" %}'></script>
+  <script src='{% static "js/popper.min.js" %}'></script>
+  <script src='{% static "js/bootstrap.min.js" %}'></script>
+  <script src='{% static "js/owl.carousel.min.js" %}'></script>
+  <script src='{% static "js/jquery.magnific-popup.min.js" %}'></script>
+  <script src='{% static "js/jquery.sticky.js" %}'></script>
+  <script src='{% static "js/jquery.waypoints.min.js" %}'></script>
+  <script src='{% static "js/jquery.animateNumber.min.js" %}'></script>
+  <script src='{% static "js/aos.js" %}'></script>
+
+  <script src='{% static "js/main.js" %}'></script>
+    
+  </body>
+</html>
