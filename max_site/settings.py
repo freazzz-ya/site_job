@@ -17,10 +17,7 @@ SECRET_KEY = os.getenv('SECRET_KEY', "default_key")
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.getenv('DEBUG', '').lower() == 'true'
 
-ALLOWED_HOSTS = [
-    'www.max14.pythonanywhere.com',
-    'max14.pythonanywhere.com',
-]
+ALLOWED_HOSTS = []
 
 
 # Application definition

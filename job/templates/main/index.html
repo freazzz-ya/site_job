@@ -1,4 +1,5 @@
 {% load static %}
+{% load django_bootstrap5 %}
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -57,6 +58,7 @@
                   <li><a href="#services-section" class="nav-link">Сервисы</a></li>
                   
                   <li><a href="#contact-section" class="nav-link">Контакты</a></li>
+                  <li><a href="/job/scheme/" class="nav-link">Схемы заработка</a></li>
                   <li><a href="/job/neuronet/" class="nav-link">Нейросети</a></li>
                   {% if user.is_authenticated %}
                   <li><a href="/job/finance/" class="nav-link">Профиль</a></li>
@@ -485,31 +487,11 @@
         <div class="row">
           <div class="col-lg-6 mb-5">
             <form action="#" method="post">
-              <div class="form-group row">
-                <div class="col-md-6 mb-4 mb-lg-0">
-                  <input type="text" class="form-control" placeholder="Имя">
-                </div>
-                <div class="col-md-6">
-                  <input type="text" class="form-control" placeholder="Фамилия">
-                </div>
-              </div>
-
-              <div class="form-group row">
-                <div class="col-md-12">
-                  <input type="text" class="form-control" placeholder="Email">
-                </div>
-              </div>
-
-              <div class="form-group row">
-                <div class="col-md-12">
-                  <textarea name="" id="" class="form-control" placeholder="Напиши ваше сообщение." cols="30" rows="10"></textarea>
-                </div>
-              </div>
-              <div class="form-group row">
-                <div class="col-md-6 ml-auto">
-                  <input type="submit" class="btn btn-block btn-primary text-white py-3 px-5" value="Send Message">
-                </div>
-              </div>
+              <form method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                {% bootstrap_form form_contacts %}
+                {% bootstrap_button button_type="submit" content="Создать" %}
+              </form>
             </form>
           </div>
           <div class="col-lg-4 ml-auto">
@@ -531,19 +513,7 @@
                 <p>Перспективная, быстрорастущая команда разработчиков, нацеленная на успех.</p>
               </div>
               <div class="col-md-4 ml-auto">
-                <h2 class="footer-heading mb-4">Вкладки</h2>
-                <nav class="site-navigation text-center ml-auto" role="navigation">
 
-                  <ul class="site-menu main-menu js-clone-nav ml-auto d-none d-lg-block">
-                    <li><a href="#home-section" class="nav-link">Дом</a></li>
-                    <li><a href="#investors-section" class="nav-link">Инcтрумены</a></li>
-                    <li><a href="#about-section" class="nav-link">О нас</a></li>
-                    <li><a href="#services-section" class="nav-link">Сервисы</a></li>
-                    <li><a href="#press-section" class="nav-link">Нейросети</a></li>
-                    <li><a href="#blog-section" class="nav-link">Профиль</a></li>
-                    <li><a href="#contact-section" class="nav-link">Контакты</a></li>
-                  </ul>
-                </nav>
               </div>
               
             </div>
@@ -556,12 +526,13 @@
                 <p>Частые акции и интересные предлжения.</p>
               </div>
               <h2 class="footer-heading mb-4">Подпишись на рассылку и ничего не пропусти!</h2>
-              <form action="#" method="post">
-                <div class="input-group mb-3">
-                  <input type="text" class="form-control border-secondary text-black bg-transparent" placeholder="Введите Email" aria-label="Enter Email" aria-describedby="button-addon2">
-                  <div class="input-group-append">
-                    <button class="btn btn-primary text-white" type="button" id="button-addon2">Подписка</button>
-                  </div>
+              <div class="card-body">
+                <form method="post" enctype="multipart/form-data">
+                  {% csrf_token %}
+                  {% bootstrap_form form_maling %}
+                  {% bootstrap_button button_type="submit" content="Подписка" %}
+                </form>
+              </div> 
                 </div>
               </div>
 
