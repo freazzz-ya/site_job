@@ -7,6 +7,7 @@ app_name = 'job'
 urlpatterns = [
     path('', views.job_view, name='job_view'),
     path('neuronet/', views.neiro_view, name='neiro_view'),
+    path('scheme/', views.earning_scheme, name='scheme_view'),
     path('finance/', views.finance_view, name='finance_view'),
     path('finance/add_work/', views.finance_add_work, name='finance_add_view'),
     path(

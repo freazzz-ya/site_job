@@ -1,24 +1,55 @@
-from django.core.exceptions import ValidationError
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from PIL import Image
 
 from users.models import Worker, Special
-from .models import Neural_network, Other_Source, Network_Payment, Job_Payment
+from .models import (
+    Neural_network, Other_Source, Network_Payment,
+    Job_Payment, Earning_scheme, Job, Other_Source_model,
+    )
 from .forms import (
     NeuralNetworkForm, JobForm, NetworkForm,
     Other_Source_Form, Job_Reg_Form, Other_Source_Reg_Form,
-    SpecialForm,
+    SpecialForm, Earning_schemeForm, Maling_model_form, Сontacts_model_form,
     )
+
 
 USERS_FOR_USIBILLITY = 100
 
 
+def categogy_count():
+    """Подсчет категории"""
+    count_networks = Neural_network.objects.count()
+    count_worker = Worker.objects.count() + USERS_FOR_USIBILLITY
+    count_scheme = Earning_scheme.objects.count()
+    count_job = Job.objects.count()
+    other_source_model = Other_Source_model.objects.count()
+    forms = [
+        count_networks, count_worker, count_scheme,
+        count_job, other_source_model,
+    ]
+    return forms
+
+
 def job_view(request):
+    if request.method == 'POST':
+        form_contacts = Сontacts_model_form(request.POST, request.FILES)
+        form_maling = Maling_model_form(request.POST, request.FILES)
+        if form_maling.is_valid():
+            form_maling = form_maling.save()
+            return redirect(request.META.get('HTTP_REFERER'))
+        if form_contacts.is_valid():
+            form_contacts = form_contacts.save()
+            return redirect(request.META.get('HTTP_REFERER'))
+    else:
+        form_contacts = Сontacts_model_form()
+        form_maling = Maling_model_form()
     count_networks = Neural_network.objects.count()
     #  Добавим видимость посещаемости сайта
     count_worker = Worker.objects.count() + USERS_FOR_USIBILLITY
     context = {
+        'form_maling': form_maling,
+        'form_contacts': form_contacts,
         'count_networks': count_networks,
         'count_worker': count_worker,
     }
@@ -30,7 +61,8 @@ def neiro_view(request):
     if request.method == 'POST':
         form = NeuralNetworkForm(request.POST, request.FILES)
         if form.is_valid():
-            instance = form.save(commit=False)  # Сначала получаем экземпляр без сохранения в БД
+            # Сначала получаем экземпляр без сохранения в БД
+            instance = form.save(commit=False)
             if instance.image:  # Проверяем, загружено ли изображение
                 img = Image.open(instance.image)
                 img.thumbnail((300, 200))  # Изменяем размер до 300x300
@@ -47,6 +79,7 @@ def neiro_view(request):
 
 @login_required
 def finance_view(request):
+    forms = categogy_count()
     if request.method == 'POST':
         form = JobForm(request.POST, request.FILES)
         form1 = NetworkForm(request.POST, request.FILES)
@@ -92,6 +125,7 @@ def finance_view(request):
     day_amount = sum([day_other, day_network, day_job])
     total_amount = sum([sum_other, sum_network, sum_job])
     context = {
+        'forms': forms,
         'day_amount': day_amount,
         'total_amount': total_amount,
         'sum_job': sum_job,
@@ -227,3 +261,24 @@ def special(request):
         'special': special,
     }
     return render(request, 'main/special.html', context)
+
+
+def earning_scheme(request):
+    """Схема заработка"""
+    scheme = Earning_scheme.objects.all()
+    if request.method == 'POST':
+        form = Earning_schemeForm(request.POST, request.FILES)
+        if form.is_valid():
+            sheme_form = form.save(commit=False)
+            sheme_form.worker = request.user
+            sheme_form.save()
+            return redirect('/job/scheme/')
+    else:
+        form = Earning_schemeForm()
+    forms = categogy_count()
+    context = {
+        'scheme': scheme,
+        'form': form,
+        'forms': forms,
+    }
+    return render(request, 'main/syst.html', context)

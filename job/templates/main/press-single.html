@@ -53,6 +53,7 @@
 
                 <ul class="site-menu main-menu js-clone-nav ml-auto d-none d-lg-block">
                 <li><a href="#press-section" class="nav-link">Обзор</a></li>
+                <li><a href="/job/scheme/" class="nav-link">Схемы заработка</a></li>
                 {% if user.is_authenticated %}
                 <li><a href="#pre-section" class="nav-link">Создать нейросеть</a></li>
                 <li><a href="/job/finance/" class="nav-link">Профиль</a></li>
@@ -120,13 +121,13 @@
                   <a href="{{ network.url }}" style="text-decoration: underline;">Узнать больше</a>
                 </div>
                 <div class="col-md-6 mb-4">
-                  <img src="{{ network.image.url }}" alt="Image" class="img-fluid d-block mx-auto" style="width: 100%; height: auto;">
+                  <img src="{{ network.image.url }}" alt="Image" class="Midjourney" style="width: 350px; height: 200px;">
                 </div>            
               </li>
               {% else %}
               <li class="mb-2 d-block d-md-flex">  
                 <div class="col-md-6 mb-4">
-                  <img src="{{ network.image.url }}" alt="Image" class="img-fluid d-block mx-auto" style="width: 100%; height: auto;">
+                  <img src="{{ network.image.url }}" alt="Image" class="Midjourney" style="width: 350px; height: 200px;">
                 </div>            
                 <div class="col-md-6">
                   <h2 class="h4"><a href="" class="text-black">{{ network.title }}</a></h2>
@@ -174,37 +175,10 @@
               <h2 class="footer-heading mb-4">О нас</h2>
               <p>Перспективная, быстрорастущая команда разработчиков, нацеленная на успех.</p>
             </div>
-            <div class="col-md-4 ml-auto">
-              <h2 class="footer-heading mb-4">Вкладки</h2>
-              <nav class="site-navigation text-center ml-auto" role="navigation">
-                <ul class="site-menu main-menu js-clone-nav ml-auto d-none d-lg-block">
-                  <li><a href="/job/#home-section" class="nav-link">Дом</a></li>
-                  <li><a href="/job/#investors-section" class="nav-link">Инcтрумены</a></li>
-                  <li><a href="/job/#about-section" class="nav-link">О нас</a></li>
-                  <li><a href="/job/#services-section" class="nav-link">Сервисы</a></li>
-                  <li><a href="/job/#press-section" class="nav-link">Нейросети</a></li>
-                  <li><a href="/job/finance/" class="nav-link">Профиль</a></li>
-                  <li><a href="/job/#contact-section" class="nav-link">Контакты</a></li>
-                </ul>
-              </nav>
-            </div>
+    
           </div>
         </div>
         <div class="col-md-4 ml-auto">
-          <div class="mb-5">
-            <div class="mb-5">
-              <h2 class="footer-heading mb-4">Будь в курсе</h2>
-              <p>Частые акции и интересные предлжения.</p>
-            </div>
-            <h2 class="footer-heading mb-4">Подпишись на рассылку и ничего не пропусти!</h2>
-            <form action="#" method="post">
-              <div class="input-group mb-3">
-                <input type="text" class="form-control border-secondary text-black bg-transparent" placeholder="Введите Email" aria-label="Enter Email" aria-describedby="button-addon2">
-                <div class="input-group-append">
-                  <button class="btn btn-primary text-white" type="button" id="button-addon2">Подписка</button>
-                </div>
-              </div>
-            </div>
             <h2 class="footer-heading mb-4">Наши социальные сети</h2>
               <a href="#about-section" class="smoothscroll pl-0 pr-3"><span class="icon-facebook"></span></a>
               <a href="#" class="pl-3 pr-3"><span class="icon-twitter"></span></a>

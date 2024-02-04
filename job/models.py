@@ -303,9 +303,9 @@ class Other_Source(models.Model):
         verbose_name=_('Оплата'),
         validators=[
             MinValueValidator(
-                limit_value=DjobModelsConstant.INT_FIELD_MIN_VALUE_DURATION,
+                limit_value=DjobModelsConstant.INT_FIELD_MIN_VALUE,
                 message=f'Не может быть меньше '
-                        f'{DjobModelsConstant.INT_FIELD_MIN_VALUE_DURATION}'),
+                        f'{DjobModelsConstant.INT_FIELD_MIN_VALUE}'),
             MaxValueValidator(
                 limit_value=DjobModelsConstant.INT_FIELD_MAX_VALUE,
                 message=f'Не может быть больше '
@@ -318,9 +318,9 @@ class Other_Source(models.Model):
         verbose_name=_('сумма дней'),
         validators=[
             MinValueValidator(
-                limit_value=DjobModelsConstant.INT_FIELD_MIN_VALUE,
+                limit_value=DjobModelsConstant.INT_FIELD_MIN_VALUE_DURATION,
                 message=f'Не может быть меньше '
-                        f'{DjobModelsConstant.INT_FIELD_MIN_VALUE}'),
+                        f'{DjobModelsConstant.INT_FIELD_MIN_VALUE_DURATION}'),
             MaxValueValidator(
                 limit_value=DjobModelsConstant.INT_FIELD_DAY_MAX_VALUE,
                 message=f'Не может быть больше '
@@ -352,3 +352,106 @@ class Other_Source(models.Model):
 
     def __str__(self) -> str:
         return f'{self.other_source} {self.worker}'
+
+
+class Earning_scheme(models.Model):
+    worker = models.ForeignKey(
+        to=Worker,
+        on_delete=models.CASCADE,
+        related_name='scheme',
+        verbose_name='Создатель',
+    )
+    title = models.CharField(
+        max_length=DjobModelsConstant.CHAR_FIELD_MAX_LEN,
+        verbose_name='Название схемы',
+        unique=True,
+    )
+    network = models.ForeignKey(
+        to=Neural_network,
+        on_delete=models.CASCADE,
+        verbose_name=_('нейросети'),
+        related_name='network',
+        null=True,
+        blank=True,
+    )
+    other_source = models.ForeignKey(
+        to=Other_Source_model,
+        on_delete=models.CASCADE,
+        verbose_name=_('другие источники'),
+        related_name='other_source',
+        null=True,
+        blank=True,
+    )
+    image = models.ImageField(
+        upload_to='images/scheme/',
+        verbose_name=_('Изображение'),
+        default='images/money.jpg',
+    )
+    url = models.URLField(
+        verbose_name=_('Url адрес площадки'),
+        null=True,
+        blank=True,
+    )
+    discription = models.TextField(
+        max_length=DjobModelsConstant.TEXT_FIELD_MAX_LEN,
+        default=DjobModelsConstant.DEFAULT_TEXT_FOR_DESCRIPTION,
+        verbose_name=_('Описание'),
+    )
+    date_joined = models.DateTimeField(
+        verbose_name=_("Дата создания"),
+        auto_now_add=True,
+    )
+
+    class Meta:
+        ordering = ('id',)
+        verbose_name = _('Схема заработка',)
+        verbose_name_plural = _('Схемы заработка',)
+        db_table = 'Earning_scheme'
+
+    def __str__(self) -> str:
+        return f'{self.title} {self.worker}'
+
+
+class Maling_model(models.Model):
+    email = models.EmailField(
+        verbose_name=_('email'),
+        unique=True,
+        error_messages={
+            'unique': 'email существует уже'
+        }
+    )
+
+    class Meta:
+        ordering = ('id',)
+        verbose_name = _('Модель рассылки',)
+        verbose_name_plural = _('Модели рассылки',)
+        db_table = 'Maling_model'
+
+
+class Сontacts_model(models.Model):
+    name = models.CharField(
+        verbose_name=_('Имя'),
+        max_length=DjobModelsConstant.CHAR_FIELD_MAX_LEN,
+    )
+    last_name = models.CharField(
+        verbose_name=_('Фамилия'),
+        max_length=DjobModelsConstant.CHAR_FIELD_MAX_LEN,
+    )
+    email = models.EmailField(
+        verbose_name=_('Майл'),
+        unique=True,
+        error_messages={
+            'unique': 'email существует уже'
+        }
+    )
+    discription = models.TextField(
+        max_length=DjobModelsConstant.TEXT_FIELD_MAX_LEN,
+        default=DjobModelsConstant.DEFAULT_TEXT_FOR_DESCRIPTION,
+        verbose_name=_('Описание'),
+    )
+
+    class Meta:
+        ordering = ('id',)
+        verbose_name = _('Модель контактов',)
+        verbose_name_plural = _('Модели контактов',)
+        db_table = 'Сontacts_model'
