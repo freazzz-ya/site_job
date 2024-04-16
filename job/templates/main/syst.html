@@ -1,8 +1,75 @@
-{% extends "base.html" %}
 {% load static %}
 {% load django_bootstrap5 %}
-{% block content %}
-<div class="site-wrap" id="home-section">
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Нейросети - будущее уже наступило</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link href="https://fonts.googleapis.com/css?family=Nunito:300,400,700" rel="stylesheet">
+
+    <link rel="stylesheet" href='{% static "fonts/icomoon/style.css" %}'>
+
+    <link rel="stylesheet" href='{% static "css/bootstrap.min.css" %}'>
+    <link rel="stylesheet" href='{% static "css/magnific-popup.css" %}'>
+    <link rel="stylesheet" href='{% static "css/jquery-ui.css" %}'>
+    <link rel="stylesheet" href='{% static "css/owl.carousel.min.css" %}'>
+    <link rel="stylesheet" href='{% static "css/owl.theme.default.min.css" %}'>
+
+    <link rel="stylesheet" href='{% static "css/bootstrap-datepicker.css" %}'>
+
+    <link rel="stylesheet" href='{% static "fonts/flaticon/font/flaticon.css" %}'>
+
+    <link rel="stylesheet" href='{% static "css/aos.css" %}'>
+
+    <link rel="stylesheet" href='{% static "css/style.css" %}'>
+    
+  </head>
+  <body data-spy="scroll" data-target=".site-navbar-target" data-offset="300">
+  
+  <div class="site-wrap"  id="home-section">
+
+    <div class="site-mobile-menu site-navbar-target">
+      <div class="site-mobile-menu-header">
+        <div class="site-mobile-menu-close mt-3">
+          <span class="icon-close2 js-menu-toggle"></span>
+        </div>
+      </div>
+      <div class="site-mobile-menu-body"></div>
+    </div>
+   
+      
+    <header class="site-navbar js-sticky-header site-navbar-target" role="banner">
+
+      <div class="container">
+        <div class="row align-items-center position-relative">
+          
+            
+            <div class="site-logo">
+              <a href="/job/" class="text-black"><span class="text-primary">PIGGY BANK</a>
+            </div>
+              <nav class="site-navigation text-center ml-auto" role="navigation">
+
+                <ul class="site-menu main-menu js-clone-nav ml-auto d-none d-lg-block">
+                <li><a href="#press-section" class="nav-link">Обзор</a></li>
+                <li><a href="/job/neuronet/" class="nav-link">Нейросети</a></li>
+                {% if user.is_authenticated %}
+                <li><a href="/job/finance/" class="nav-link">Профиль</a></li>
+                {% else %}
+                <li><a href="/users/auth/registration/" class="nav-link">Профиль</a></li>
+                {% endif %}
+              </ul>
+              </nav>
+          
+            <!-- </div> -->
+
+          <div class="toggle-button d-inline-block d-lg-none"><a href="#" class="site-menu-toggle py-5 js-menu-toggle text-black"><span class="icon-menu h3"></span></a></div>
+
+        </div>
+      </div>
+    </header>
+<div class="Midjourney">
     <body data-spy="scroll" data-target=".site-navbar-target" data-offset="300">
         <div class="site-wrap" id="home-section">
           <div class="site-section-cover overlay inner-page bg-light"
@@ -52,13 +119,13 @@
             
                     <p>Всегда важно помнить, что использование нейросетей для заработка требует тщательного изучения и понимания технологии, а также всегда учитывать этические аспекты при работе с данными и моделями машинного обучения.</p>
                 </div>
-                <div class="col-lg-12">
-                  <ul class="list-unstyled">
-                    {% for value in scheme %}
-                      {% if forloop.counter0|divisibleby:2 %}
-                        <li class="mb-2 d-block d-md-flex">              
-                          <div class="d-flex">
-                            <div class="col-md-6" style="border: 2px solid #f2f2f2; padding: 15px; border-radius: 10px;">
+
+                  <div class="site-section" id="press-section">
+                    <div class="container">
+                      <div class="row">
+                        {% for value in scheme %}
+                          <div class="col-lg-12 mb-4">
+                            <div class="col-md-12" style="border: 2px solid #f2f2f2; padding: 15px; border-radius: 10px;">
                               <h2 class="h4"><a href="" class="text-black">Название схемы: {{ value.title }}</a></h2>
                               <span class="d-block text-secondary mb-4">Автор схемы: {{ value.worker }}</span>
                               {% if value.network %}
@@ -73,43 +140,21 @@
                               <p>Дата добавления: {{ value.date_joined }}</p>
                               <a href="{{ value.url }}" style="text-decoration: underline;">Узнать больше</a>
                             </div>
-                            <div class="col-md-6 mb-4 d-flex align-items-center justify-content-center">
-                              <img src="{{ value.image.url }}" alt="Image" class="Midjourney" style="max-width: 100%; max-height: 240px;">
-                            </div>
-                          </div>         
-                        </li>
-                      {% else %}
-                        <li class="mb-2 d-block d-md-flex">  
-                          <div class="d-flex">
-                            <div class="col-md-6 mb-4 d-flex align-items-center justify-content-center">
-                              <img src="{{ value.image.url }}" alt="Image" class="Midjourney" style="max-width: 100%; max-height: 240px;">
-                            </div>
-                            <div class="col-md-6" style="border: 2px solid #f2f2f2; padding: 15px; border-radius: 10px;">
-                              <h2 class="h4"><a href="" class="text-black">Название схемы: {{ value.title }}</a></h2>
-                              <span class="d-block text-secondary mb-4">Автор схемы: {{ value.worker }}</span>
-                              {% if value.network %}
-                                <p>Нейросеть для использования: {{ value.network }}</p>
-                              {% endif %}
-                              {% if value.other_source %}
-                                <p>Прочая подработка: {{ value.other_source }}</p>
-                              {% endif %}
-                              {% if value.discription %}
-                                <p>Описание схемы: {{ value.discription }}</p>
-                              {% endif %}
-                              <p>Дата добавления: {{ value.date_joined }}</p>
-                              <a href="{{ value.url }}" style="text-decoration: underline;">Узнать больше</a>
+                            <div class="col-md-12 mt-2">
+                              <div class="d-flex justify-content-center">
+                                <img src="{{ value.image.url }}" alt="Image" class="Midjourney" style="max-width: 100%; height: auto;">
+                              </div>
                             </div>
                           </div>
-                        </li>
-                      {% endif %}
-                    {% endfor %}
-                  </ul>
+                        {% endfor %}
+                      </div>
+                    </div>
+                  </div>
                 </div>
-                </div>
-                <div class="col-md-4 sidebar">
+                <div class="col-md-3 sidebar">
                   {% if user.is_authenticated %}
                   <div class="sidebar-box">
-                    <div class="card" style="width: 22rem;">
+                    <div class="card" style="width: 20rem;">
                       <div class="card-header">
                         Создание своей схемы
                       </div>
@@ -155,6 +200,41 @@
             </div>
           </section>
 </div>
+<footer class="site-footer">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6">
+        <div class="row">
+          <div class="col-md-8">
+            <h2 class="footer-heading mb-4">О нас</h2>
+            <p>Перспективная, быстрорастущая команда разработчиков, нацеленная на успех.</p>
+          </div>
+  
+        </div>
+      </div>
+      <div class="col-md-4 ml-auto">
+          <h2 class="footer-heading mb-4">Наши социальные сети</h2>
+            <a href="#about-section" class="smoothscroll pl-0 pr-3"><span class="icon-facebook"></span></a>
+            <a href="#" class="pl-3 pr-3"><span class="icon-twitter"></span></a>
+            <a href="#" class="pl-3 pr-3"><span class="icon-instagram"></span></a>
+            <a href="#" class="pl-3 pr-3"><span class="icon-linkedin"></span></a>
+        </form>
+      </div>
+    </div>
+    <div class="row pt-5 mt-5 text-center">
+      <div class="col-md-12">
+        <div class="border-top pt-5">
+        <p>
+        <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+        Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="icon-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank" >Colorlib</a>
+        <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+        </p>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+</footer>
 <script src='{% static "js/jquery-3.3.1.min.js" %}'></script>
 <script src='{% static "js/jquery-ui.js" %}'></script>
 <script src='{% static "js/popper.min.js" %}'></script>
@@ -171,4 +251,4 @@
 
 <script src='{% static "js/main.js" %}'></script>
 
-{% endblock %}
+

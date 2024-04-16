@@ -62,7 +62,7 @@ class Special(models.Model):
         verbose_name=_('Имя пользователя')
     )
     text = models.TextField(
-        max_length=UserModelConstant.CHAR_FIELD_MAX_LEN,
+        max_length=UserModelConstant.TEXT_FIELD_MAX_LEN,
         verbose_name=_('Договоренность'),
         default=UserModelConstant.DEFAULT_TEXT_FOR_DESCRIPTION,
     )
