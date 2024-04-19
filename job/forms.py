@@ -1,18 +1,16 @@
 import base64
 
-from django.core.files.base import ContentFile
-from PIL import Image
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.core.exceptions import ValidationError
+from django.core.files.base import ContentFile
+from PIL import Image
 
+from job.models import (Earning_scheme, Job, Job_Payment, Maling_model,
+                        Network_Payment, Neural_network, Other_Source,
+                        Other_Source_model, Сontacts_model)
 from max_site.constants import UserModelConstant
-from users.models import Worker, Special
-from job.models import (
-    Neural_network, Job_Payment, Job,
-    Network_Payment, Other_Source, Other_Source_model,
-    Earning_scheme, Maling_model, Сontacts_model,
-    )
+from users.models import Special, Worker
 
 
 class Base64ImageField(forms.ImageField):
@@ -36,8 +34,8 @@ class CustomUserCreationForm(UserCreationForm):
         required=True,
         help_text='Это поле обязательное',
         error_messages={
-                'required': 'Это поле обязательное'
-            },
+                'required': 'Это поле обязательное',
+        },
         )
     email = forms.EmailField(
         required=True,

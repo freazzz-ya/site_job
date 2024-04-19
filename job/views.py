@@ -1,18 +1,15 @@
-from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
+from django.shortcuts import redirect, render
 from PIL import Image
 
-from users.models import Worker, Special
-from .models import (
-    Neural_network, Other_Source, Network_Payment,
-    Job_Payment, Earning_scheme, Job, Other_Source_model,
-    )
-from .forms import (
-    NeuralNetworkForm, JobForm, NetworkForm,
-    Other_Source_Form, Job_Reg_Form, Other_Source_Reg_Form,
-    SpecialForm, Earning_schemeForm, Maling_model_form, Сontacts_model_form,
-    )
+from users.models import Special, Worker
 
+from .forms import (Earning_schemeForm, Job_Reg_Form, JobForm,
+                    Maling_model_form, NetworkForm, NeuralNetworkForm,
+                    Other_Source_Form, Other_Source_Reg_Form, SpecialForm,
+                    Сontacts_model_form)
+from .models import (Earning_scheme, Job, Job_Payment, Network_Payment,
+                     Neural_network, Other_Source, Other_Source_model)
 
 USERS_FOR_USIBILLITY = 100
 

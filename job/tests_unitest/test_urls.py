@@ -1,8 +1,10 @@
 # news/tests/test_routes.py
-from django.test import TestCase, Client
-from users.models import Worker
 from http import HTTPStatus
+
+from django.test import Client, TestCase
 from django.urls import reverse
+
+from users.models import Worker
 
 
 class TestUrl(TestCase):
@@ -13,12 +15,12 @@ class TestUrl(TestCase):
         cls.user = Worker.objects.create(username='testUser')
         # Создаём объект клиента.
         cls.user_client = Client()
-        # "Логинимся" в клиенте при помощи метода force_login().        
+        # "Логинимся" в клиенте при помощи метода force_login().
         cls.user_client.force_login(cls.user)
         # Теперь через этот клиент можно отправлять запросы
         # от имени пользователя с логином "testUser"
 
-    def test_successful_creation_Job(self):
+    def test_successful_creation_job(self):
         news_count = Worker.objects.count()
         self.assertEqual(news_count, 1)
 

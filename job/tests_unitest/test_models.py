@@ -1,7 +1,6 @@
 from django.test import TestCase
 
-# Импортируем модель, чтобы работать с ней в тестах.
-from job.models import Neural_network, Job, Other_Source_model
+from job.models import Job, Other_Source_model
 
 
 class TestNews(TestCase):
@@ -20,10 +19,10 @@ class TestNews(TestCase):
             discription='Тестовый текст',
         )
 
-    def test_successful_creation_Job(self):
+    def test_successful_creation_job(self):
         news_count = Job.objects.count()
         self.assertEqual(news_count, 1)
 
-    def test_successful_creation_Other_Source_model(self):
+    def test_successful_creation_other_source_model(self):
         news_count = Other_Source_model.objects.count()
         self.assertEqual(news_count, 1)
