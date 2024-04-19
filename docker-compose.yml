@@ -1,0 +1,12 @@
+# Файл docker-compose.yml
+
+# Версия docker-compose
+version: '3'
+
+# Перечень контейнеров
+services:
+  # Имя и описание контейнера с бэкендом
+  backend:
+    # Из какого Dockerfile собирать образ для этого контейнера:
+    build: .
+    env_file: .env
