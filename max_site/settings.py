@@ -12,14 +12,14 @@ load_dotenv()
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
-
+API_BINANCE = 'https://api.binance.com/api/v1/ticker/24hr'
+API_SHARES = 'https://iss.moex.com/iss/engines/stock/markets/shares/boards/TQBR/securities.json'
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = os.getenv('SECRET_KEY', "default_key")
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.getenv('DEBUG', '').lower() == 'true'
 
 ALLOWED_HOSTS = []
-
 
 # Application definition
 

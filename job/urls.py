@@ -22,4 +22,5 @@ urlpatterns = [
         'finance/special/', views.special,
         name='special_view',
     ),
+    path('crypto/', views.CryptoListView.as_view(), name='crypto'),
 ]

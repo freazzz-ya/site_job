@@ -1,0 +1,170 @@
+{% extends "base.html" %}
+{% load static %}
+{% load django_bootstrap5 %}
+{% block content %}
+<div class="site-section-cover overlay inner-page bg-light"
+style="background-image: url('/static/images/hero_1.jpg')" data-aos="fade">
+
+<div class="container">
+  <div class="row align-items-center justify-content-center text-center">
+    <div class="col-lg-10">
+      <div class="box-shadow-content">
+        <div class="block-heading-1">
+          <span class="d-block mb-3 text-white" data-aos="fade-up">
+            <h1 class="mb-4" data-aos="fade-up" data-aos-delay="100">Котировки в реальном времени
+            </h1>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</div>
+
+<section class="site-section">
+<div class="container">
+  <div class="row">
+    <div class="col-md-8 blog-content">
+      <p class="lead">В самом сердце цифрового царства, где биты танцевали на блокчейне, зародилась история криптовалют.</p>
+      <p>В 2008 году, на фоне финансового кризиса, Сатоши Накамото, загадочный псевдоним, опубликовал новаторскую статью, в которой представил концепцию Биткойна. Это была децентрализованная цифровая валюта, которая не зависела ни от какого банка или правительства.</p>
+      <blockquote>
+        <p>Транзакции Биткойна записывались в неизменяемый регистр, известный как блокчейн, который распространялся по сети компьютеров по всему миру. Каждый компьютер, известный как узел, имел копию блокчейна, обеспечивая беспрецедентную безопасность и прозрачность.</p>
+      </blockquote>
+      <p>Поначалу Биткойн рассматривался как диковинка, но по мере того, как росла его популярность, стало ясно, что он обладает потенциалом революционизировать финансовую систему. К 2013 году его стоимость резко возросла, сделав его привлекательным вариантом инвестиций.</p>
+      <p>Рост Биткойна породил волну подражателей, известных как альткоины. Ethereum, Litecoin и Ripple были одними из самых известных, каждый со своими уникальными функциями и приложениями.</p>
+      <p>Криптовалюты быстро завоевали популярность, обещая конфиденциальность, безопасность и децентрализацию. Они открыли новые возможности для инвестиций, платежей и финансовой инклюзии.</p>
+          <div class="container">
+            <ul class="nav nav-tabs" id="myTab" role="tablist">
+              <li class="nav-item" role="presentation">
+                <button class="table-btn-2 active-btn-2" data-target="crypto" type="button">Криптовалюты</button>
+              </li>
+              <li class="nav-item" role="presentation">
+                <button class="table-btn-2" data-target="shares" type="button">Акции</button>
+              </li>
+              <li class="nav-item" role="presentation">
+                <button class="table-btn-2" data-target="my_crypto" type="button">Крипта сайта</button>
+              </li>
+            </ul>
+            <div class="tab-content" id="myTabContent">
+              <div class="table show" id="crypto">
+                <ul class="list-group">
+                  {% for coin in api_values %}
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                      <div class="d-flex align-items-center">
+                        <h2 class="h4 me-3"><a href="" class="text-dark">Символ:   {{ coin.symbol }}</a></h2>
+                        <span class="text-secondary">Цена: {{ coin.lastPrice }} долларов</span>
+                      </div>
+                      <div class="text-end">
+                        {% if coin.priceChangePercent > '0' %}
+                        <p class="mb-0 text-success">Изменение за 24 часа: {{ coin.priceChangePercent }}</p>
+                      {% else %}
+                        <p class="mb-0 text-danger">Изменение за 24 часа: {{ coin.priceChangePercent }}</p>
+                      {% endif %}
+                        <p class="mb-0">Объем за 24 часа: {{ coin.volume }}</p>
+                      </div>
+                    </li>
+                  {% endfor %}
+                </ul>
+              </div>
+              <div class="table" id="shares">
+                <ul class="list-group">
+                  {% for coin in shares_values %}
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                      <div class="d-flex align-items-center">
+                        <h2 class="h4 me-3"><a href="" class="text-dark">Краткое наименование ценной бумаги:   {{ coin.0 }}</a></h2>
+                        <span class="mb-0 text-success">Цена закрытия предыдущей торговой сессии: {{ coin.1 }} рублей</span>
+                        <span class="mb-0 text-danger">Средневзвешенная цена предыдущей торговой сессии: {{ coin.2 }} рублей</span>
+                      </div>
+                      <div class="text-end">
+                        <p class="mb-0">Полное наименование ценной бумаги: {{ coin.3 }}</p>
+                        <p class="mb-0">Размер лота: {{ coin.4 }}</p>
+                        <p class="mb-0">Статус ценной бумаги: {{ coin.5 }}</p>
+                      </div>
+                    </li>
+                  {% endfor %}
+                </ul>
+              </div>
+
+              
+                <div class="table show" id="my_crypto">
+                  <ul class="list-group">
+                    {% for value in page_obj %}
+                      <li class="list-group-item d-flex justify-content-between align-items-center">
+                        <div class="d-flex align-items-center">
+                          <h2 class="h4 me-3"><a href="" class="text-dark">Автор:   {{ value.author }}</a></h2>
+                          <span class="text-secondary">Название: {{ value.title }} долларов</span>
+                        </div>
+                        <div class="text-end">
+                          <p class="mb-0">Url адрес: {{ value.url }}</p>
+                          <p class="mb-0 text-success">Курс на момент добавления: {{ value.course }}</p>
+                          <p class="mb-0">Описание криптовалюты: {{ value.discription }}</p>
+                          <p class="mb-0">Дата добавления: {{ value.date_joined }}</p>
+                          <p class="mb-0">Последнее обновление : {{ value.last_updated }}</p>
+                        </div>
+                      </li>
+                    {% endfor %}
+                  </ul>
+                </div>
+              
+            </div>
+
+            </div>
+
+
+          
+
+    </div>
+    
+    <div class="col-md-4 sidebar">
+      <div class="sidebar-box">
+        <img src='{{ user.image.url }}' alt="Image placeholder" class="img-fluid mb-4 w-75 rounded-circle">
+        <div style="border: 1px solid black; padding: 10px;">
+          <h3 class="text-black">Все о авторе {{ user.username }}</h3>
+          {% if user.first_name %}
+          <p>Имя: {{ user.first_name }}</p>
+          {% endif%}
+          {% if user.last_name %}
+          <p>Фамилия: {{ user.last_name }}</p>
+          {% endif%}
+          {% if user.is_staff %}
+          <p>Статус: Админ</p>
+          {% else %}
+          <p>Статус: Пользователь</p>
+          {% endif %}
+
+          <p>Почта: {{ user.email }}</p>
+          <p>Дата регистрации: {{ user.date_joined }}</p>
+        </div>
+        <br>
+        <h3 class="text-black">Описание профиля</h3>
+        <p id="shortDescription">{{ user.description_for_profil|slice:":40" }} ...</p>
+        <p id="fullDescription" style="display:none">{{ user.description_for_profil }}</p>
+        <button style="border: 1px solid black; padding: 10px;" onclick="toggleDescription()">Читать
+          далее</button>
+      </div>
+      <div class="site-section" id="press-section">
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-6 mb-1 mb-lg-1">
+            </div>
+      <div class="sidebar-box">
+        <h3 class="text-black">Наставление</h3>
+        <p>Прежде, чем начать считать свои деньги, спроси себя, готов ли ты складывать двузначные числа$$</p>
+      </div>
+      <div class="sidebar-box">
+        <div class="categories">
+          <h3 class="text-black">Данные</h3>
+          <li><a href="#">Кол-во нейросетей<span>{{forms.0}}</span></a></li>
+          <li><a href="#">Кол-во пользователей<span>{{forms.1}}</span></a></li>
+          <li><a href="#">Кол-во схем <span>{{forms.2}}</span></a></li>
+          <li><a href="#">Кол-во работ <span>{{forms.3}}</span></a></li>
+          <li><a href="#">Кол-во иных заработков<span>{{forms.4}}</span></a></li>
+        
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    </div>
+</section>
+{% endblock %}

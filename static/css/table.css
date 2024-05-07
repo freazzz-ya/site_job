@@ -1,0 +1,133 @@
+.main-table-2 {
+    display: block;
+    margin-bottom: 60px;
+  }
+  
+  .table-header-2 {
+    display: inline-block;
+    margin-top: 50px;
+    width: 100%;
+  }
+  
+  .container-2 {
+    width: 1170px;
+    margin: 0 auto;
+    padding-right: 15px;
+    padding-left: 15px;
+  }
+  
+  .table-btn-2 {
+    display: inline-block;
+    text-decoration: none;
+    text-align: center;
+    padding: 16px 16px;
+    background-color: #9d1c25;
+    font-size: 18px;
+    color: #fff;
+    border-radius: 0;
+    border: 2px solid #9d1c25;
+    width: 170px;
+    height: 65px;
+    margin-right: 12px;
+    cursor: pointer;
+  }
+  
+  .active-btn-2 {
+    background-color: #fff;
+    color: #991c25;
+  }
+  
+  .table-main-2 {
+    margin-top: 50px;
+  }
+  
+  .table-header-2 h3 {
+    display: inline-block;
+    margin-left: 32px;
+    color: #991c25;
+    font-size: 25px;
+    font-weight: 600;
+    letter-spacing: 2px
+  }
+  
+  .table-main-2 table tr td  {
+    width: 10%;
+  }
+  
+  .table-2 {
+    display: none;
+    table-layout: fixed;
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .active-table-2 {
+    display: block;
+  }
+
+  .main-table-1 {
+    display: block;
+    margin-bottom: 60px;
+  }
+  
+  .table-header-1 {
+    display: inline-block;
+    margin-top: 50px;
+    width: 100%;
+  }
+  
+  .container-1 {
+    width: 1170px;
+    margin: 0 auto;
+    padding-right: 15px;
+    padding-left: 15px;
+  }
+  
+  .table-btn-1 {
+    display: inline-block;
+    text-decoration: none;
+    text-align: center;
+    padding: 16px 16px;
+    background-color: #9d1c25;
+    font-size: 18px;
+    color: #fff;
+    border-radius: 0;
+    border: 2px solid #9d1c25;
+    width: 170px;
+    height: 65px;
+    margin-right: 12px;
+    cursor: pointer;
+  }
+  
+  .active-btn-1 {
+    background-color: #fff;
+    color: #991c25;
+  }
+  
+  .table-main-1 {
+    margin-top: 50px;
+  }
+  
+  .table-header-1 h3 {
+    display: inline-block;
+    margin-left: 32px;
+    color: #991c25;
+    font-size: 25px;
+    font-weight: 600;
+    letter-spacing: 2px
+  }
+  
+  .table-main-1 table tr td  {
+    width: 10%;
+  }
+  
+  .table-1 {
+    display: none;
+    table-layout: fixed;
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .active-table-1 {
+    display: block;
+  }

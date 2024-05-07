@@ -1,15 +1,18 @@
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import redirect, render
 from PIL import Image
+from django.views.generic import ListView
 
 from users.models import Special, Worker
+from .crypto.api import get_value_binance, get_shares
 
 from .forms import (Earning_schemeForm, Job_Reg_Form, JobForm,
                     Maling_model_form, NetworkForm, NeuralNetworkForm,
                     Other_Source_Form, Other_Source_Reg_Form, SpecialForm,
                     Сontacts_model_form)
 from .models import (Earning_scheme, Job, Job_Payment, Network_Payment,
-                     Neural_network, Other_Source, Other_Source_model)
+                     Neural_network, Other_Source, Other_Source_model,
+                     Crypto_model)
 
 USERS_FOR_USIBILLITY = 100
 
@@ -279,3 +282,22 @@ def earning_scheme(request):
         'forms': forms,
     }
     return render(request, 'main/syst.html', context)
+
+
+class CryptoListView(ListView):
+    model = Crypto_model
+    template_name = 'main/crypto.html'
+    # ...сортировку, которая будет применена при выводе списка объектов:
+    ordering = 'id'
+    # ...и даже настройки пагинации:
+    paginate_by = 10
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        api_values = get_value_binance()
+        shares_values = get_shares()
+        forms = categogy_count()
+        context['forms'] = forms
+        context['api_values'] = api_values
+        context['shares_values'] = shares_values
+        return context

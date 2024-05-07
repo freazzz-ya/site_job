@@ -452,3 +452,60 @@ class Сontacts_model(models.Model):
         verbose_name = _('Модель контактов',)
         verbose_name_plural = _('Модели контактов',)
         db_table = 'Сontacts_model'
+
+
+class Crypto_model(models.Model):
+    author = models.ForeignKey(
+        to=Worker,
+        on_delete=models.CASCADE,
+        related_name='crypto',
+        verbose_name='Создатель',
+    )
+    title = models.CharField(
+        verbose_name=_('Имя'),
+        max_length=DjobModelsConstant.CHAR_FIELD_MAX_LEN,
+    )
+    url = models.URLField(
+        verbose_name=_('Url адрес площадки'),
+        null=True,
+        blank=True,
+    )
+    course = models.IntegerField(
+        verbose_name=_('Общая сумма'),
+        validators=[
+            MinValueValidator(
+                limit_value=DjobModelsConstant.INT_FIELD_MIN_VALUE,
+                message=f'Не может быть меньше '
+                        f'{DjobModelsConstant.INT_FIELD_MIN_VALUE}'),
+            MaxValueValidator(
+                limit_value=DjobModelsConstant.INT_FIELD_MAX_VALUE,
+                message=f'Не может быть больше '
+                        f'{DjobModelsConstant.INT_FIELD_MAX_VALUE}',
+                    )
+        ],
+        default=0,
+    )
+    discription = models.CharField(
+        max_length=DjobModelsConstant.TEXT_FIELD_MAX_LEN,
+        default=DjobModelsConstant.DEFAULT_TEXT_FOR_DESCRIPTION,
+        verbose_name=_('Описание'),
+    )
+    image = models.ImageField(
+        upload_to='images/crypto/',
+        verbose_name=_('Изображение'),
+        default='images/money.jpg',
+    )
+    date_joined = models.DateTimeField(
+        verbose_name=_("Дата создания"),
+        auto_now_add=True,
+    )
+    last_updated = models.DateTimeField(
+        auto_now=True,
+        verbose_name=_('Последнее обновление',)
+    )
+
+    class Meta:
+        ordering = ('id',)
+        verbose_name = _('Модель криптовалюты',)
+        verbose_name_plural = _('Модели криптовалют',)
+        db_table = 'Crypto_model'
