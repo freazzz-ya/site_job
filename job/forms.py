@@ -1,15 +1,18 @@
 import base64
 
+from django.utils import timezone
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
+from django.forms.widgets import DateInput
 from django.core.exceptions import ValidationError
 from django.core.files.base import ContentFile
 from PIL import Image
 
 from job.models import (Earning_scheme, Job, Job_Payment, Maling_model,
                         Network_Payment, Neural_network, Other_Source,
-                        Other_Source_model, Сontacts_model)
-from max_site.constants import UserModelConstant
+                        Other_Source_model, Сontacts_model,
+                        Expenses_model)
+from max_site.constants import UserModelConstant, DjobModelsConstant, Expenses
 from users.models import Special, Worker
 
 
@@ -36,7 +39,7 @@ class CustomUserCreationForm(UserCreationForm):
         error_messages={
                 'required': 'Это поле обязательное',
         },
-        )
+    )
     email = forms.EmailField(
         required=True,
         label='email',
@@ -130,6 +133,12 @@ class NeuralNetworkForm(forms.ModelForm):
 
 
 class NetworkForm(forms.ModelForm):
+    date = forms.DateField(
+        widget=DateInput(attrs={'type': 'date'}),
+        initial=timezone.now().date(),
+        label='Дата',
+    )
+
     class Meta:
         model = Network_Payment
         fields = [
@@ -139,11 +148,17 @@ class NetworkForm(forms.ModelForm):
 
 
 class Other_Source_Form(forms.ModelForm):
+    date = forms.DateField(
+        widget=DateInput(attrs={'type': 'date'}),
+        initial=timezone.now().date(),
+        label='Дата',
+    )
+
     class Meta:
         model = Other_Source
         fields = [
             'other_source', 'payment_in_money',
-            'duration', 'busyness', 'comment',
+            'duration', 'busyness', 'comment', 
         ]
 
 
@@ -160,12 +175,18 @@ class Other_Source_Reg_Form(forms.ModelForm):
 
 
 class JobForm(forms.ModelForm):
+    date = forms.DateField(
+        widget=DateInput(attrs={'type': 'date'}),
+        initial=timezone.now().date(),
+        label='Дата',
+    )
+
     class Meta:
         model = Job_Payment
         fields = [
             'job', 'payment_in_money',
             'duration', 'busyness',
-            'comment',
+            'comment', 
         ]
 
 
@@ -234,3 +255,41 @@ class Сontacts_model_form(forms.ModelForm):
     class Meta:
         model = Сontacts_model
         fields = '__all__'
+
+
+class Expenses_model_form(forms.ModelForm):
+    price = forms.IntegerField(
+        required=True,
+        help_text='Это числовое поле и оно обязательное',
+        label='Сумма расхода',
+        min_value=DjobModelsConstant.INT_FIELD_MIN_VALUE,
+        max_value=DjobModelsConstant.INT_FIELD_MAX_VALUE,
+    )
+    type_expenses = forms.ChoiceField(
+        required=True,
+        choices=Expenses.TYPE_EXPENSES,
+        label='Тип расходов',
+        widget=forms.Select(
+            attrs={'class': 'form-control', 'style': 'width: 100%;'}
+            ),
+    )
+    variety = forms.ChoiceField(
+        required=True,
+        choices=Expenses.VARIETY_EXPENSES,
+        label='Вид расходов',
+        widget=forms.Select(
+            attrs={'class': 'form-control', 'style': 'width: 100%;'}
+            ),
+    )
+    date = forms.DateField(
+        widget=DateInput(attrs={'type': 'date'}),
+        initial=timezone.now().date(),
+        label='Дата',
+    )
+
+    class Meta:
+        model = Expenses_model
+        fields = [
+            'price', 'comment',
+            'type_expenses', 'date',
+            'variety']

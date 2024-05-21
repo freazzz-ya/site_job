@@ -4,7 +4,6 @@
 {% block content %}
 <div class="site-section-cover overlay inner-page bg-light"
 style="background-image: url('/static/images/hero_1.jpg')" data-aos="fade">
-
 <div class="container">
   <div class="row align-items-center justify-content-center text-center">
     <div class="col-lg-10">
@@ -18,9 +17,7 @@ style="background-image: url('/static/images/hero_1.jpg')" data-aos="fade">
     </div>
   </div>
 </div>
-
 </div>
-
 <section class="site-section">
 <div class="container">
   <div class="row">
@@ -33,7 +30,9 @@ style="background-image: url('/static/images/hero_1.jpg')" data-aos="fade">
       <p>Поначалу Биткойн рассматривался как диковинка, но по мере того, как росла его популярность, стало ясно, что он обладает потенциалом революционизировать финансовую систему. К 2013 году его стоимость резко возросла, сделав его привлекательным вариантом инвестиций.</p>
       <p>Рост Биткойна породил волну подражателей, известных как альткоины. Ethereum, Litecoin и Ripple были одними из самых известных, каждый со своими уникальными функциями и приложениями.</p>
       <p>Криптовалюты быстро завоевали популярность, обещая конфиденциальность, безопасность и децентрализацию. Они открыли новые возможности для инвестиций, платежей и финансовой инклюзии.</p>
-          <div class="container">
+      <div class="container">
+        <div class="row">
+          <div class="col-12">
             <ul class="nav nav-tabs" id="myTab" role="tablist">
               <li class="nav-item" role="presentation">
                 <button class="table-btn-2 active-btn-2" data-target="crypto" type="button">Криптовалюты</button>
@@ -47,57 +46,63 @@ style="background-image: url('/static/images/hero_1.jpg')" data-aos="fade">
             </ul>
             <div class="tab-content" id="myTabContent">
               <div class="table show" id="crypto">
-                <ul class="list-group">
-                  {% for coin in api_values %}
-                    <li class="list-group-item d-flex justify-content-between align-items-center">
-                      <div class="d-flex align-items-center">
-                        <h2 class="h4 me-3"><a href="" class="text-dark">Символ:   {{ coin.symbol }}</a></h2>
-                        <span class="text-secondary">Цена: {{ coin.lastPrice }} долларов</span>
-                      </div>
-                      <div class="text-end">
-                        {% if coin.priceChangePercent > '0' %}
-                        <p class="mb-0 text-success">Изменение за 24 часа: {{ coin.priceChangePercent }}</p>
-                      {% else %}
-                        <p class="mb-0 text-danger">Изменение за 24 часа: {{ coin.priceChangePercent }}</p>
-                      {% endif %}
-                        <p class="mb-0">Объем за 24 часа: {{ coin.volume }}</p>
-                      </div>
-                    </li>
-                  {% endfor %}
-                </ul>
+                <div class="table-responsive">
+                  <ul class="list-group">
+                    {% for coin in api_values %}
+                      <li class="list-group-item d-flex justify-content-between align-items-center">
+                        <div class="d-flex align-items-center">
+                          <h2 class="h4 me-3"><a href="" class="text-dark">Символ: {{ coin.symbol }}</a></h2>
+                          <span class="text-secondary">Цена: {{ coin.lastPrice }} долларов</span>
+                        </div>
+                        <div class="text-end">
+                          {% if coin.priceChangePercent > '0' %}
+                          <p class="mb-0 text-success">Изменение за 24 часа: {{ coin.priceChangePercent }}</p>
+                          {% else %}
+                          <p class="mb-0 text-danger">Изменение за 24 часа: {{ coin.priceChangePercent }}</p>
+                          {% endif %}
+                          <p class="mb-0">Объем за 24 часа: {{ coin.volume }}</p>
+                        </div>
+                      </li>
+                    {% endfor %}
+                  </ul>
+                </div>
               </div>
               <div class="table" id="shares">
-                <ul class="list-group">
-                  {% for coin in shares_values %}
-                    <li class="list-group-item d-flex justify-content-between align-items-center">
-                      <div class="d-flex align-items-center">
-                        <h2 class="h4 me-3"><a href="" class="text-dark">Краткое наименование ценной бумаги:   {{ coin.0 }}</a></h2>
-                        <span class="mb-0 text-success">Цена закрытия предыдущей торговой сессии: {{ coin.1 }} рублей</span>
-                        <span class="mb-0 text-danger">Средневзвешенная цена предыдущей торговой сессии: {{ coin.2 }} рублей</span>
-                      </div>
-                      <div class="text-end">
-                        <p class="mb-0">Полное наименование ценной бумаги: {{ coin.3 }}</p>
-                        <p class="mb-0">Размер лота: {{ coin.4 }}</p>
-                        <p class="mb-0">Статус ценной бумаги: {{ coin.5 }}</p>
-                      </div>
-                    </li>
-                  {% endfor %}
-                </ul>
+                <div class="table-responsive2">
+                  <ul class="list-group">
+                    {% for coin in shares_values %}
+                      <li class="list-group-item2 d-flex justify-content-between align-items-center">
+                        <div class="d-flex align-items-center">
+                          <h2 class="h4 me-3"><a href="" class="text-dark">Краткое наименование ценной бумаги: {{ coin.0 }}</a></h2>
+                          <span class="mb-0 text-success">Цена закрытия предыдущей торговой сессии: {{ coin.1 }} рублей</span>
+                          <span class="mb-0 text-danger">Средневзвешенная цена предыдущей торговой сессии: {{ coin.2 }} рублей</span>
+                        </div>
+                        <div class="text-end">
+                          <p class="mb-0 text-truncate">Полное наименование ценной бумаги: {{ coin.3 }}</p>
+                          <p class="mb-0">Размер лота: {{ coin.4 }}</p>
+                          <p class="mb-0">Статус ценной бумаги: {{ coin.5 }}</p>
+                        </div>
+                      </li>
+                    {% endfor %}
+                  </ul>
+                </div>
               </div>
-
-              
-                <div class="table show" id="my_crypto">
+              <div class="table show" id="my_crypto">
+                <div class="table-responsive">
                   <ul class="list-group">
                     {% for value in page_obj %}
                       <li class="list-group-item d-flex justify-content-between align-items-center">
                         <div class="d-flex align-items-center">
-                          <h2 class="h4 me-3"><a href="" class="text-dark">Автор:   {{ value.author }}</a></h2>
-                          <span class="text-secondary">Название: {{ value.title }} долларов</span>
+                          <h2 class="h4 me-3"><a href="" class="text-dark">Автор: {{ value.author }}</a></h2>
+                          <span class="text-secondary">Название: {{ value.title }} долларов
+                            <img src="{{ value.image.url }}" alt="Image" class="Midjourney" style="width: 150px; height: 125px;">
+                          </span>
                         </div>
                         <div class="text-end">
                           <p class="mb-0">Url адрес: {{ value.url }}</p>
                           <p class="mb-0 text-success">Курс на момент добавления: {{ value.course }}</p>
-                          <p class="mb-0">Описание криптовалюты: {{ value.discription }}</p>
+                          <p class="mb-0">Описание криптовалют
+      ы: {{ value.discription }}</p>
                           <p class="mb-0">Дата добавления: {{ value.date_joined }}</p>
                           <p class="mb-0">Последнее обновление : {{ value.last_updated }}</p>
                         </div>
@@ -105,17 +110,21 @@ style="background-image: url('/static/images/hero_1.jpg')" data-aos="fade">
                     {% endfor %}
                   </ul>
                 </div>
-              
+              </div>
             </div>
+          </div>
+        </div>
+      </div>
 
-            </div>
 
 
-          
+
+
+
 
     </div>
-    
     <div class="col-md-4 sidebar">
+      {% if user.is_authenticated %}
       <div class="sidebar-box">
         <img src='{{ user.image.url }}' alt="Image placeholder" class="img-fluid mb-4 w-75 rounded-circle">
         <div style="border: 1px solid black; padding: 10px;">
@@ -142,6 +151,10 @@ style="background-image: url('/static/images/hero_1.jpg')" data-aos="fade">
         <button style="border: 1px solid black; padding: 10px;" onclick="toggleDescription()">Читать
           далее</button>
       </div>
+      {% endif %}
+
+
+      
       <div class="site-section" id="press-section">
         <div class="container">
           <div class="row">
@@ -159,7 +172,6 @@ style="background-image: url('/static/images/hero_1.jpg')" data-aos="fade">
           <li><a href="#">Кол-во схем <span>{{forms.2}}</span></a></li>
           <li><a href="#">Кол-во работ <span>{{forms.3}}</span></a></li>
           <li><a href="#">Кол-во иных заработков<span>{{forms.4}}</span></a></li>
-        
         </div>
       </div>
     </div>
@@ -167,4 +179,38 @@ style="background-image: url('/static/images/hero_1.jpg')" data-aos="fade">
 </div>
     </div>
 </section>
+<style>
+@media (max-width: 767px) {
+  .list-group-item {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .list-group-item img {
+    width: 100px;
+    height: 100px;
+  }
+  .list-group-item span {
+    display: block;
+  }
+  .text-end {
+    text-align: center;
+  }
+}
+</style>
+<style>
+  .table-responsive2 .list-group-item2 p {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  </style>
+  <script src='{% static "js/owl.carousel.min.js" %}'></script>
+  <script src='{% static "js/jquery.magnific-popup.min.js" %}'></script>
+  <script src='{% static "js/jquery.sticky.js" %}'></script>
+  <script src='{% static "js/jquery.waypoints.min.js" %}'></script>
+  <script src='{% static "js/jquery.animateNumber.min.js" %}'></script>
+  <script src='{% static "js/aos.js" %}'></script>
+  <script src='{% static "js/prof.js" %}'></script>
+  <script src='{% static "js/chit.js" %}'></script>
 {% endblock %}
