@@ -1,8 +1,9 @@
 import os
-from pathlib import Path
 from datetime import timedelta
+from pathlib import Path
 
 from dotenv import load_dotenv
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -11,14 +12,14 @@ load_dotenv()
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
-
+API_BINANCE = 'https://api.binance.com/api/v1/ticker/24hr'
+API_SHARES = 'https://iss.moex.com/iss/engines/stock/markets/shares/boards/TQBR/securities.json'
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = os.getenv('SECRET_KEY', "default_key")
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.getenv('DEBUG', '').lower() == 'true'
 
 ALLOWED_HOSTS = []
-
 
 # Application definition
 
@@ -133,8 +134,8 @@ AUTH_USER_MODEL = 'users.Worker'
 
 SIMPLE_JWT = {
     # Устанавливаем срок жизни токена
-        'ACCESS_TOKEN_LIFETIME': timedelta(days=100),
-        'AUTH_HEADER_TYPES': ('Bearer',),
+    'ACCESS_TOKEN_LIFETIME': timedelta(days=100),
+    'AUTH_HEADER_TYPES': ('Bearer',),
 }
 
 AUTHENTICATION_BACKENDS = [

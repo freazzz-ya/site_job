@@ -1,7 +1,5 @@
-from django.urls import path, include
+from django.urls import include, path, reverse_lazy
 from django.views.generic.edit import CreateView
-from django.urls import reverse_lazy
-from django.contrib.auth import views as auth_views
 
 from job.forms import CustomUserCreationForm
 

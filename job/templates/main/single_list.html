@@ -2,7 +2,7 @@
 {% load static %}
 {% load django_bootstrap5 %}
 {% block content %}
-<div class="Midjourney" style="background-image: url('../../../static/images/img_2.jpg');">
+<div class="Midjourney">
   <div class="container">
     <div class="row align-items-center justify-content-center">
       <div class="col-md-12" style="border: 1px solid black; padding: 10px;">
@@ -34,42 +34,143 @@
   <div class="container">
     <div class="row">
       <div class="col-md-10 mx-auto blog-content">
+        <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+        <style>
+          #chart,
+          #chart-days {
+            width: 500px;
+            height: 500px;
+            display: table-cell; /* Устанавливаем блоки в одну линию */
+          }
+        </style>
+        <div id="chart"></div>
+        <div id="chart-days"></div>
+        <script>
+          // JavaScript код для создания первой диаграммы
+          var sum_other = {{ sum_other }};
+          var sum_job = {{ sum_job }};
+          var sum_network = {{ sum_network }};
+          var data = [{
+            values: [sum_other, sum_job, sum_network],
+            labels: ['С подработки', 'С работы', 'С нейросетей'],
+            type: 'pie'
+          }];
+          var layout = {
+            title: 'Диаграмма доходов',
+            font: {size: 16}
+          };
+          Plotly.newPlot('chart', data, layout);
+  
+          // JavaScript код для создания второй диаграммы
+          var day_other = {{ day_other }};
+          var day_job = {{ day_job }};
+          var day_network = {{ day_network }};
+          var dataDays = [{
+            values: [day_other, day_job, day_network],
+            labels: ['C подработки', 'C работы', 'C нейросетей'],
+            type: 'pie'
+          }];
+          var layoutDays = {
+            title: 'Диаграмма количества дней',
+            font: {size: 16}
+          };
+          Plotly.newPlot('chart-days', dataDays, layoutDays);
+        </script>
+
         <br>
         <h1 class="mb-4" data-aos="fade-up" data-aos-delay="100" style="color: #01070e; text-decoration: underline;">Общая заработанная сумма: {{ total_amount }} рублей за {{ day_amount }} дня(ей)</h1>
         <section class="site-section">
           <div class="row">
             <div class="col-md-6">
-              <img src='{% static "images/other_dohod.jpg" %}' alt="Image placeholder" class="img-fluid mb-4 w-100">
+              <img src="{% static 'images/other_dohod.jpg' %}" alt="Image placeholder" class="img-fluid mb-4 w-100">
+              <div id="pie-chart"></div>
             </div>
             <div class="col-md-6">
-              <p style="color: #01070e;">Сумма прочих доходов: {{ sum_other }} </p>
+              <p style="color: #01070e;">Сумма доходов с подработки: {{ sum_other }} </p>
               <p style="color: #01070e;">Общее кол-во дней: {{ day_other }}</p>
-              {% for i in job_value %}
-                <div style="border: 1px solid black; padding: 10px; margin-bottom: 20px;">
-                  <p style="color: #01070e;">Заработанные: {{i.payment_in_money}} </p>
-                  <p style="color: #01070e;">Тип заработка: {{i.busyness}} </p>
-                  <p style="color: #01070e;">Дата добавления: {{i.last_updated}} </p>
-                  <p style="color: #01070e;">За период времени в днях: {{i.duration}} </p>
-                  <p style="color: #01070e;">Работа: {{i.job.title}}  </p>
-                  <p style="color: #01070e;">Комментарий: {{i.comment}}  </p>
+              
+              {% for i in other_value %}
+                <div style="border: 1px solid black; padding: 10px;">
+                  <p style="color: #01070e;">{{ i.other_source.title }}: {{ i.payment_in_money }} </p>
+                  <p style="color: #01070e;">Дата добавления: {{ i.date }}</p>
+                  <p style="color: #01070e;">Комментарий: {{ i.comment }} </p>
+                  <p style="color: #01070e;">За период времени в днях: {{ i.duration }}</p>
                 </div>
               {% endfor %}
             </div>
           </div>
+          <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+          <script>
+            var labels = [];
+            var values = [];
+            {% for i in other_value %}
+              labels.push("{{ i.other_source.title }}");
+              values.push({{ i.payment_in_money }});
+            {% endfor %};
+            var data = [{
+              labels: labels,
+              values: values,
+              type: 'pie'
+            }];
+            var layout = {
+              title: 'Разбивка доходов по типу заработка'
+            };
+            Plotly.newPlot('pie-chart', data, layout);
+          </script>
         </section>
         <section class="site-section">
           <div class="row">
             <div class="col-md-6 order-md-2">
               <img src='{% static "images/job_prof.jpg" %}' alt="Image placeholder" class="img-fluid mb-4 w-100">
+              <div id="pie-chart2"></div>
             </div>
             <div class="col-md-6 order-md-1">
               <p style="color: #01070e;">Сумма доходов с работы: {{ sum_job }} </p>
               <p style="color: #01070e;">Общее кол-во дней: {{ day_job }}</p>
+              {% for i in job_value %}
+              <div style="border: 1px solid black; padding: 10px; margin-bottom: 20px;">
+                <p style="color: #01070e;">Заработанные: {{i.payment_in_money}} </p>
+                <p style="color: #01070e;">Тип заработка: {{i.busyness}} </p>
+                <p style="color: #01070e;">Дата добавления: {{i.date}} </p>
+                <p style="color: #01070e;">За период времени в днях: {{i.duration}} </p>
+                <p style="color: #01070e;">Работа: {{i.job.title}}  </p>
+                <p style="color: #01070e;">Комментарий: {{i.comment}}  </p>
+              </div>
+            {% endfor %}
+            </div>
+          </div>
+          <script>
+            var labels = [];
+            var values = [];
+            {% for i in job_value %}
+              labels.push("{{ i.job.title }}");
+              values.push({{ i.payment_in_money }});
+            {% endfor %};
+            var data = [{
+              labels: labels,
+              values: values,
+              type: 'pie'
+            }];
+            var layout = {
+              title: 'Разбивка доходов по типу заработка'
+            };
+            Plotly.newPlot('pie-chart2', data, layout);
+          </script>
+        </section>
+        <section class="site-section">
+          <div class="row">
+            <div class="col-md-6 order-md-2">
+              <img src='{% static "images/neiro_prof1.jpg" %}' alt="Image placeholder" class="img-fluid mb-4 w-100">
+              <div id="pie-chart3"></div>
+            </div>
+            <div class="col-md-6 order-md-1">
+              <p style="color: #01070e;">Сумма доходов с нейросетей: {{ sum_network }}</p>
+              <p style="color: #01070e;">Общее кол-во дней: {{ day_network }}</p>
               {% for i in network_value %}
               <div style="border: 1px solid black; padding: 10px;">
                 <p style="color: #01070e;">Заработанные: {{i.payment_in_money}} </p>
                 <p style="color: #01070e;">Тип заработка: {{i.busyness}} </p>
-                <p style="color: #01070e;">Дата добавления: {{i.last_updated}} </p>
+                <p style="color: #01070e;">Дата добавления: {{i.date}} </p>
                 <p style="color: #01070e;">За период времени в днях: {{i.duration}} </p>
                 <p style="color: #01070e;">Нейросеть: {{i.network.title}}  </p>
                 <p style="color: #01070e;">Комметарий: {{i.comment}}  </p>
@@ -77,27 +178,23 @@
               {% endfor %}
             </div>
           </div>
-        </section>
-        <section class="site-section">
-          <div class="row">
-            <div class="col-md-6 order-md-2">
-              <img src='{% static "images/neiro_prof1.jpg" %}' alt="Image placeholder" class="img-fluid mb-4 w-100">
-            </div>
-            <div class="col-md-6 order-md-1">
-              <p style="color: #01070e;">Сумма прочих доходов: {{ sum_network }}</p>
-              <p style="color: #01070e;">Общее кол-во дней: {{ day_network }}</p>
-              {% for i in other_value %}
-              <div style="border: 1px solid black; padding: 10px;">
-                <p style="color: #01070e;">Заработанные: {{i.payment_in_money}} </p>
-                <p style="color: #01070e;">Тип заработка: {{i.busyness}} </p>
-                <p style="color: #01070e;">Дата добавления: {{i.last_updated}} </p>
-                <p style="color: #01070e;">За период времени в днях: {{i.duration}} </p>
-                <p style="color: #01070e;">Подработка: {{i.other_source.title}}  </p>
-                <p style="color: #01070e;">Комметарий: {{i.comment}}  </p>
-              </div>
-              {% endfor %}
-            </div>
-          </div>       
+          <script>
+            var labels = [];
+            var values = [];
+            {% for i in network_value %}
+              labels.push("{{ i.network.title }}");
+              values.push({{ i.payment_in_money }});
+            {% endfor %};
+            var data = [{
+              labels: labels,
+              values: values,
+              type: 'pie'
+            }];
+            var layout = {
+              title: 'Разбивка доходов по типу заработка'
+            };
+            Plotly.newPlot('pie-chart3', data, layout);
+          </script>       
         </section>
       </div>
     </div>

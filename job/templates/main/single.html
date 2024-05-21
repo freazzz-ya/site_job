@@ -48,8 +48,11 @@
           </div>
           <nav class="site-navigation text-center ml-auto" role="navigation">
             <ul class="site-menu main-menu js-clone-nav ml-auto d-none d-lg-block">
+              <li><a href="/job/crypto/" class="nav-link">Котировки</a></li>
               <li><a href="/job/scheme/" class="nav-link">Схемы заработка</a></li>
               <li><a href="/job/neuronet/" class="nav-link">Нейросети</a></li>
+              <li><a href="/job/finance/calculation/" class="nav-link">Расчет баланса</a></li>
+
               
               {% if user.role == 'Special' %}
               <li><a href="special/" class="nav-link">Специально</a></li>
@@ -88,10 +91,12 @@
       </div>
 
     </div>
+
+
     <section class="site-section">
       <div class="container">
-        <div class="row">
-          <div class="col-md-8 blog-content">
+          <div class="row">
+              <div class="col-md-8 blog-content">
             <p class="lead">Конечно, всегда важно знать, сколько у вас денег и где они находятся.</p>
             <p>Ведение учета финансов может помочь вам принимать осознанные финансовые решения, позволяет контролировать
               свои расходы и доходы, и, конечно, держать все под контролем.</p>
@@ -123,157 +128,154 @@
             <p>Так что, в конечном итоге, ведение учета финансов - это не просто о манипулировании цифрами. Это о том,
               чтобы стать более осознанным в отношении своих доходов и расходов, планировать на будущее и иметь
               возможность влиять на свою финансовую ситуацию.</p>
-            <h4 style="cursor:pointer; text-decoration: underline;" onClick="expandit('ans1')">Расчитать свой заработок
-            </h4>
-            <div id="ans1" style="display:none">
-              <div class="col-lg-12">
-                <ul class="list-unstyled">
-                  <div class="row mb-2 d-flex align-items-center">
-                    <div class="col-md-6 mb-2">
-                      <div class="card" style="width: 22rem;">
-                        <div class="card-header">
-                          Подсчет ваших средств
-                        </div>
-                        <div class="card-body">
-                          <form method="post" enctype="multipart/form-data">
-                            {% csrf_token %}
-                            {% bootstrap_form form %}
-                            {% bootstrap_button button_type="submit" content="Создать" %}
-                          </form>
-                          <br>
-                          <form method="post" action="{% url 'job:finance_add_view' %}">
-                            {% csrf_token %}
-                            <input type="hidden" name="next" value="{{ next }}">
-                            {% bootstrap_button button_type="submit" content="Добавить свою работу" %}
-                          </form>  
-                        </div>
-                      </div>
-                    </div>
-                    <div class="col-md-6">
-                      <img src='{% static "images/job_prof.jpg" %}' alt="Image placeholder"
-                        class="img-fluid mb-4 w-100">
-                    </div>
-                  </div>
+              <style>
+                @media (max-width: 767px) {
+                    .hidden-mobile {
+                        display: none; /* Скрываем контейнер на мобильных устройствах с шириной экрана менее 768px */
+                    }
+                }
+            </style>
 
-                  <div class="row mb-2 d-flex align-items-center">
-                    <div class="col-md-6 mb-2">
-                      <div class="card" style="width: 22rem;">
-                        <div class="card-header">
-                          Подсчет ваших средств
-                        </div>
-                        <div class="card-body">
-                          <form method="post" enctype="multipart/form-data">
-                            {% csrf_token %}
-                            {% bootstrap_form form1 %}
-                            {% bootstrap_button button_type="submit" content="Создать" %}
-                          </form>
-                          <br>
-                          <li><a href="/job/neuronet/" class="nav-link">Добавить нейросеть</a></li>
-                        </div>
-                      </div>
+            
+            
+            <div class="container hidden-mobile">
+                <div class="row">
+                    <div class="col-12 text-center">
+                        <div id="pie-chart3" style="font-weight: bold;"></div>
                     </div>
-                    <div class="col-md-6">
-                      <img src='{% static "images/neiro_prof1.jpg" %}' alt="Image placeholder"
-                        class="img-fluid mb-4 w-100">
-                    </div>
-                  </div>
-                  <div class="row mb-2 d-flex align-items-center">
-                    <div class="col-md-6 mb-2">
-                      <div class="card" style="width: 22rem;">
-                        <div class="card-header">
-                          Подсчет ваших средств
-                        </div>
-                        <div class="card-body">
-                          <form method="post" enctype="multipart/form-data">
-                            {% csrf_token %}
-                            {% bootstrap_form form2 %}
-                            {% bootstrap_button button_type="submit" content="Создать" %}
-                          </form>
-                          <br>
-                          <form method="post" action="{% url 'job:finance_other_add_view' %}">
-                            {% csrf_token %}
-                            <input type="hidden" name="next" value="{{ next }}">
-                            {% bootstrap_button button_type="submit" content="Добавить свою подработку" %}
-                          </form>  
-                          
-                        </div>
-                        
-                      </div>
-                    </div>
-                    <div class="col-md-6">
-                      <img src='{% static "images/other_dohod.jpg" %}' alt="Image placeholder"
-                        class="img-fluid mb-4 w-100">
-                    </div>
-                  </div>
-                </ul>
-              </div>
+                </div>
             </div>
-
-
-            <div class="pt-5">
+            
+            <div class="container hidden-mobile">
+                <div class="row">
+                    <div class="col-12 text-center">
+                        <div style="font-weight: bold;">Расходы за текущий месяц: {{ date_now }}</div>
+                        <div id="pie-chart6"></div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12 col-md-6">
+                        <div id="pie-chart4"></div>
+                    </div>
+                    <div class="col-12 col-md-6">
+                        <div id="pie-chart5"></div>
+                    </div>
+                </div>
             </div>
+            
+              <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+                    </div>
 
-          </div>
+          
           <div class="col-md-4 sidebar">
             <div class="sidebar-box">
-              <img src='{{ user.image.url }}' alt="Image placeholder" class="img-fluid mb-4 w-75 rounded-circle">
-              <div style="border: 1px solid black; padding: 10px;">
-                <h3 class="text-black">Все о авторе {{ user.username }}</h3>
-                {% if user.first_name %}
-                <p>Имя: {{ user.first_name }}</p>
-                {% endif%}
-                {% if user.last_name %}
-                <p>Фамилия: {{ user.last_name }}</p>
-                {% endif%}
-                {% if user.is_staff %}
-                <p>Статус: Админ</p>
-                {% else %}
-                <p>Статус: Пользователь</p>
-                {% endif %}
-
-                <p>Почта: {{ user.email }}</p>
-                <p>Дата регистрации: {{ user.date_joined }}</p>
-              </div>
-              <br>
-              <h3 class="text-black">Описание профиля</h3>
-              <p id="shortDescription">{{ user.description_for_profil|slice:":40" }} ...</p>
-              <p id="fullDescription" style="display:none">{{ user.description_for_profil }}</p>
-              <button style="border: 1px solid black; padding: 10px;" onclick="toggleDescription()">Читать
-                далее</button>
-
-              <br>
-              <br>
-              <div style="border: 1px solid black; padding: 10px;">
-                <img src='{% static "images/ruble.jpg" %}' alt="Image placeholder"
-                  class="img-fluid mb-4 w-50 rounded-circle">
-                <p>Доход от основной работы: {{ sum_job }}</p>
-                <p>Доход от нейросетей: {{ sum_network }}</p>
-                <p>Доход от иных доходов: {{ sum_other }}</p>
-                <p style="cursor:pointer; text-decoration: underline;">Общая сумма: {{ total_amount }}</p>
-                <p style="cursor:pointer; text-decoration: underline;">За период в днях: {{ day_amount }}</p>
-                <p><a href="list/" class="btn btn-primary btn-md">Узнать подробно</a></p>
-              </div>
-
+                <img src='{{ user.image.url }}' alt="Image placeholder" class="img-fluid mb-4 w-75 rounded-circle">
+                <div style="border: 1px solid black; padding: 10px;">
+                    <h3 class="text-black">Все о авторе {{ user.username }}</h3>
+                    {% if user.first_name %}
+                        <p>Имя: {{ user.first_name }}</p>
+                    {% endif%}
+                    {% if user.last_name %}
+                        <p>Фамилия: {{ user.last_name }}</p>
+                    {% endif%}
+                    {% if user.is_staff %}
+                        <p>Статус: Админ</p>
+                    {% else %}
+                        <p>Статус: Пользователь</p>
+                    {% endif %}
+        
+                    <p>Почта: {{ user.email }}</p>
+                    <p>Дата регистрации: {{ user.date_joined }}</p>
+                </div>
+                <br>
+                <h3 class="text-black">Описание профиля</h3>
+                <p id="shortDescription">{{ user.description_for_profil|slice:":40" }} ...</p>
+                <p id="fullDescription" style="display:none">{{ user.description_for_profil }}</p>
+                <button style="border: 1px solid black; padding: 10px;" onclick="toggleDescription()">Читать
+                    далее</button>
+        
+                <br>
+                <br>
+                <div style="border: 1px solid black; padding: 10px;">
+                    <img src='{% static "images/ruble.jpg" %}' alt="Image placeholder" class="img-fluid mb-4 w-50 rounded-circle">
+                    <p>Доход от основной работы: {{ sum_job }}</p>
+                    <p>Доход от нейросетей: {{ sum_network }}</p>
+                    <p>Доход от иных доходов: {{ sum_other }}</p>           
+                    <p style="cursor:pointer; text-decoration: underline;">Общая сумма доходов: {{ total_amount }}</p>
+                    <p style="cursor:pointer; text-decoration: underline;">За период в днях: {{ day_amount }}</p>
+                    <p><a href="list/" class="btn btn-primary btn-md">Узнать подробно</a></p>
+                </div>
+                <br>
+                <div style="border: 1px solid black; padding: 10px;">
+                    <img src='{% static "images/rashod.jpg" %}' alt="Image placeholder" class="img-fluid mb-4 w-50 rounded-circle">
+                    <p>Постоянные расходы: {{ stable_expenses }}</p>
+                    <p>Переменные расходы: {{ variable_expenses }}</p>
+                    <p>Неожиданные расходы: {{ unexpected_expenses }}</p> 
+                    <p>Планируемые заранее расходы: {{ planned_expenses }}</p>          
+                    <p style="cursor:pointer; text-decoration: underline;">Общая сумма расходов: {{ amount_expenses }}</p>
+                    <p><a href="list/expenses" class="btn btn-primary btn-md">Узнать подробно</a></p>
+                </div>
             </div>
-            <div class="sidebar-box">
-              <h3 class="text-black">Наставление</h3>
-              <p>Прежде, чем начать считать свои деньги, спроси себя, готов ли ты складывать двузначные числа$$</p>
-            </div>
-            <div class="sidebar-box">
-              <div class="categories">
-                <h3 class="text-black">Данные</h3>
-                <li><a href="#">Кол-во нейросетей<span>{{forms.0}}</span></a></li>
-                <li><a href="#">Кол-во пользователей<span>{{forms.1}}</span></a></li>
-                <li><a href="#">Кол-во схем <span>{{forms.2}}</span></a></li>
-                <li><a href="#">Кол-во работ <span>{{forms.3}}</span></a></li>
-                <li><a href="#">Кол-во иных заработков<span>{{forms.4}}</span></a></li>
-              
+            <style>
+              @media only screen and (min-width: 768px) {
+                  .hidden-desktop {
+                    display: none;
+                  }
+              }
+          </style>
+        
+            <div class="container hidden-desktop">
+              <div class="row">
+                  <div class="col-12 text-center">
+                      <div id="pie-chart14" style="font-weight: bold;"></div>
+                  </div>
               </div>
-            </div>
           </div>
+          
+        
+          <div class="container hidden-desktop">
+              <div class="row">
+                  <div class="col-12 text-center">
+                      <div style="font-weight: bold;">Расходы за текущий месяц: {{ date_now }}</div>
+                      <div id="pie-chart8"></div>
+                  </div>
+              </div>
+              <div class="row">
+                  <div class="col-12 col-md-6">
+                      <div id="pie-chart10"></div>
+                  </div>
+                  <div class="col-12 col-md-6">
+                      <div id="pie-chart11"></div>
+                  </div>
+              </div>
+          </div>
+            <div class="sidebar-box">
+                <h3 class="text-black">Наставление</h3>
+                <p>Прежде, чем начать считать свои деньги, спроси себя, готов ли ты складывать двузначные числа$$</p>
+            </div>
+            <div class="sidebar-box">
+                <div class="categories">
+                    <h3 class="text-black">Данные</h3>
+                    <li><a href="#">Кол-во нейросетей<span>{{forms.0}}</span></a></li>
+                    <li><a href="#">Кол-во пользователей<span>{{forms.1}}</span></a></li>
+                    <li><a href="#">Кол-во схем <span>{{forms.2}}</span></a></li>
+                    <li><a href="#">Кол-во работ <span>{{forms.3}}</span></a></li>
+                    <li><a href="#">Кол-во иных заработков<span>{{forms.4}}</span></a></li>
+                </div>
+
+                      
+
+        </div>
+
+
         </div>
       </div>
     </section>
+
+
+</div>
+
+    
     <footer class="site-footer">
       <div class="container">
         <div class="row">
@@ -313,11 +315,176 @@
     </footer>
 
   </div>
+          <script>
+            // Данные для диаграммы
+            var expense_labels = ["Сумма месячных доходов", "Сумма месячных расходов"];
+            var total_prices = [{{ income_sum_month }}, {{ amount_expenses_month }}];
+    
+            // Итерация по каждому элементу в `monthly_income` QuerySet
+    
+            // Создание диаграммы
+            var data = [{
+              labels: expense_labels,
+              values: total_prices,
+              type: 'pie'
+            }];
+            
+            var layout = {
+              title: 'Месячные доходы/расходы' 
+            };
+            
+            Plotly.newPlot('pie-chart6', data, layout);
+          </script>
 
+          
+          <script>
+            // Данные для диаграммы
+            var expense_labels = [];
+            var total_prices = [];
+          
+            // Итерация по каждому элементу в `monthly_income` QuerySet
+            {% for expense in monthly_income %}
+              expense_labels.push("{{ expense.type_expenses }}");
+              total_prices.push({{ expense.total_price }});
+            {% endfor %}
+          
+            // Создание диаграммы
+            var data = [{
+              labels: expense_labels,
+              values: total_prices,
+              type: 'pie'
+            }];
+            
+            var layout = {
+              title: 'Расходы за текущий месяц'
+            };
+            
+            Plotly.newPlot('pie-chart4', data, layout);
+          </script>
+                  <script>
+                    // Данные для диаграммы
+                    var expense_labels = [];
+                    var total_prices = [];
+                  
+                    // Итерация по каждому элементу в `monthly_income` QuerySet
+                    {% for expense in monthly_income %}
+                      expense_labels.push("{{ expense.type_expenses }}");
+                      total_prices.push({{ expense.total_price }});
+                    {% endfor %}
+                  
+                    // Создание диаграммы
+                    var data = [{
+                      labels: expense_labels,
+                      values: total_prices,
+                      type: 'pie'
+                    }];
+                    
+                    var layout = {
+                      title: 'Расходы за текущий месяц'
+                    };
+                    
+                    Plotly.newPlot('pie-chart10', data, layout);
+                  </script>
+                        <script>
+                          // Данные для диаграммы
+                          var labels = ["Доходы", "Расходы"];
+                          var values = [{{ total_amount }}, {{ amount_expenses }}];
+                        
+                          // Создание диаграммы
+                          var data = [{
+                            labels: labels,
+                            values: values,
+                            type: 'pie'
+                          }];
+                        
+                          var layout = {
+                            title: 'Доходы и расходы за все время'
+                          };
+                        
+                          Plotly.newPlot('pie-chart3', data, layout);
+                        </script>
+
+<script>
+  // Данные для диаграммы
+  var labels = ["Доходы", "Расходы"];
+  var values = [{{ total_amount }}, {{ amount_expenses }}];
+
+  // Создание диаграммы
+  var data = [{
+    labels: labels,
+    values: values,
+    type: 'pie'
+  }];
+
+  var layout = {
+    title: 'Доходы и расходы за все время'
+  };
+
+  Plotly.newPlot('pie-chart14', data, layout);
+</script>
+
+                                                <script>
+                                                  // Данные для диаграммы
+                                                  var labels = ["Доходы", "Расходы"];
+                                                  var values = [{{ total_amount }}, {{ amount_expenses }}];
+                                                
+                                                  // Создание диаграммы
+                                                  var data = [{
+                                                    labels: labels,
+                                                    values: values,
+                                                    type: 'pie'
+                                                  }];
+                                                
+                                                  var layout = {
+                                                    title: 'Доходы и расходы за все время'
+                                                  };
+                                                
+                                                  Plotly.newPlot('pie-chart8', data, layout);
+                                                </script>
   <script src='{% static "js/jquery-3.3.1.min.js" %}'></script>
   <script src='{% static "js/jquery-ui.js" %}'></script>
   <script src='{% static "js/popper.min.js" %}'></script>
   <script src='{% static "js/bootstrap.min.js" %}'></script>
+  <script>
+    // Данные для диаграммы
+    var expense_labels = ["доходы с Работы", "доходы с Иных источников", "доходы с Нейросетей"];
+    var total_prices = [{{ income_job }}, {{ income_other_source }}, {{ income_network }}];
+
+    // Итерация по каждому элементу в `monthly_income` QuerySet
+
+    // Создание диаграммы
+    var data = [{
+      labels: expense_labels,
+      values: total_prices,
+      type: 'pie'
+    }];
+    
+    var layout = {
+      title: 'Доходы за текущий месяц'
+    };
+    
+    Plotly.newPlot('pie-chart5', data, layout);
+  </script>
+   <script>
+    // Данные для диаграммы
+    var expense_labels = ["доходы с Работы", "доходы с Иных источников", "доходы с Нейросетей"];
+    var total_prices = [{{ income_job }}, {{ income_other_source }}, {{ income_network }}];
+
+    // Итерация по каждому элементу в `monthly_income` QuerySet
+
+    // Создание диаграммы
+    var data = [{
+      labels: expense_labels,
+      values: total_prices,
+      type: 'pie'
+    }];
+    
+    var layout = {
+      title: 'Доходы за текущий месяц'
+    };
+    
+    Plotly.newPlot('pie-chart11', data, layout);
+  </script>
   <script src='{% static "js/owl.carousel.min.js" %}'></script>
   <script src='{% static "js/jquery.magnific-popup.min.js" %}'></script>
   <script src='{% static "js/jquery.sticky.js" %}'></script>

@@ -1,13 +1,11 @@
+from django.utils import timezone
+from django.core.validators import MaxValueValidator, MinValueValidator
 from django.db import models
-from django.core.validators import (
-    MinValueValidator, MaxValueValidator,
-    )
 from django.utils.translation import gettext_lazy as _
 
+from max_site.constants import (DjobModelsConstant, NeuralNetworkModelConstant,
+                                UserModelConstant)
 from users.models import Worker
-from max_site.constants import (
-    DjobModelsConstant, UserModelConstant, NeuralNetworkModelConstant,
-    )
 
 
 class Neural_network(models.Model):
@@ -190,14 +188,15 @@ class Job_Payment(models.Model):
         ],
         default=0,
     )
-    last_updated = models.DateTimeField(
-        auto_now=True,
-        verbose_name=_('Последнее обновление',)
-    )
     comment = models.TextField(
         max_length=DjobModelsConstant.TEXT_FIELD_MAX_LEN,
         default=UserModelConstant.DEFAULT_TEXT_FOR_COMMENT,
         verbose_name=_('Комментарий')
+    )
+    date = models.DateTimeField(
+        default=timezone.now,
+        null=True,
+        verbose_name=_('Дата'),
     )
 
     class Meta:
@@ -268,9 +267,11 @@ class Network_Payment(models.Model):
         choices=Busyness.choices,
         default=Busyness.part_time,
     )
-    last_updated = models.DateTimeField(
-        auto_now=True,
-        verbose_name=_('Последнее обновление',)
+
+    date = models.DateTimeField(
+        default=timezone.now,
+        null=True,
+        verbose_name=_('Дата'),
     )
 
     class Meta:
@@ -340,9 +341,10 @@ class Other_Source(models.Model):
         choices=Busyness.choices,
         default=Busyness.part_time,
     )
-    last_updated = models.DateTimeField(
-        auto_now=True,
-        verbose_name=_('Последнее обновление',)
+    date = models.DateTimeField(
+        default=timezone.now,
+        null=True,
+        verbose_name=_('Дата'),
     )
 
     class Meta:
@@ -455,3 +457,107 @@ class Сontacts_model(models.Model):
         verbose_name = _('Модель контактов',)
         verbose_name_plural = _('Модели контактов',)
         db_table = 'Сontacts_model'
+
+
+class Crypto_model(models.Model):
+    author = models.ForeignKey(
+        to=Worker,
+        on_delete=models.CASCADE,
+        related_name='crypto',
+        verbose_name='Создатель',
+    )
+    title = models.CharField(
+        verbose_name=_('Имя'),
+        max_length=DjobModelsConstant.CHAR_FIELD_MAX_LEN,
+    )
+    url = models.URLField(
+        verbose_name=_('Url адрес площадки'),
+        null=True,
+        blank=True,
+    )
+    course = models.IntegerField(
+        verbose_name=_('Общая сумма'),
+        validators=[
+            MinValueValidator(
+                limit_value=DjobModelsConstant.INT_FIELD_MIN_VALUE,
+                message=f'Не может быть меньше '
+                        f'{DjobModelsConstant.INT_FIELD_MIN_VALUE}'),
+            MaxValueValidator(
+                limit_value=DjobModelsConstant.INT_FIELD_MAX_VALUE,
+                message=f'Не может быть больше '
+                        f'{DjobModelsConstant.INT_FIELD_MAX_VALUE}',
+                    )
+        ],
+        default=0,
+    )
+    discription = models.CharField(
+        max_length=DjobModelsConstant.TEXT_FIELD_MAX_LEN,
+        default=DjobModelsConstant.DEFAULT_TEXT_FOR_DESCRIPTION,
+        verbose_name=_('Описание'),
+    )
+    image = models.ImageField(
+        upload_to='images/crypto/',
+        verbose_name=_('Изображение'),
+        default='images/money.jpg',
+    )
+    date_joined = models.DateTimeField(
+        verbose_name=_("Дата создания"),
+        auto_now_add=True,
+    )
+    last_updated = models.DateTimeField(
+        auto_now=True,
+        verbose_name=_('Последнее обновление',)
+    )
+
+    class Meta:
+        ordering = ('id',)
+        verbose_name = _('Модель криптовалюты',)
+        verbose_name_plural = _('Модели криптовалют',)
+        db_table = 'Crypto_model'
+
+
+class Expenses_model(models.Model):
+    author = models.ForeignKey(
+        to=Worker,
+        on_delete=models.CASCADE,
+        related_name='mandatory_expenses',
+        verbose_name='пользователь',
+    )
+    comment = models.CharField(
+        max_length=DjobModelsConstant.CHAR_FIELD_MAX_LEN,
+        default=UserModelConstant.DEFAULT_TEXT_FOR_COMMENT,
+        verbose_name=_('Комментарий')
+    )
+    type_expenses = models.CharField(
+        verbose_name=('Тип расхода'),
+        max_length=DjobModelsConstant.CHAR_FIELD_MAX_LEN,
+    )
+    variety = models.CharField(
+        verbose_name=('Тип расхода'),
+        max_length=DjobModelsConstant.CHAR_FIELD_MAX_LEN,
+    )
+    price = models.IntegerField(
+        verbose_name=_('Сума расходов'),
+        validators=[
+            MinValueValidator(
+                limit_value=DjobModelsConstant.INT_FIELD_MIN_VALUE_DURATION,
+                message=f'Не может быть меньше '
+                        f'{DjobModelsConstant.INT_FIELD_MIN_VALUE_DURATION}'),
+            MaxValueValidator(
+                limit_value=DjobModelsConstant.INT_FIELD_MAX_VALUE,
+                message=f'Не может быть больше '
+                        f'{DjobModelsConstant.INT_FIELD_MAX_VALUE}',
+                    )
+        ],
+        default=0,
+    )
+    date = models.DateTimeField(
+        default=timezone.now,
+        null=True,
+        verbose_name=_('Дата'),
+    )
+
+    class Meta:
+        ordering = ('id',)
+        db_table = 'Expenses_model'
+        verbose_name = _('Таблица расходов',)

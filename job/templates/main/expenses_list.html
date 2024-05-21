@@ -1,0 +1,125 @@
+{% extends "base.html" %}
+{% load static %}
+{% load django_bootstrap5 %}
+{% block content %}
+<div class="Midjourney">
+  <div class="container">
+    <div class="row align-items-center justify-content-center">
+      <div class="col-md-12" style="border: 1px solid black; padding: 10px;">
+        <div class="row">
+          <div class="col-md-6 order-md-2">
+            <div class="Midjourney">
+              <h4 style="color: #01070e;"> Данные о пользователе: {{user.username}} </h4>
+              <h4 style="color: #01070e;">id: {{user.id}} </h4>
+              <h4 style="color: #01070e;">Последний вход в систему: {{user.last_login}} </p>
+              <h4 style="color: #01070e;">Имя: {{user.first_name}} </h4>
+              <h4 style="color: #01070e;">Фамилия: {{user.last_name}} </p>
+              <h4 style="color: #01070e;">Дата регистрации: {{user.date_joined}} </h4>
+              <h4 style="color: #01070e;">Почта: {{user.email}} </h4>
+              <h4 style="color: #01070e;">Роль: {{user.role}} </h4>
+              <h5 style="color: #01070e;">Описание профиля: {{ user.description_for_profil }}</h5>
+            </div>
+          </div>
+          <div class="col-md-6 order-md-1">
+            <div class="text-center">
+              <img src="{{ user.image.url }}" alt="Image placeholder" class="img-fluid mb-5 w-75 rounded-circle border border-dark d-block mx-auto" style="max-width: auto; height: auto;">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="Midjourney">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-10 mx-auto blog-content">
+        <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+        <!-- <style>
+          #chart,
+          #chart-days {
+            width: 500px;
+            height: 500px;
+            display: table-cell; /* Устанавливаем блоки в одну линию */
+          }
+        </style>
+        <div id="chart"></div>
+        <div id="chart-days"></div> -->
+        <!-- <script>
+          // JavaScript код для создания первой диаграммы
+          var sum_other = {{ sum_other }};
+          var sum_job = {{ sum_job }};
+          var sum_network = {{ sum_network }};
+          var data = [{
+            values: [sum_other, sum_job, sum_network],
+            labels: ['С подработки', 'С работы', 'С нейросетей'],
+            type: 'pie'
+          }];
+          var layout = {
+            title: 'Диаграмма доходов',
+            font: {size: 16}
+          };
+          Plotly.newPlot('chart', data, layout);
+  
+          // JavaScript код для создания второй диаграммы
+          var day_other = {{ day_other }};
+          var day_job = {{ day_job }};
+          var day_network = {{ day_network }};
+          var dataDays = [{
+            values: [day_other, day_job, day_network],
+            labels: ['C подработки', 'C работы', 'C нейросетей'],
+            type: 'pie'
+          }];
+          var layoutDays = {
+            title: 'Диаграмма количества дней',
+            font: {size: 16}
+          };
+          Plotly.newPlot('chart-days', dataDays, layoutDays);
+        </script> -->
+
+        <br>
+        <h1 class="mb-4" data-aos="fade-up" data-aos-delay="100" style="color: #01070e; text-decoration: underline;">Общая потраченная сумма: {{ expenses_amount }}</h1>
+        <section class="site-section">
+          <div class="row">
+            <div class="col-md-6">
+              <img src="{% static 'images/other_dohod.jpg' %}" alt="Image placeholder" class="img-fluid mb-4 w-100">
+              <div id="pie-chart"></div>
+            </div>
+            <div class="col-md-6">         
+              {% for i in expenses %}
+                <div style="border: 1px solid black; padding: 10px;">
+                  <p style="color: #01070e;">Тип расхода: {{ i.type_expenses }}</p>
+                  <p style="color: #01070e;">Сумма : {{ i.price }}</p>
+                  <p style="color: #01070e;">Дата добавления: {{ i.date }}</p>
+                  <p style="color: #01070e;">Комментарий: {{ i.comment }} </p>
+                  <p style="color: #01070e;">Вид расходов: {{ i.variety }}</p>
+                </div>
+              {% endfor %}
+            </div>
+          </div>
+          <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+          <script>
+            var labels = [];
+            var values = [];
+            {% for i in expenses %}
+              labels.push("{{ i.type_expenses }}");
+              values.push({{ i.price }});
+            {% endfor %};
+            var data = [{
+              labels: labels,
+              values: values,
+              type: 'pie'
+            }];
+            var layout = {
+              title: 'Разбивка доходов по типу заработка'
+            };
+            Plotly.newPlot('pie-chart', data, layout);
+          </script>
+        </section>
+        <section class="site-section">
+        </section>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

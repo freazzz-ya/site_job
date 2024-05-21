@@ -22,4 +22,11 @@ urlpatterns = [
         'finance/special/', views.special,
         name='special_view',
     ),
+    path('crypto/', views.CryptoListView.as_view(), name='crypto'),
+    path('finance/calculation/', views.finance_calculation_view,
+         name='finance_calculation'),
+    path(
+        'finance/list/expenses', views.finance_list_expenses,
+        name='finance_list_expenses_view'
+        ),
 ]

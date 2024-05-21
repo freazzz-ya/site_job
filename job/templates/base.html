@@ -18,7 +18,7 @@
     <link rel="stylesheet" href="{% static "css/owl.theme.default.min.css" %}">
     <link rel="stylesheet" href="{% static "css/bootstrap-datepicker.css" %}">
     <link rel="stylesheet" href="{% static "fonts/flaticon/font/flaticon.css" %}">
-
+    <link rel="stylesheet" href="{% static "css/table.css" %}">
     <link rel="stylesheet" href="{% static "css/aos.css" %}">
 
     <link rel="stylesheet" href="{% static "css/style.css" %}">
@@ -48,6 +48,7 @@
 
                 <ul class="site-menu main-menu js-clone-nav ml-auto d-none d-lg-block">
                   <li><a href="/job/scheme/" class="nav-link">Схемы заработка</a></li>
+                  <li><a href="/job/crypto/" class="nav-link">Котировки</a></li>
                   <li><a href="/job/neuronet/" class="nav-link">Нейросети</a></li>
                   {% if user.is_authenticated %}
                   <li><a href="/job/finance/" class="nav-link">Профиль</a></li>
@@ -114,8 +115,8 @@
     <script src='{% static "js/jquery.waypoints.min.js" %}'></script>
     <script src='{% static "js/jquery.animateNumber.min.js" %}'></script>
     <script src='{% static "js/aos.js" %}'></script>
-  
+    <script src='{% static "js/table.js" %}'></script>
     <script src='{% static "js/main.js" %}'></script>
-      
+
     </body>
   </html>

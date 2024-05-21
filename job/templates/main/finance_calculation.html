@@ -1,0 +1,131 @@
+{% extends "base.html" %}
+{% load static %}
+{% load django_bootstrap5 %}
+
+{% block content %}
+<style>
+    .card-header h1 {
+  text-align: center;
+}
+</style>
+<style>
+    .card-header h2 {
+  text-align: center;
+}
+</style>
+<style>
+    .col-lg-6 {
+      border: 1px solid black;
+    }
+    .card-header {
+      margin-top: 1rem;
+    }
+</style>
+
+<style>
+    .card {
+      border: 1px solid black;
+    }
+    .card-header {
+      margin-top: 1rem;
+    }
+</style>
+
+
+
+<div class="container">
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header">
+                    Подсчет ваших расходов
+                </div>
+                <div class="card-body">
+                    <table class="table">
+                        <form method="post" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            {% bootstrap_form form3 %}
+                            {% bootstrap_button button_type="submit" content="Создать" %}
+                        </form>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-header">
+                    Подсчет ваших средств
+                </div>
+                <div class="card-body">
+                    <form method="post" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        {% bootstrap_form form %}
+                        {% bootstrap_button button_type="submit" content="Создать" %}
+                      </form>
+                      <br>
+                      <form method="post" action="{% url 'job:finance_add_view' %}">
+                        {% csrf_token %}
+                        <input type="hidden" name="next" value="{{ next }}">
+                        {% bootstrap_button button_type="submit" content="Добавить свою работу" %}
+                      </form>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-header">
+                    Добавить нейросеть
+                </div>
+                <div class="card-body">
+                    {% csrf_token %}
+                    {% bootstrap_form form1 %}
+                    {% bootstrap_button button_type="submit" content="Создать" %}
+                  </form>
+                  <br>
+                  <br>
+                  <a href="/job/neuronet/" class="btn btn-primary">Добавить нейросеть</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-header">
+                    Добавить подработку
+                </div>
+                <div class="card-body">
+                    <form method="post" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        {% bootstrap_form form2 %}
+                        {% bootstrap_button button_type="submit" content="Создать" %}
+                      </form>
+                      <br>
+                      <form method="post" action="{% url 'job:finance_other_add_view' %}">
+                        {% csrf_token %}
+                        <input type="hidden" name="next" value="{{ next }}">
+                        {% bootstrap_button button_type="submit" content="Добавить свою подработку" %}
+                      </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src='{% static "js/jquery-3.3.1.min.js" %}'></script>
+<script src='{% static "js/jquery-ui.js" %}'></script>
+<script src='{% static "js/popper.min.js" %}'></script>
+<script src='{% static "js/bootstrap.min.js" %}'></script>
+<script src='{% static "js/owl.carousel.min.js" %}'></script>
+<script src='{% static "js/jquery.magnific-popup.min.js" %}'></script>
+<script src='{% static "js/jquery.sticky.js" %}'></script>
+<script src='{% static "js/jquery.waypoints.min.js" %}'></script>
+<script src='{% static "js/jquery.animateNumber.min.js" %}'></script>
+<script src='{% static "js/aos.js" %}'></script>
+<script src='{% static "js/prof.js" %}'></script>
+<script src='{% static "js/chit.js" %}'></script>
+
+
+<script src='{% static "js/main.js" %}'></script>
+{% endblock %}
