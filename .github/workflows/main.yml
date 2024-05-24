@@ -1,4 +1,3 @@
-
 # Файл main.yml
 # Имя workflow
 name: Main site_job Workflow
@@ -40,15 +39,27 @@ jobs:
           python -m pip install --upgrade pip 
           pip install flake8==6.0.0 flake8-isort==6.0.0
           pip install -r requirements.txt
-      - name: Test with pytest
+      # Запускаем flake8
+      - name: Django tests
         run: |
+          python manage.py test
           cd max_site
           pytest
       - name: Test with flake8
+        # Вызываем flake8 и указываем ему,
+        # что нужно проверить файлы только в папке backend/
         run: python -m flake8 .
       - name: Send message
         uses: appleboy/telegram-action@master
         with:
           to: ${{ secrets.TELEGRAM_TO }}
           token: ${{ secrets.TELEGRAM_TOKEN }}
-          message: "Вот результаты выполнения тестов ${JOB_NAME}."
+          message: Деплой успешно выполнен!  
+        if: success()
+      - name: Send message on failure
+        uses: appleboy/telegram-action@master
+        with:
+          to: ${{ secrets.TELEGRAM_TO }}
+          token: ${{ secrets.TELEGRAM_TOKEN }}
+          message: Ошибка при деплое ${JOB_NAME}.!
+        if: failure()
