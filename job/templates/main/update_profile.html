@@ -1,0 +1,21 @@
+
+{% extends "base.html" %}
+{% load static %}
+{% load django_bootstrap5 %}
+{% block content %}
+<br>
+<div class="card mb-3 border-dark mx-auto" style="max-width: 500px;">
+    <div class="card-body">
+       <div class="card-title nth-card-title text-center">
+          <h4>Редактирование профиля пользовтаеля: {{ title }}</h4>
+       </div>
+       <form method="post" enctype="multipart/form-data">
+          {% csrf_token %}
+          {{ user_form.as_p }}
+          <div class="d-grid gap-2 d-md-block mt-2">
+             <button type="submit" class="btn btn-dark mx-auto">Подтвердить изменение профиля</button>
+          </div>
+       </form>
+    </div>
+ </div>
+{% endblock %}

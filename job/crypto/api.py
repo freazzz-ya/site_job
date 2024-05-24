@@ -1,37 +1,43 @@
 import aiohttp
 import asyncio
+import aiohttp_socks
 
 from max_site.settings import API_SHARES, API_BINANCE
 
+proxy_url = '51.145.176.250'
+proxy_port = '8080'
+proxies = f"http://{proxy_url}:{proxy_port}"
+
+
+async def get_data(url):
+    connector = aiohttp_socks.ProxyConnector.from_url(
+        proxies, rdns=True, limit=1000
+    )
+    async with aiohttp.ClientSession(
+        connector=connector, timeout=aiohttp.ClientTimeout(total=10)
+    ) as session:
+        async with session.get(url) as response:
+            data = await response.json()
+    return data
+
 
 async def get_value_binance():
-    """Получает данные апи первых 30 монет на бинансе"""
-    async with aiohttp.ClientSession() as session:
-        async with session.get(API_BINANCE) as response:
-            data = await response.json()
-    return data[:30 ]
+    data = await get_data(API_BINANCE)
+    return data[:30]
 
 
 async def get_shares():
-    """Получает поля данные 30 крупнейших компаний мосбиржи
-    поля: Краткое наименование ценной бумаги,
-    Цена закрытия предыдущей торговой сессии,
-    Средневзвешенная цена предыдущей торговой сессии,
-    Полное наименование ценной бумаги, Размер лота,
-    Статус ценной бумаги, Тип ценной бумаги."""
-    async with aiohttp.ClientSession() as session:
-        async with session.get(API_SHARES) as response:
-            data = await response.json()
+    data = await get_data(API_SHARES)
     current_prices = []
     for item in data['securities']['data']:
         current_prices.append(
-            [item[2], item[3], item[15], item[9], item[4], item[6],],
+            [item[2], item[3], item[15], item[9], item[4], item[6]]
         )
     return current_prices[:30]
 
 
 async def main():
-    return [await get_value_binance(), await get_shares()]
+    return await asyncio.gather(get_value_binance(), get_shares())
 
 
 def return_api():

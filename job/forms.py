@@ -143,7 +143,7 @@ class NetworkForm(forms.ModelForm):
         model = Network_Payment
         fields = [
             'network', 'payment_in_money',
-            'duration', 'busyness', 'comment',
+            'duration', 'busyness', 'comment', 'date'
         ]
 
 
@@ -158,7 +158,7 @@ class Other_Source_Form(forms.ModelForm):
         model = Other_Source
         fields = [
             'other_source', 'payment_in_money',
-            'duration', 'busyness', 'comment', 
+            'duration', 'busyness', 'comment', 'date'
         ]
 
 
@@ -186,7 +186,7 @@ class JobForm(forms.ModelForm):
         fields = [
             'job', 'payment_in_money',
             'duration', 'busyness',
-            'comment', 
+            'comment', 'date',
         ]
 
 
@@ -293,3 +293,26 @@ class Expenses_model_form(forms.ModelForm):
             'price', 'comment',
             'type_expenses', 'date',
             'variety']
+
+
+class ProfileUpdateForm(forms.ModelForm):
+    """
+    Форма обновления данных профиля пользователя
+    """
+    class Meta:
+        model = Worker
+        fields = (
+            'username', 'email', 'telegram_id',
+            'description_for_profil', 'image',
+        )
+
+    def __init__(self, *args, **kwargs):
+        """
+        Обновление стилей формы обновления
+        """
+        super().__init__(*args, **kwargs)
+        for field in self.fields:
+            self.fields[field].widget.attrs.update({
+                'class': 'form-control',
+                'autocomplete': 'off'
+            })

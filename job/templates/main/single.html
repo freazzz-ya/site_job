@@ -52,6 +52,7 @@
               <li><a href="/job/scheme/" class="nav-link">Схемы заработка</a></li>
               <li><a href="/job/neuronet/" class="nav-link">Нейросети</a></li>
               <li><a href="/job/finance/calculation/" class="nav-link">Расчет баланса</a></li>
+              <li><a href="/job/worker/edit/" class="nav-link">Редактировать профиль</a></li>
 
               
               {% if user.role == 'Special' %}
@@ -137,7 +138,7 @@
             </style>
 
             
-            
+            {% if total_amount %}
             <div class="container hidden-mobile">
                 <div class="row">
                     <div class="col-12 text-center">
@@ -145,22 +146,28 @@
                     </div>
                 </div>
             </div>
+            {% endif %}
             
             <div class="container hidden-mobile">
+              {% if amount_expenses or total_amount %}
                 <div class="row">
                     <div class="col-12 text-center">
                         <div style="font-weight: bold;">Расходы за текущий месяц: {{ date_now }}</div>
                         <div id="pie-chart6"></div>
                     </div>
                 </div>
+                {% endif %}
+                {% if amount_expenses or total_amount %}
                 <div class="row">
                     <div class="col-12 col-md-6">
                         <div id="pie-chart4"></div>
                     </div>
+                    
                     <div class="col-12 col-md-6">
                         <div id="pie-chart5"></div>
                     </div>
                 </div>
+                {% endif %}
             </div>
             
               <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
@@ -202,6 +209,7 @@
                     <p>Доход от нейросетей: {{ sum_network }}</p>
                     <p>Доход от иных доходов: {{ sum_other }}</p>           
                     <p style="cursor:pointer; text-decoration: underline;">Общая сумма доходов: {{ total_amount }}</p>
+                    <p style="cursor:pointer; text-decoration: underline;">Общая сумма доходов за текущий месяц: {{ income_sum_month }}</p>
                     <p style="cursor:pointer; text-decoration: underline;">За период в днях: {{ day_amount }}</p>
                     <p><a href="list/" class="btn btn-primary btn-md">Узнать подробно</a></p>
                 </div>
@@ -213,6 +221,7 @@
                     <p>Неожиданные расходы: {{ unexpected_expenses }}</p> 
                     <p>Планируемые заранее расходы: {{ planned_expenses }}</p>          
                     <p style="cursor:pointer; text-decoration: underline;">Общая сумма расходов: {{ amount_expenses }}</p>
+                    <p style="cursor:pointer; text-decoration: underline;">Общая сумма расходов за текущий месяц: {{ amount_expenses_month }}</p>
                     <p><a href="list/expenses" class="btn btn-primary btn-md">Узнать подробно</a></p>
                 </div>
             </div>
@@ -223,7 +232,7 @@
                   }
               }
           </style>
-        
+        {% if total_amount %}
             <div class="container hidden-desktop">
               <div class="row">
                   <div class="col-12 text-center">
@@ -231,15 +240,18 @@
                   </div>
               </div>
           </div>
-          
-        
+          {% endif %}
+
           <div class="container hidden-desktop">
+            {% if amount_expenses or total_amount %}
               <div class="row">
                   <div class="col-12 text-center">
                       <div style="font-weight: bold;">Расходы за текущий месяц: {{ date_now }}</div>
                       <div id="pie-chart8"></div>
                   </div>
               </div>
+              {% endif %}
+              {% if amount_expenses or total_amount %}
               <div class="row">
                   <div class="col-12 col-md-6">
                       <div id="pie-chart10"></div>
@@ -248,7 +260,16 @@
                       <div id="pie-chart11"></div>
                   </div>
               </div>
+              {% endif %}
           </div>
+        
+
+
+        
+
+
+
+
             <div class="sidebar-box">
                 <h3 class="text-black">Наставление</h3>
                 <p>Прежде, чем начать считать свои деньги, спроси себя, готов ли ты складывать двузначные числа$$</p>
@@ -426,7 +447,7 @@
                                                 <script>
                                                   // Данные для диаграммы
                                                   var labels = ["Доходы", "Расходы"];
-                                                  var values = [{{ total_amount }}, {{ amount_expenses }}];
+                                                  var values = [{{ income_sum_month }}, {{ amount_expenses_month }}];
                                                 
                                                   // Создание диаграммы
                                                   var data = [{

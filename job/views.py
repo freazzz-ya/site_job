@@ -1,8 +1,12 @@
 from django.utils import timezone
 from django.db.models import Sum
 from django.contrib.auth.decorators import login_required
-from django.shortcuts import redirect, render
-from django.views.generic import ListView
+from django.shortcuts import redirect, render, get_object_or_404
+from django.db import transaction
+from django.urls import reverse_lazy
+from django.contrib.auth.decorators import login_required
+from django.utils.decorators import method_decorator
+from django.views.generic import ListView, UpdateView
 from PIL import Image
 
 from users.models import Special, Worker
@@ -11,7 +15,8 @@ from .crypto.api import return_api
 from .forms import (Earning_schemeForm, Job_Reg_Form, JobForm,
                     Maling_model_form, NetworkForm, NeuralNetworkForm,
                     Other_Source_Form, Other_Source_Reg_Form, SpecialForm,
-                    Сontacts_model_form, Expenses_model_form)
+                    Сontacts_model_form, Expenses_model_form,
+                    ProfileUpdateForm)
 from .models import (Crypto_model, Earning_scheme, Job, Job_Payment,
                      Network_Payment, Neural_network, Other_Source,
                      Other_Source_model, Expenses_model)
@@ -423,3 +428,44 @@ def finance_list_expenses(request):
                'expenses_amount': expenses_amount,
     }
     return render(request, 'main/expenses_list.html', context)
+
+
+class ProfileUpdateView(UpdateView):
+    template_name = 'main/update_profile.html'
+    form_class = ProfileUpdateForm
+    model = Worker
+
+    @method_decorator(login_required)
+    def dispatch(self, *args, **kwargs):
+        return super(ProfileUpdateView, self).dispatch(*args, **kwargs)
+
+    def get_object(self, queryset=None):
+        return get_object_or_404(Worker, id=self.request.user.id)
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['title'] = self.request.user.username
+        if self.request.POST:
+            context['user_form'] = ProfileUpdateForm(
+                self.request.POST, instance=self.request.user
+            )
+        else:
+            context['user_form'] = ProfileUpdateForm(
+                instance=self.request.user
+            )
+        return context
+
+    def form_valid(self, form):
+        context = self.get_context_data()
+        user_form = context['user_form']
+        with transaction.atomic():
+            if all([form.is_valid(), user_form.is_valid()]):
+                user_form.save()
+                form.save()
+            else:
+                context.update({'user_form': user_form})
+                return self.render_to_response(context)
+        return super(ProfileUpdateView, self).form_valid(form)
+
+    def get_success_url(self):
+        return reverse_lazy('job:finance_view')

@@ -29,4 +29,8 @@ urlpatterns = [
         'finance/list/expenses', views.finance_list_expenses,
         name='finance_list_expenses_view'
         ),
+    path(
+        'worker/edit/', views.ProfileUpdateView.as_view(),
+        name='profile_edit'
+        ),
 ]
