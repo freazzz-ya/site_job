@@ -54,12 +54,11 @@ jobs:
         with:
           to: ${{ secrets.TELEGRAM_TO }}
           token: ${{ secrets.TELEGRAM_TOKEN }}
-          message: Деплой успешно выполнен!  
-        if: success()
-      - name: Send message on failure
+          message: Деплой успешно выполнен! 
+      - name: Send message
         uses: appleboy/telegram-action@master
         with:
           to: ${{ secrets.TELEGRAM_TO }}
           token: ${{ secrets.TELEGRAM_TOKEN }}
-          message: "Ошибка тестов ${JOB_NAME}."
+          message: "Вот результаты выполнения тестов ${JOB_NAME}. Ошибка: ${failure-message}"
         if: failure()
