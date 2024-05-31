@@ -36,22 +36,19 @@ jobs:
       # устанавливаем зависимости проекта
       - name: Install dependencies
         run: |
-          python -m pip install --upgrade pip
+          python -m pip install --upgrade pip 
           pip install flake8==6.0.0 flake8-isort==6.0.0
           pip install -r requirements.txt
-        if: failure()
-
+      # Запускаем flake8
       - name: Test with flake8
+        # Вызываем flake8 и указываем ему,
+        # что нужно проверить файлы только в папке backend/
         run: python -m flake8 .
-        if: failure()
-
       - name: Django tests
         run: |
           python manage.py test
           cd max_site
           pytest
-        if: failure()
-
       - name: Send message on success
         uses: appleboy/telegram-action@master
         with:
@@ -62,8 +59,7 @@ jobs:
             Commit message: ${{ github.event.commits[0].message }}
             Repository: ${{ github.repository }}
             See changes: https://github.com/${{ github.repository }}/commit/${{github.sha}}
-        if: always()
-
+        if:  ${{ success() }}
       - name: Send message on failure
         uses: appleboy/telegram-action@master
         with:
@@ -74,5 +70,5 @@ jobs:
             Commit message: ${{ github.event.commits[0].message }}
             Repository: ${{ github.repository }}
             See changes: https://github.com/${{ github.repository }}/commit/${{github.sha}}
-            Last failing step outcome: ${{ steps[job.lastFailingStep].outcome }}
-        if: failure()
+            Last step outcome:  ${{ steps.Test-with-flake8.outcome }}
+        if: ${{ failure() }}
