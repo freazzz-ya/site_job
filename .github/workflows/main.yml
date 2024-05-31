@@ -87,4 +87,5 @@ jobs:
             
             See changes: https://github.com/${{ github.repository }}/commit/${{github.sha}}
 
+            Произошла ошибка: ${{ env.status }} на шаге: ${{ env.ACTION_NAME }}
         if: ${{ failure() }}
