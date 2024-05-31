@@ -13,6 +13,9 @@ on:
       - server/site
       - feature/update_all
 # Перечень задач
+env:
+  status: None
+  super_duper_var: totally_awesome
 jobs:
   # Единственная задача — склонировать код 
   # и вывести в консоль дерево файлов
@@ -76,7 +79,7 @@ jobs:
           to: ${{ secrets.TELEGRAM_TO }}
           token: ${{ secrets.TELEGRAM_TOKEN }}
           message: |
-            Ошибка деплоя! Не пройдены тесты. Пункт ${{ env.status }}
+            Ошибка деплоя! Не пройдены тесты.
             ${{ github.actor }} created commit:
             Commit message: ${{ github.event.commits[0].message }}
             
