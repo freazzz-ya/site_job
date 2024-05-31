@@ -54,6 +54,7 @@ jobs:
           python manage.py test
           cd max_site
           pytest
+
       - name: Send message on failure
         uses: appleboy/telegram-action@master
         with:
