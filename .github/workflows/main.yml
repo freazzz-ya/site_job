@@ -64,7 +64,7 @@ jobs:
             Ошибка деплоя! Не пройден пункт: ${{ steps.STEP_NAME.outputs.step_name }}. ${{ github.actor }} создал коммит:
             Сообщение коммита: ${{ github.event.commits[0].message }}
 
-            Репозиторий: ${{ github.repository }}
+            Репозиторий: ${{ github.repository.branch }}
 
             Посмотреть изменения: https://github.com/${{ github.repository }}/commit/${{github.sha}}
         if: ${{ failure() }}
