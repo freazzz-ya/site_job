@@ -70,4 +70,5 @@ jobs:
             Commit message: ${{ github.event.commits[0].message }}
             Repository: ${{ github.repository }}
             See changes: https://github.com/${{ github.repository }}/commit/${{github.sha}}
+            Last step outcome: ${{ steps.test-with-flake8.outcome }}
         if: ${{ failure() }}
