@@ -13,9 +13,6 @@ on:
       - server/site
       - feature/update_all
 # Перечень задач
-env:
-  status: None
-  super_duper_var: totally_awesome
 jobs:
   # Единственная задача — склонировать код 
   # и вывести в консоль дерево файлов
@@ -52,25 +49,15 @@ jobs:
           python manage.py test
           cd max_site
           pytest
-      - name: Set status error if Django tests failed
-        if: steps.Django_tests.outputs.tests_passed == false
-        run: |
-          env.status = 'Django tests failed'
-      - name: Set status error if flake8 tests failed
-        if: steps.Test_with_flake8.outputs.flake8_passed == false
-        run: | 
-          env.status = 'Flake8 tests failed'
       - name: Send message on success
         uses: appleboy/telegram-action@master
         with:
           to: ${{ secrets.TELEGRAM_TO }}
           token: ${{ secrets.TELEGRAM_TOKEN }}
           message: |
-            Деплой успешно выполнен! ${{ github.actor }} created commit:
+            Деплой успешно выполнен! ${{ github.actor }} created commit.
             Commit message: ${{ github.event.commits[0].message }}
-            
             Repository: ${{ github.repository }}
-            
             See changes: https://github.com/${{ github.repository }}/commit/${{github.sha}}
         if:  ${{ success() }}
       - name: Send message on failure
@@ -79,13 +66,8 @@ jobs:
           to: ${{ secrets.TELEGRAM_TO }}
           token: ${{ secrets.TELEGRAM_TOKEN }}
           message: |
-            Ошибка деплоя! Не пройдены тесты.
-            ${{ github.actor }} created commit:
+            Ошибка деплоя! Не пройдены тесты. ${{ github.actor }} created commit:
             Commit message: ${{ github.event.commits[0].message }}
-            
             Repository: ${{ github.repository }}
-            
             See changes: https://github.com/${{ github.repository }}/commit/${{github.sha}}
-
-            Произошла ошибка: ${{ env.status }} на шаге: ${{ env.ACTION_NAME }}
         if: ${{ failure() }}
