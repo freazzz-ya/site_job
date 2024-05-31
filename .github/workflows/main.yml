@@ -41,11 +41,17 @@ jobs:
           python -m pip install --upgrade pip 
           pip install flake8==6.0.0 flake8-isort==6.0.0
           pip install -r requirements.txt
+        if: ${{ failure() }}
+        env:
+          ERROR: ${{ env.STEP_NAME }}
 
       - name: Test with flake8
         env:
           STEP_NAME: Test with flake8  
         run: python -m flake8 .
+        if: ${{ failure() }}
+        env:
+          ERROR: ${{ env.STEP_NAME }}
 
       - name: Django tests
         env:
@@ -54,6 +60,9 @@ jobs:
           python manage.py test
           cd max_site
           pytest
+        if: ${{ failure() }}
+        env:
+          ERROR: ${{ env.STEP_NAME }
 
       - name: Send message on failure
         uses: appleboy/telegram-action@master
@@ -61,7 +70,8 @@ jobs:
           to: ${{ secrets.TELEGRAM_TO }}
           token: ${{ secrets.TELEGRAM_TOKEN }}
           message: |
-            Ошибка деплоя! Не пройден пункт: ${{ steps.conclusion.failure }}. ${{ github.actor }} создал коммит:
+            Ошибка деплоя! Пункт ошибки: ${{ env.STEP_NAME }}.
+            ${{ github.actor }}. создал коммит.
             Сообщение коммита: ${{ github.event.commits[0].message }}
             Репозиторий: ${{ github.repository }}
             Посмотреть изменения: https://github.com/${{ github.repository }}/commit/${{github.sha}}
