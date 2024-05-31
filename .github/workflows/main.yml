@@ -40,21 +40,19 @@ jobs:
           pip install flake8==6.0.0 flake8-isort==6.0.0
           pip install -r requirements.txt
       # Запускаем flake8
-  fkale8:
-    runs-on: ubuntu-latest
-    steps:
       - name: Test with flake8
         # Вызываем flake8 и указываем ему,
         # что нужно проверить файлы только в папке backend/
         run: python -m flake8 .
-  tests:
-    runs-on: ubuntu-latest
-    steps:
       - name: Django tests
         run: |
           python manage.py test
           cd max_site
           pytest
+  send_message:
+    runs-on: ubuntu-latest
+    needs: deploy
+    steps:
       - name: Send message on success
         uses: appleboy/telegram-action@master
         with:
@@ -69,4 +67,3 @@ jobs:
           token: ${{ secrets.TELEGRAM_TOKEN }}
           message: Ошибка деплоя! Не пройдены тесты.
         if: ${{ failure() }}
-  
