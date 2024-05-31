@@ -49,20 +49,28 @@ jobs:
           python manage.py test
           cd max_site
           pytest
-  send_message:
-    runs-on: ubuntu-latest
-    steps:
       - name: Send message on success
         uses: appleboy/telegram-action@master
         with:
           to: ${{ secrets.TELEGRAM_TO }}
           token: ${{ secrets.TELEGRAM_TOKEN }}
-          message: Деплой успешно выполнен!  
-        if: success()
+          message: Деплой успешно выполнен! ${{ github.actor }} created commit:
+            Commit message: ${{ github.event.commits[0].message }}
+            
+            Repository: ${{ github.repository }}
+            
+            See changes: https://github.com/${{ github.repository }}/commit/${{github.sha}}
+        if:  ${{ success() }}
       - name: Send message on failure
         uses: appleboy/telegram-action@master
         with:
           to: ${{ secrets.TELEGRAM_TO }}
           token: ${{ secrets.TELEGRAM_TOKEN }}
-          message: Ошибка деплоя! Не пройдены тесты.
+          message: Ошибка деплоя! Не пройдены тесты. ${{ github.actor }} created commit:
+            Commit message: ${{ github.event.commits[0].message }}
+            
+            Repository: ${{ github.repository }}
+            
+            See changes: https://github.com/${{ github.repository }}/commit/${{github.sha}}
+
         if: ${{ failure() }}
