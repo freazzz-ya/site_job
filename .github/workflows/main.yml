@@ -35,50 +35,50 @@ jobs:
       # Обновляем pip, устанавливаем flake8 и flake8-isort, 
       # устанавливаем зависимости проекта
       - name: Install dependencies
+        env:
+          STEP_NAME: Install dependencies
         run: |
           python -m pip install --upgrade pip 
           pip install flake8==6.0.0 flake8-isort==6.0.0
           pip install -r requirements.txt
-      # Запускаем flake8
+
       - name: Test with flake8
-        # Вызываем flake8 и указываем ему,
-        # что нужно проверить файлы только в папке backend/
+        env:
+          STEP_NAME: Test with flake8  
         run: python -m flake8 .
+
       - name: Django tests
+        env:
+          STEP_NAME: Django tests
         run: |
           python manage.py test
           cd max_site
           pytest
-      - name: Send message on success
-        uses: appleboy/telegram-action@master
-        with:
-          to: ${{ secrets.TELEGRAM_TO }}
-          token: ${{ secrets.TELEGRAM_TOKEN }}
-          message: |
-            Деплой успешно выполнен! ${{ github.actor }} created commit:
-            Commit message: ${{ github.event.commits[0].message }}
-            
-            Repository: ${{ github.repository }}
-            
-            See changes: https://github.com/${{ github.repository }}/commit/${{github.sha}}
-        if:  ${{ success() }}
       - name: Send message on failure
         uses: appleboy/telegram-action@master
         with:
           to: ${{ secrets.TELEGRAM_TO }}
           token: ${{ secrets.TELEGRAM_TOKEN }}
           message: |
-            *Ошибка деплоя! Не пройдены тесты в шаге: ${ steps.step-that-failed.name }.*
-
-            *Ошибка:* ${{ steps.step-that-failed.outputs.error-message }}
-
-            Коммит: ${{ github.sha }}
-            Автор: ${{ github.actor }}
+            Ошибка деплоя! Не пройден пункт: ${{ env.STEP_NAME }}. ${{ github.actor }} создал коммит:
             Сообщение коммита: ${{ github.event.commits[0].message }}
-
+            
             Репозиторий: ${{ github.repository }}
-
-            Ссылка на коммит: https://github.com/${{ github.repository }}/commit/${{github.sha}}
-
+            
+            Посмотреть изменения: https://github.com/${{ github.repository }}/commit/${{github.sha}}
         if: ${{ failure() }}
-  
+
+      - name: Send message on success
+        uses: appleboy/telegram-action@master
+        with:
+          to: ${{ secrets.TELEGRAM_TO }}
+          token: ${{ secrets.TELEGRAM_TOKEN }}
+          message: |
+            Деплой успешно выполнен! ${{ github.actor }} создал коммит:
+            Сообщение коммита: ${{ github.event.commits[0].message }}
+            
+            Репозиторий: ${{ github.repository }}
+            
+            Посмотреть изменения: https://github.com/${{ github.repository }}/commit/${{github.sha}}
+        if: ${{ success() }}
+        
