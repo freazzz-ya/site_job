@@ -35,12 +35,19 @@ jobs:
       # Обновляем pip, устанавливаем flake8 и flake8-isort, 
       # устанавливаем зависимости проекта
       - name: Install dependencies
-        env:
-          ERROR_MESSAGE: "Ошибка при установке зависимостей"
         run: |
           python -m pip install --upgrade pip 
           pip install flake8==6.0.0 flake8-isort==6.0.0
           pip install -r requirements.txt
+        env:
+          ERROR_MESSAGE: |
+            Деплой не выполнен. Ошибка при установке зависимостей.
+
+      - name: Run flake8
+        run: flake8
+        env:
+          ERROR_MESSAGE: |
+            Деплой не выполнен. Ошибка в пункте flake8.
 
       # В блоках Send message on success и Send message on failure используем переменную ERROR_MESSAGE
       - name: Send message on success
@@ -55,7 +62,6 @@ jobs:
             Repository: ${{ github.repository }}
             
             See changes: https://github.com/${{ github.repository }}/commit/${{github.sha}}
-            ${{ env.ERROR_MESSAGE }}
         if:  ${{ success() }}
 
       - name: Send message on failure
@@ -64,11 +70,10 @@ jobs:
           to: ${{ secrets.TELEGRAM_TO }}
           token: ${{ secrets.TELEGRAM_TOKEN }}
           message: |
-            Ошибка деплоя! Не пройдены тесты. ${{ github.actor }} created commit:
+            ${{ env.ERROR_MESSAGE }} ${{ github.actor }} created commit:
             Commit message: ${{ github.event.commits[0].message }}
             
             Repository: ${{ github.repository }}
             
             See changes: https://github.com/${{ github.repository }}/commit/${{github.sha}}
-            ${{ env.ERROR_MESSAGE }}
         if: ${{ failure() }}
