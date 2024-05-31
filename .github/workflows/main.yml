@@ -60,22 +60,17 @@ jobs:
           python manage.py test
           cd max_site
           pytest
-        if: ${{ failure() }}
-        env:
-          ERROR: ${{ env.STEP_NAME }
-
-      - name: Send message on failure
-        uses: appleboy/telegram-action@master
-        with:
-          to: ${{ secrets.TELEGRAM_TO }}
-          token: ${{ secrets.TELEGRAM_TOKEN }}
-          message: |
-            Ошибка деплоя! Пункт ошибки: ${{ env.STEP_NAME }}.
-            ${{ github.actor }}. создал коммит.
-            Сообщение коммита: ${{ github.event.commits[0].message }}
-            Репозиторий: ${{ github.repository }}
-            Посмотреть изменения: https://github.com/${{ github.repository }}/commit/${{github.sha}}
-        if: ${{ failure() }}
+        - name: Send message on failure
+          uses: appleboy/telegram-action@master
+          with:
+            to: ${{ secrets.TELEGRAM_TO }}
+            token: ${{ secrets.TELEGRAM_TOKEN }}
+            message: |
+              Ошибка деплоя! Не пройден пункт: ${{ env.ERROR }}. ${{ github.actor }} создал коммит:
+              Сообщение коммита: ${{ github.event.commits[0].message }}
+              Репозиторий: ${{ github.repository }}
+              Посмотреть изменения: https://github.com/${{ github.repository }}/commit/${{github.sha}}
+          if: ${{ env.ERROR != '' }}
       - name: Send message on success
         uses: appleboy/telegram-action@master
         with:
