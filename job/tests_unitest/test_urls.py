@@ -13,16 +13,24 @@ class TestUrl(TestCase):
     def setUpTestData(cls):
         # Создаём пользователя.
         cls.user = Worker.objects.create(username='testUser')
+        cls.user_special = Worker.objects.create(
+            username='testUser2', role='Special',
+            email='Max@mail.ru',
+        )
         # Создаём объект клиента.
         cls.user_client = Client()
+        cls.user_client_special = Client()
         # "Логинимся" в клиенте при помощи метода force_login().
         cls.user_client.force_login(cls.user)
+        cls.user_client_special.force_login(
+            cls.user_special
+        )
         # Теперь через этот клиент можно отправлять запросы
         # от имени пользователя с логином "testUser"
 
     def test_successful_creation_job(self):
         news_count = Worker.objects.count()
-        self.assertEqual(news_count, 1)
+        self.assertEqual(news_count, 2)
 
     def test_home_page(self):
         url = reverse('job:job_view')
@@ -68,6 +76,8 @@ class TestUrl(TestCase):
         url = reverse('job:finance_list_view')
         response = self.client.get(url)
         self.assertEqual(response.status_code, HTTPStatus.FOUND)
+        response_auth = self.user_client.get(url)
+        self.assertEqual(response_auth.status_code, HTTPStatus.OK)
 
     def test_finance_list_view_auth(self):
         url = reverse('job:finance_list_view')
@@ -78,8 +88,33 @@ class TestUrl(TestCase):
         url = reverse('job:special_view')
         response = self.client.get(url)
         self.assertEqual(response.status_code, HTTPStatus.FOUND)
+        response_auth = self.user_client.get(url)
+        self.assertEqual(response_auth.status_code, HTTPStatus.FOUND)
+        response_auth_special = self.user_client_special.get(url)
+        self.assertEqual(response_auth_special.status_code, HTTPStatus.OK)
 
-    def test_special_view_auth(self):
-        url = reverse('job:special_view')
-        response = self.user_client.get(url)
-        self.assertEqual(response.status_code, HTTPStatus.OK)
+    def test_calculation_view(self):
+        # Test anonymous user
+        url = reverse('job:finance_calculation')
+        response = self.client.get(url)
+        self.assertEqual(response.status_code, HTTPStatus.FOUND)
+
+        # Test logged-in user
+        response_login_client = self.user_client.get(url)
+        self.assertEqual(response_login_client.status_code, HTTPStatus.OK)
+
+    def test_finance_list_expenses_view(self):
+        url = reverse('job:finance_list_expenses_view')
+        response = self.client.get(url)
+        self.assertEqual(response.status_code, HTTPStatus.FOUND)
+        # Test logged-in user
+        response_login_client = self.user_client.get(url)
+        self.assertEqual(response_login_client.status_code, HTTPStatus.OK)
+
+    def test_profile_edit_view(self):
+        url = reverse('job:profile_edit')
+        response = self.client.get(url)
+        self.assertEqual(response.status_code, HTTPStatus.FOUND)
+        # Test logged-in user
+        response_login_client = self.user_client.get(url)
+        self.assertEqual(response_login_client.status_code, HTTPStatus.OK)

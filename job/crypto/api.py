@@ -14,7 +14,7 @@ async def get_data(url):
         proxies, rdns=True, limit=1000
     )
     async with aiohttp.ClientSession(
-        connector=connector, timeout=aiohttp.ClientTimeout(total=10)
+        connector=connector, timeout=aiohttp.ClientTimeout(total=100)
     ) as session:
         async with session.get(url) as response:
             data = await response.json()

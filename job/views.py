@@ -4,7 +4,7 @@ from django.contrib.auth.decorators import login_required
 from django.shortcuts import redirect, render, get_object_or_404
 from django.db import transaction
 from django.urls import reverse_lazy
-from django.contrib.auth.decorators import login_required
+from django.contrib.auth.decorators import login_required, user_passes_test
 from django.utils.decorators import method_decorator
 from django.views.generic import ListView, UpdateView
 from PIL import Image
@@ -316,6 +316,9 @@ def finance_list(request):
     return render(request, 'main/single_list.html', context)
 
 
+@user_passes_test(
+    lambda u: u.is_anonymous or u.is_superuser or u.role == 'Special'
+    )
 @login_required
 def special(request):
     """Специальная вкладка"""

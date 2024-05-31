@@ -2,3 +2,6 @@ venv
 .env
 db.sqlite3
 proba_async.py
+proba_async_2.py
+list_forPme.py
+
