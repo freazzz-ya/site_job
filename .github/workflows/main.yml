@@ -67,18 +67,18 @@ jobs:
         with:
           to: ${{ secrets.TELEGRAM_TO }}
           token: ${{ secrets.TELEGRAM_TOKEN }}
-        message: |
-          *Ошибка деплоя! Не пройдены тесты в шаге: ${ steps.step-that-failed.name }.*
+          message: |
+            *Ошибка деплоя! Не пройдены тесты в шаге: ${ steps.step-that-failed.name }.*
 
-          *Ошибка:* ${{ steps.step-that-failed.outputs.error-message }}
+            *Ошибка:* ${{ steps.step-that-failed.outputs.error-message }}
 
-          Коммит: ${{ github.sha }}
-          Автор: ${{ github.actor }}
-          Сообщение коммита: ${{ github.event.commits[0].message }}
+            Коммит: ${{ github.sha }}
+            Автор: ${{ github.actor }}
+            Сообщение коммита: ${{ github.event.commits[0].message }}
 
-          Репозиторий: ${{ github.repository }}
+            Репозиторий: ${{ github.repository }}
 
-          Ссылка на коммит: https://github.com/${{ github.repository }}/commit/${{github.sha}}
+            Ссылка на коммит: https://github.com/${{ github.repository }}/commit/${{github.sha}}
 
         if: ${{ failure() }}
   
