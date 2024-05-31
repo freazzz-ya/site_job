@@ -61,7 +61,7 @@ jobs:
           to: ${{ secrets.TELEGRAM_TO }}
           token: ${{ secrets.TELEGRAM_TOKEN }}
           message: |
-            Ошибка деплоя! Не пройден пункт: ${{ steps.1 }}. ${{ github.actor }} создал коммит:
+            Ошибка деплоя! Не пройден пункт: ${{ steps }}. ${{ github.actor }} создал коммит:
             Сообщение коммита: ${{ github.event.commits[0].message }}
             Репозиторий: ${{ github.repository }}
             Посмотреть изменения: https://github.com/${{ github.repository }}/commit/${{github.sha}}
