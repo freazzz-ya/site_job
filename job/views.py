@@ -7,7 +7,6 @@ from django.utils import timezone
 from django.utils.decorators import method_decorator
 from django.views.generic import ListView, UpdateView
 from PIL import Image
-
 from users.models import Special, Worker
 
 from .crypto.api import return_api
@@ -103,7 +102,8 @@ def finance_view(request):
     )
     amount_expenses = sum([
         stable_expenses, variable_expenses,
-        unexpected_expenses, planned_expenses,]
+        unexpected_expenses, planned_expenses,
+        ]
     )
     monthly_income = Expenses_model.objects.filter(
         author_id=request.user.id,
