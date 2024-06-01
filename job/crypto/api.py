@@ -2,6 +2,7 @@ import asyncio
 
 import aiohttp
 import aiohttp_socks
+
 from max_site.settings import API_BINANCE, API_SHARES
 
 proxy_url = '51.145.176.250'
