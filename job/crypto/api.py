@@ -1,8 +1,9 @@
-import aiohttp
 import asyncio
+
+import aiohttp
 import aiohttp_socks
 
-from max_site.settings import API_SHARES, API_BINANCE
+from max_site.settings import API_BINANCE, API_SHARES
 
 proxy_url = '51.145.176.250'
 proxy_port = '8080'

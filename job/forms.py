@@ -1,18 +1,17 @@
 import base64
 
-from django.utils import timezone
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
-from django.forms.widgets import DateInput
 from django.core.exceptions import ValidationError
 from django.core.files.base import ContentFile
+from django.forms.widgets import DateInput
+from django.utils import timezone
 from PIL import Image
 
-from job.models import (Earning_scheme, Job, Job_Payment, Maling_model,
-                        Network_Payment, Neural_network, Other_Source,
-                        Other_Source_model, Сontacts_model,
-                        Expenses_model)
-from max_site.constants import UserModelConstant, DjobModelsConstant, Expenses
+from job.models import (Earning_scheme, Expenses_model, Job, Job_Payment,
+                        Maling_model, Network_Payment, Neural_network,
+                        Other_Source, Other_Source_model, Сontacts_model)
+from max_site.constants import DjobModelsConstant, Expenses, UserModelConstant
 from users.models import Special, Worker
 
 

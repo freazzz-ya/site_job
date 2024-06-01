@@ -1,8 +1,8 @@
 from django.contrib import admin
 
-from .models import (Balance, Crypto_model, Job, Job_Payment, Network_Payment,
-                     Neural_network, Other_Source, Other_Source_model,
-                     Expenses_model)
+from .models import (Balance, Crypto_model, Expenses_model, Job, Job_Payment,
+                     Network_Payment, Neural_network, Other_Source,
+                     Other_Source_model)
 
 admin.site.register(Network_Payment)
 admin.site.register(Neural_network)

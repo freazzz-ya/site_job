@@ -1,10 +1,9 @@
-from django.utils import timezone
-from django.db.models import Sum
-from django.contrib.auth.decorators import login_required
-from django.shortcuts import redirect, render, get_object_or_404
-from django.db import transaction
-from django.urls import reverse_lazy
 from django.contrib.auth.decorators import login_required, user_passes_test
+from django.db import transaction
+from django.db.models import Sum
+from django.shortcuts import get_object_or_404, redirect, render
+from django.urls import reverse_lazy
+from django.utils import timezone
 from django.utils.decorators import method_decorator
 from django.views.generic import ListView, UpdateView
 from PIL import Image
@@ -12,15 +11,13 @@ from PIL import Image
 from users.models import Special, Worker
 
 from .crypto.api import return_api
-from .forms import (Earning_schemeForm, Job_Reg_Form, JobForm,
-                    Maling_model_form, NetworkForm, NeuralNetworkForm,
-                    Other_Source_Form, Other_Source_Reg_Form, SpecialForm,
-                    Сontacts_model_form, Expenses_model_form,
-                    ProfileUpdateForm)
-from .models import (Crypto_model, Earning_scheme, Job, Job_Payment,
-                     Network_Payment, Neural_network, Other_Source,
-                     Other_Source_model, Expenses_model)
-
+from .forms import (Earning_schemeForm, Expenses_model_form, Job_Reg_Form,
+                    JobForm, Maling_model_form, NetworkForm, NeuralNetworkForm,
+                    Other_Source_Form, Other_Source_Reg_Form,
+                    ProfileUpdateForm, SpecialForm, Сontacts_model_form)
+from .models import (Crypto_model, Earning_scheme, Expenses_model, Job,
+                     Job_Payment, Network_Payment, Neural_network,
+                     Other_Source, Other_Source_model)
 
 USERS_FOR_USIBILLITY = 100
 

@@ -23,7 +23,7 @@ class Robot:
         print("end jump")
         return f'parameters increased to {self.parameters}'
 
-    async def Up_parameres(self):
+    async def up_parameres(self):
         print('start')
         task1 = asyncio.create_task(self.punch())
         task2 = asyncio.create_task(self.jump())
@@ -33,6 +33,6 @@ class Robot:
 
 start = time.time()                                # Время начала работы
 obj = Robot(3, 7)
-asyncio.run(obj.Up_parameres())
+asyncio.run(obj.up_parameres())
 finish = time.time()                               # Время конца работы
 print(f"Working time = {round(finish-start ,2)} seconds")
