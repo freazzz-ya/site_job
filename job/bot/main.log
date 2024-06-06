@@ -1,0 +1,36 @@
+2024-06-06 17:22:16,170, INFO, База данных создана при старте, root
+2024-06-06 17:22:16,181, DEBUG, Starting new HTTPS connection (1): api.telegram.org:443, urllib3.connectionpool
+2024-06-06 17:22:16,434, DEBUG, https://api.telegram.org:443 "GET /bot6823805203:AAHsrZP-6-SnkCeRiTAeiinLNCUI5uaR_cw/getMe HTTP/1.1" 200 228, urllib3.connectionpool
+2024-06-06 17:22:16,440, DEBUG, Starting new HTTPS connection (1): api.telegram.org:443, urllib3.connectionpool
+2024-06-06 17:22:18,709, DEBUG, https://api.telegram.org:443 "GET /bot6823805203:AAHsrZP-6-SnkCeRiTAeiinLNCUI5uaR_cw/getUpdates?offset=1&timeout=20 HTTP/1.1" 200 579, urllib3.connectionpool
+2024-06-06 17:22:18,711, INFO, Начало обработки кнопки профиль, root
+2024-06-06 17:22:18,714, DEBUG, Starting new HTTP connection (1): 127.0.0.1:8000, urllib3.connectionpool
+2024-06-06 17:22:18,765, DEBUG, http://127.0.0.1:8000 "GET /api/v1/users HTTP/1.1" 200 1865, urllib3.connectionpool
+2024-06-06 17:22:18,768, DEBUG, Starting new HTTP connection (1): 127.0.0.1:8000, urllib3.connectionpool
+2024-06-06 17:22:18,805, DEBUG, http://127.0.0.1:8000 "GET /media/images/BWBE6223_0XCppYo.JPG HTTP/1.1" 200 261738, urllib3.connectionpool
+2024-06-06 17:22:18,846, DEBUG, tag: Orientation (274) - type: short (3) - value: b'\x00\x01', PIL.TiffImagePlugin
+2024-06-06 17:22:18,847, DEBUG, tag: Software (305) - type: string (2) Tag Location: 34 - Data Location: 50 - value: b'Instagram\x00', PIL.TiffImagePlugin
+2024-06-06 17:22:18,847, DEBUG, tag: ExifIFD (34665) - type: long (4) - value: b'\x00\x00\x00<', PIL.TiffImagePlugin
+2024-06-06 17:22:19,868, INFO, Фото сайта открывается, root
+2024-06-06 17:22:19,868, INFO, Совпадение с профилем сайта, root
+2024-06-06 17:22:19,868, INFO, Загрузка из базы данных сайта, root
+2024-06-06 17:22:20,049, INFO, Пользователь обновлен данными с сайта, root
+2024-06-06 17:22:20,118, DEBUG, Starting new HTTPS connection (1): api.telegram.org:443, urllib3.connectionpool
+2024-06-06 17:22:21,863, DEBUG, https://api.telegram.org:443 "POST /bot6823805203:AAHsrZP-6-SnkCeRiTAeiinLNCUI5uaR_cw/sendPhoto?chat_id=641371098&caption=%3Cb%3E%D0%94%D0%BE%D0%B1%D1%80%D0%BE+%D0%BF%D0%BE%D0%B6%D0%B0%D0%BB%D0%BE%D0%B2%D0%B0%D1%82%D1%8C+Max1411+%F0%9F%A4%AB%3C%2Fb%3E%0A%3Cem%3Eid%3A+641371098%3C%2Fem%3E%0A%3Cem%3E%D0%98%D0%BC%D1%8F%3A+%D0%98%D0%B1%D1%80%D0%B0%D0%B3%D0%B8%D0%BC%3C%2Fem%3E%0A%3Cem%3E%D0%A4%D0%B0%D0%BC%D0%B8%D0%BB%D0%B8%D1%8F%3A+%D0%A1%D0%B0%D1%84%D0%BE%D0%BD%D0%BE%D0%B2%D1%8B%D1%87%3C%2Fem%3E&parse_mode=html HTTP/1.1" 200 1707, urllib3.connectionpool
+2024-06-06 17:22:38,819, DEBUG, https://api.telegram.org:443 "GET /bot6823805203:AAHsrZP-6-SnkCeRiTAeiinLNCUI5uaR_cw/getUpdates?offset=230881922&timeout=20 HTTP/1.1" 200 23, urllib3.connectionpool
+2024-06-06 17:22:44,664, DEBUG, https://api.telegram.org:443 "GET /bot6823805203:AAHsrZP-6-SnkCeRiTAeiinLNCUI5uaR_cw/getUpdates?offset=230881922&timeout=20 HTTP/1.1" 200 579, urllib3.connectionpool
+2024-06-06 17:22:44,665, INFO, Начало обработки кнопки профиль, root
+2024-06-06 17:22:44,674, DEBUG, Starting new HTTP connection (1): 127.0.0.1:8000, urllib3.connectionpool
+2024-06-06 17:22:44,715, DEBUG, http://127.0.0.1:8000 "GET /api/v1/users HTTP/1.1" 200 1857, urllib3.connectionpool
+2024-06-06 17:22:44,719, DEBUG, Starting new HTTP connection (1): 127.0.0.1:8000, urllib3.connectionpool
+2024-06-06 17:22:44,755, DEBUG, http://127.0.0.1:8000 "GET /media/images/FRZS0520.JPG HTTP/1.1" 200 3011246, urllib3.connectionpool
+2024-06-06 17:22:44,782, DEBUG, tag: ExifIFD (34665) - type: long (4) - value: b'\x00\x00\x00\x1a', PIL.TiffImagePlugin
+2024-06-06 17:22:51,674, INFO, Фото сайта открывается, root
+2024-06-06 17:22:51,674, INFO, Совпадение с профилем сайта, root
+2024-06-06 17:22:51,676, INFO, Загрузка из базы данных сайта, root
+2024-06-06 17:22:52,370, INFO, Пользователь обновлен данными с сайта, root
+2024-06-06 17:22:52,505, DEBUG, Starting new HTTPS connection (1): api.telegram.org:443, urllib3.connectionpool
+2024-06-06 17:22:53,838, DEBUG, https://api.telegram.org:443 "POST /bot6823805203:AAHsrZP-6-SnkCeRiTAeiinLNCUI5uaR_cw/sendPhoto?chat_id=641371098&caption=%3Cb%3E%D0%94%D0%BE%D0%B1%D1%80%D0%BE+%D0%BF%D0%BE%D0%B6%D0%B0%D0%BB%D0%BE%D0%B2%D0%B0%D1%82%D1%8C+Max1411+%F0%9F%A4%AB%3C%2Fb%3E%0A%3Cem%3Eid%3A+641371098%3C%2Fem%3E%0A%3Cem%3E%D0%98%D0%BC%D1%8F%3A+%D0%98%D0%B1%D1%80%D0%B0%D0%B3%D0%B8%D0%BC%3C%2Fem%3E%0A%3Cem%3E%D0%A4%D0%B0%D0%BC%D0%B8%D0%BB%D0%B8%D1%8F%3A+%D0%A1%D0%B0%D1%84%D0%BE%D0%BD%D0%BE%D0%B2%D1%8B%D1%87%3C%2Fem%3E&parse_mode=html HTTP/1.1" 200 1707, urllib3.connectionpool
+2024-06-06 17:23:04,747, DEBUG, https://api.telegram.org:443 "GET /bot6823805203:AAHsrZP-6-SnkCeRiTAeiinLNCUI5uaR_cw/getUpdates?offset=230881923&timeout=20 HTTP/1.1" 200 23, urllib3.connectionpool
+2024-06-06 17:23:24,829, DEBUG, https://api.telegram.org:443 "GET /bot6823805203:AAHsrZP-6-SnkCeRiTAeiinLNCUI5uaR_cw/getUpdates?offset=230881923&timeout=20 HTTP/1.1" 200 23, urllib3.connectionpool
+2024-06-06 17:23:45,493, DEBUG, https://api.telegram.org:443 "GET /bot6823805203:AAHsrZP-6-SnkCeRiTAeiinLNCUI5uaR_cw/getUpdates?offset=230881923&timeout=20 HTTP/1.1" 200 23, urllib3.connectionpool

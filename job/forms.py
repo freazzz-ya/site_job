@@ -6,13 +6,13 @@ from django.core.exceptions import ValidationError
 from django.core.files.base import ContentFile
 from django.forms.widgets import DateInput
 from django.utils import timezone
-from max_site.constants import DjobModelsConstant, Expenses, UserModelConstant
 from PIL import Image
-from users.models import Special, Worker
 
 from job.models import (Earning_scheme, Expenses_model, Job, Job_Payment,
                         Maling_model, Network_Payment, Neural_network,
                         Other_Source, Other_Source_model, Сontacts_model)
+from max_site.constants import DjobModelsConstant, Expenses, UserModelConstant
+from users.models import Special, Worker
 
 
 class Base64ImageField(forms.ImageField):
@@ -303,6 +303,7 @@ class ProfileUpdateForm(forms.ModelForm):
         fields = (
             'username', 'email', 'telegram_id',
             'description_for_profil', 'image',
+            'first_name', 'last_name',
         )
 
     def __init__(self, *args, **kwargs):

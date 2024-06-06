@@ -8,6 +8,7 @@ urlpatterns = [
     path('__debug__/', include("debug_toolbar.urls")),
     path('job/', include('job.urls', namespace='job')),
     path('users/', include('users.urls', namespace='users')),
+    path('api/v1/', include('api.urls', namespace='api')),
 ]
 
 if settings.DEBUG:
