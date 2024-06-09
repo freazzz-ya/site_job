@@ -1,15 +1,13 @@
 from rest_framework import generics
 
-from job.models import (
-                        Earning_scheme, Expenses_model,
-                        Neural_network, Job_Payment,
-                        Other_Source, Network_Payment,)
+from job.models import (Earning_scheme, Expenses_model, Job_Payment,
+                        Network_Payment, Neural_network, Other_Source)
 from users.models import Worker
 
 from .serializers import (EarningSchemeSerializer, ExpensesSerializer,
-                          NetworkSerializers, UsersSerializers,
                           JobPaymentSerializer, NetworkPaymentSerializer,
-                          OtherSourceSerializer)
+                          NetworkSerializers, OtherSourceSerializer,
+                          UsersSerializers)
 
 
 class UsersApiView(generics.ListAPIView):

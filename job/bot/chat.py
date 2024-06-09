@@ -1,5 +1,5 @@
 import telebot
-from transformers import AutoTokenizer, AutoModelForSeq2SeqLM
+from transformers import AutoModelForSeq2SeqLM, AutoTokenizer
 
 # Загрузите токен для своей модели Hugging Face
 TOKEN = "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"
@@ -10,6 +10,7 @@ model = AutoModelForSeq2SeqLM.from_pretrained("MODEL_NAME", token=TOKEN)
 
 # Инициализируйте бота Telegram
 bot = telebot.TeleBot("641371098")
+
 
 # Определите обработчик сообщений
 @bot.message_handler(func=lambda message: True)
@@ -24,6 +25,7 @@ def handle_message(message):
 
     # Отправьте ответ пользователю
     bot.send_message(message.chat.id, output_text[0])
+
 
 # Запустите бота
 bot.polling()

@@ -1,7 +1,7 @@
 from django.urls import path
 
-from .views import (EarningSchemeApiView, ExpensesApiView, NeuronetApiView,
-                    UsersApiView, JobApiView, NetworkApiView, OtherSource)
+from .views import (EarningSchemeApiView, ExpensesApiView, JobApiView,
+                    NetworkApiView, NeuronetApiView, OtherSource, UsersApiView)
 
 app_name = 'api'
 

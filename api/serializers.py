@@ -1,9 +1,7 @@
 from rest_framework import serializers
 
-from job.models import (
-                        Earning_scheme, Expenses_model,
-                        Neural_network, Job_Payment,
-                        Network_Payment, Other_Source)
+from job.models import (Earning_scheme, Expenses_model, Job_Payment,
+                        Network_Payment, Neural_network, Other_Source)
 from users.models import Worker
 
 
