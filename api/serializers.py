@@ -1,6 +1,9 @@
 from rest_framework import serializers
 
-from job.models import Earning_scheme, Expenses_model, Neural_network
+from job.models import (
+                        Earning_scheme, Expenses_model,
+                        Neural_network, Job_Payment,
+                        Network_Payment, Other_Source)
 from users.models import Worker
 
 
@@ -40,4 +43,28 @@ class ExpensesSerializer(serializers.ModelSerializer):
         fields = [
             'author', 'comment', 'type_expenses',
             'variety', 'price', 'date',
+        ]
+
+
+class JobPaymentSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Job_Payment
+        fields = [
+            'worker', 'payment_in_money', 'date',
+        ]
+
+
+class OtherSourceSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Other_Source
+        fields = [
+            'worker', 'payment_in_money', 'date',
+        ]
+
+
+class NetworkPaymentSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Network_Payment
+        fields = [
+            'worker', 'payment_in_money', 'date',
         ]

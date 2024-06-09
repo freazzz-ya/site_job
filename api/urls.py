@@ -1,7 +1,7 @@
 from django.urls import path
 
 from .views import (EarningSchemeApiView, ExpensesApiView, NeuronetApiView,
-                    UsersApiView)
+                    UsersApiView, JobApiView, NetworkApiView, OtherSource)
 
 app_name = 'api'
 
@@ -13,4 +13,7 @@ urlpatterns = [
         'earning_scheme', EarningSchemeApiView.as_view(),
         name='earning_scheme',
         ),
+    path('job_payment', JobApiView.as_view(), name='job'),
+    path('network_payment', NetworkApiView.as_view(), name='network_payment'),
+    path('other_payment', OtherSource.as_view(), name='other_payment')
 ]

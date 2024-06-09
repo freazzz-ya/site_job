@@ -1,10 +1,15 @@
 from rest_framework import generics
 
-from job.models import Earning_scheme, Expenses_model, Neural_network
+from job.models import (
+                        Earning_scheme, Expenses_model,
+                        Neural_network, Job_Payment,
+                        Other_Source, Network_Payment,)
 from users.models import Worker
 
 from .serializers import (EarningSchemeSerializer, ExpensesSerializer,
-                          NetworkSerializers, UsersSerializers)
+                          NetworkSerializers, UsersSerializers,
+                          JobPaymentSerializer, NetworkPaymentSerializer,
+                          OtherSourceSerializer)
 
 
 class UsersApiView(generics.ListAPIView):
@@ -25,3 +30,18 @@ class EarningSchemeApiView(generics.ListAPIView):
 class ExpensesApiView(generics.ListAPIView):
     queryset = Expenses_model.objects.all()
     serializer_class = ExpensesSerializer
+
+
+class JobApiView(generics.ListAPIView):
+    queryset = Job_Payment.objects.all()
+    serializer_class = JobPaymentSerializer
+
+
+class NetworkApiView(generics.ListAPIView):
+    queryset = Network_Payment.objects.all()
+    serializer_class = NetworkPaymentSerializer
+
+
+class OtherSource(generics.ListAPIView):
+    queryset = Other_Source.objects.all()
+    serializer_class = OtherSourceSerializer

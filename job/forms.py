@@ -132,6 +132,11 @@ class NeuralNetworkForm(forms.ModelForm):
 
 
 class NetworkForm(forms.ModelForm):
+    network = forms.ModelChoiceField(
+        queryset=Neural_network.objects.all(),
+        label='Нейросеть',
+        widget=forms.Select(attrs={'style': 'width: 200px'}),
+    )
     date = forms.DateField(
         widget=DateInput(attrs={'type': 'date'}),
         initial=timezone.now().date(),

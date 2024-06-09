@@ -1,0 +1,158 @@
+2024-06-09 02:51:29,606, INFO, База данных создана при старте, root
+2024-06-09 02:51:29,612, DEBUG, Starting new HTTPS connection (1): api.telegram.org:443, urllib3.connectionpool
+2024-06-09 02:51:29,853, DEBUG, https://api.telegram.org:443 "GET /bot6823805203:AAHsrZP-6-SnkCeRiTAeiinLNCUI5uaR_cw/getMe HTTP/1.1" 200 228, urllib3.connectionpool
+2024-06-09 02:51:29,863, DEBUG, Starting new HTTPS connection (1): api.telegram.org:443, urllib3.connectionpool
+2024-06-09 02:51:33,874, DEBUG, https://api.telegram.org:443 "GET /bot6823805203:AAHsrZP-6-SnkCeRiTAeiinLNCUI5uaR_cw/getUpdates?offset=1&timeout=20 HTTP/1.1" 200 579, urllib3.connectionpool
+2024-06-09 02:51:33,877, INFO, Начало обработки кнопки профиль, root
+2024-06-09 02:51:33,884, DEBUG, Starting new HTTP connection (1): 127.0.0.1:8000, urllib3.connectionpool
+2024-06-09 02:51:33,990, DEBUG, http://127.0.0.1:8000 "GET /api/v1/users HTTP/1.1" 200 1857, urllib3.connectionpool
+2024-06-09 02:51:33,994, DEBUG, Starting new HTTP connection (1): 127.0.0.1:8000, urllib3.connectionpool
+2024-06-09 02:51:34,050, DEBUG, http://127.0.0.1:8000 "GET /media/images/FRZS0520.JPG HTTP/1.1" 200 3011246, urllib3.connectionpool
+2024-06-09 02:51:34,175, DEBUG, tag: ExifIFD (34665) - type: long (4) - value: b'\x00\x00\x00\x1a', PIL.TiffImagePlugin
+2024-06-09 02:51:38,458, INFO, Фото сайта открывается, root
+2024-06-09 02:51:38,458, INFO, Совпадение с профилем сайта, root
+2024-06-09 02:51:38,459, INFO, Загрузка из базы данных сайта, root
+2024-06-09 02:51:38,566, INFO, Пользователь обновлен данными с сайта, root
+2024-06-09 02:51:38,571, DEBUG, Starting new HTTP connection (1): 127.0.0.1:8000, urllib3.connectionpool
+2024-06-09 02:51:38,610, DEBUG, http://127.0.0.1:8000 "GET /api/v1/epxenses HTTP/1.1" 200 2249, urllib3.connectionpool
+2024-06-09 02:51:38,619, DEBUG, Starting new HTTP connection (1): 127.0.0.1:8000, urllib3.connectionpool
+2024-06-09 02:51:38,661, DEBUG, http://127.0.0.1:8000 "GET /api/v1/job_payment HTTP/1.1" 200 419, urllib3.connectionpool
+2024-06-09 02:51:38,663, DEBUG, Starting new HTTP connection (1): 127.0.0.1:8000, urllib3.connectionpool
+2024-06-09 02:51:38,687, DEBUG, http://127.0.0.1:8000 "GET /api/v1/network_payment HTTP/1.1" 200 67, urllib3.connectionpool
+2024-06-09 02:51:38,689, DEBUG, Starting new HTTP connection (1): 127.0.0.1:8000, urllib3.connectionpool
+2024-06-09 02:51:38,714, DEBUG, http://127.0.0.1:8000 "GET /api/v1/other_payment HTTP/1.1" 200 267, urllib3.connectionpool
+2024-06-09 02:51:38,716, DEBUG, Starting new HTTP connection (1): 127.0.0.1:8000, urllib3.connectionpool
+2024-06-09 02:51:38,740, DEBUG, http://127.0.0.1:8000 "GET /api/v1/job_payment HTTP/1.1" 200 419, urllib3.connectionpool
+2024-06-09 02:51:38,742, DEBUG, Starting new HTTP connection (1): 127.0.0.1:8000, urllib3.connectionpool
+2024-06-09 02:51:38,766, DEBUG, http://127.0.0.1:8000 "GET /api/v1/network_payment HTTP/1.1" 200 67, urllib3.connectionpool
+2024-06-09 02:51:38,768, DEBUG, Starting new HTTP connection (1): 127.0.0.1:8000, urllib3.connectionpool
+2024-06-09 02:51:38,792, DEBUG, http://127.0.0.1:8000 "GET /api/v1/other_payment HTTP/1.1" 200 267, urllib3.connectionpool
+2024-06-09 02:51:38,866, DEBUG, Starting new HTTPS connection (1): api.telegram.org:443, urllib3.connectionpool
+2024-06-09 02:51:39,436, DEBUG, https://api.telegram.org:443 "POST /bot6823805203:AAHsrZP-6-SnkCeRiTAeiinLNCUI5uaR_cw/sendPhoto?chat_id=641371098&caption=%3Cb%3E%D0%94%D0%BE%D0%B1%D1%80%D0%BE+%D0%BF%D0%BE%D0%B6%D0%B0%D0%BB%D0%BE%D0%B2%D0%B0%D1%82%D1%8C+Max1411+%F0%9F%A4%AB%3C%2Fb%3E%0A%3Cem%3Eid%3A+641371098%3C%2Fem%3E%0A%3Cem%3E%D0%98%D0%BC%D1%8F%3A+%D0%98%D0%B1%D1%80%D0%B0%D0%B3%D0%B8%D0%BC%3C%2Fem%3E%0A%3Cem%3E%D0%A4%D0%B0%D0%BC%D0%B8%D0%BB%D0%B8%D1%8F%3A+%D0%A1%D0%B0%D1%84%D0%BE%D0%BD%D0%BE%D0%B2%D1%8B%D1%87%3C%2Fem%3E%0A%3Cem%3E%D0%A1%D1%83%D0%BC%D0%BC%D0%B0+%D0%BE%D0%B1%D1%89%D0%B8%D1%85+%D1%80%D0%B0%D1%81%D1%85%D0%BE%D0%B4%D0%BE%D0%B2%3A+10921+%D1%80%D1%83%D0%B1%D0%BB%D0%B5%D0%B9%3C%2Fem%3E%0A%3Cem%3E%D0%A1%D1%83%D0%BC%D0%BC%D0%B0+%D1%80%D0%B0%D1%81%D1%85%D0%BE%D0%B4%D0%BE%D0%B2+%D0%B7%D0%B0+%D1%82%D0%B5%D0%BA%D1%83%D1%89%D0%B8%D0%B9+%D0%BC%D0%B5%D1%81%D1%8F%D1%86%3A+10243+%D1%80%D1%83%D0%B1%D0%BB%D0%B5%D0%B9%3C%2Fem%3E%0A%3Cem%3E%D0%A1%D1%83%D0%BC%D0%BC%D0%B0+%D0%B4%D0%BE%D1%85%D0%BE%D0%B4%D0%BE%D0%B2+%D0%B7%D0%B0+%D0%B2%D1%81%D0%B5+%D0%B2%D1%80%D0%B5%D0%BC%D1%8F%3A+2062+%D1%80%D1%83%D0%B1%D0%BB%D0%B5%D0%B9%3C%2Fem%3E%0A%3Cem%3E%D0%A1%D1%83%D0%BC%D0%BC%D0%B0+%D0%B4%D0%BE%D1%85%D0%BE%D0%B4%D0%BE%D0%B2+%D0%B7%D0%B0+%D1%82%D0%B5%D0%BA%D1%83%D1%89%D0%B8%D0%B9+%D0%BC%D0%B5%D1%81%D1%8F%D1%86%3A+1282+%D1%80%D1%83%D0%B1%D0%BB%D0%B5%D0%B9%3C%2Fem%3E&parse_mode=html HTTP/1.1" 200 2632, urllib3.connectionpool
+2024-06-09 02:51:41,295, DEBUG, https://api.telegram.org:443 "GET /bot6823805203:AAHsrZP-6-SnkCeRiTAeiinLNCUI5uaR_cw/getUpdates?offset=230882001&timeout=20 HTTP/1.1" 200 518, urllib3.connectionpool
+2024-06-09 02:51:41,297, INFO, Обработка кнопки neural networks, root
+2024-06-09 02:51:41,301, DEBUG, Starting new HTTP connection (1): 127.0.0.1:8000, urllib3.connectionpool
+2024-06-09 02:51:41,332, DEBUG, http://127.0.0.1:8000 "GET /api/v1/neuronet HTTP/1.1" 200 842, urllib3.connectionpool
+2024-06-09 02:51:41,335, DEBUG, Starting new HTTP connection (1): 127.0.0.1:8000, urllib3.connectionpool
+2024-06-09 02:51:41,395, DEBUG, http://127.0.0.1:8000 "GET /media/images/network/AHMR0882.JPG HTTP/1.1" 200 2736107, urllib3.connectionpool
+2024-06-09 02:51:41,471, DEBUG, tag: ExifIFD (34665) - type: long (4) - value: b'\x00\x00\x00\x1a', PIL.TiffImagePlugin
+2024-06-09 02:51:45,237, DEBUG, Starting new HTTPS connection (1): api.telegram.org:443, urllib3.connectionpool
+2024-06-09 02:51:47,322, DEBUG, https://api.telegram.org:443 "POST /bot6823805203:AAHsrZP-6-SnkCeRiTAeiinLNCUI5uaR_cw/sendPhoto?chat_id=641371098&caption=%2A%D0%9D%D0%B0%D0%B7%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5%3A%2A+dsDSda%0A%2A%D0%9E%D0%BF%D0%B8%D1%81%D0%B0%D0%BD%D0%B8%D0%B5%3A%2A+dsdddaddaaddaadad%0A%2A%D0%A1%D1%81%D1%8B%D0%BB%D0%BA%D0%B0%3A%2A+https%3A%2F%2Fwww.dalle3.org%2Fru%0A%2A%D0%94%D0%B0%D1%82%D0%B0+%D1%81%D0%BE%D0%B7%D0%B4%D0%B0%D0%BD%D0%B8%D1%8F%3A%2A2024-06-05&parse_mode=Markdown HTTP/1.1" 200 1722, urllib3.connectionpool
+2024-06-09 02:51:47,323, INFO, Отправка данных о нейросети, root
+2024-06-09 02:51:47,324, DEBUG, Starting new HTTP connection (1): 127.0.0.1:8000, urllib3.connectionpool
+2024-06-09 02:51:47,426, DEBUG, http://127.0.0.1:8000 "GET /media/images/network/IMG_3979.PNG HTTP/1.1" 200 3106760, urllib3.connectionpool
+2024-06-09 02:51:47,554, DEBUG, STREAM b'IHDR' 16 13, PIL.PngImagePlugin
+2024-06-09 02:51:47,554, DEBUG, STREAM b'iCCP' 41 353, PIL.PngImagePlugin
+2024-06-09 02:51:47,555, DEBUG, iCCP profile name b'kCGColorSpaceDisplayP3', PIL.PngImagePlugin
+2024-06-09 02:51:47,555, DEBUG, Compression method 0, PIL.PngImagePlugin
+2024-06-09 02:51:47,555, DEBUG, STREAM b'eXIf' 406 130, PIL.PngImagePlugin
+2024-06-09 02:51:47,556, DEBUG, STREAM b'iTXt' 548 495, PIL.PngImagePlugin
+2024-06-09 02:51:47,556, DEBUG, STREAM b'IDAT' 1055 16384, PIL.PngImagePlugin
+2024-06-09 02:51:48,316, DEBUG, https://api.telegram.org:443 "POST /bot6823805203:AAHsrZP-6-SnkCeRiTAeiinLNCUI5uaR_cw/sendPhoto?chat_id=641371098&caption=%2A%D0%9D%D0%B0%D0%B7%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5%3A%2A+numquam+cedere+et+perge%0A%2A%D0%9E%D0%BF%D0%B8%D1%81%D0%B0%D0%BD%D0%B8%D0%B5%3A%2A+dadfdfdad%0A%2A%D0%A1%D1%81%D1%8B%D0%BB%D0%BA%D0%B0%3A%2A+https%3A%2F%2Fwww.scenario.com%2F%0A%2A%D0%94%D0%B0%D1%82%D0%B0+%D1%81%D0%BE%D0%B7%D0%B4%D0%B0%D0%BD%D0%B8%D1%8F%3A%2A2024-06-05&parse_mode=Markdown HTTP/1.1" 200 1730, urllib3.connectionpool
+2024-06-09 02:51:48,317, INFO, Отправка данных о нейросети, root
+2024-06-09 02:51:48,325, DEBUG, Starting new HTTP connection (1): 127.0.0.1:8000, urllib3.connectionpool
+2024-06-09 02:51:48,480, DEBUG, http://127.0.0.1:8000 "GET /media/images/network/BWBE6223.JPG HTTP/1.1" 200 261738, urllib3.connectionpool
+2024-06-09 02:51:48,484, DEBUG, tag: Orientation (274) - type: short (3) - value: b'\x00\x01', PIL.TiffImagePlugin
+2024-06-09 02:51:48,484, DEBUG, tag: Software (305) - type: string (2) Tag Location: 34 - Data Location: 50 - value: b'Instagram\x00', PIL.TiffImagePlugin
+2024-06-09 02:51:48,484, DEBUG, tag: ExifIFD (34665) - type: long (4) - value: b'\x00\x00\x00<', PIL.TiffImagePlugin
+2024-06-09 02:51:49,439, DEBUG, https://api.telegram.org:443 "POST /bot6823805203:AAHsrZP-6-SnkCeRiTAeiinLNCUI5uaR_cw/sendPhoto?chat_id=641371098&caption=%2A%D0%9D%D0%B0%D0%B7%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5%3A%2A+numquam+cedere+et+pergedwq%0A%2A%D0%9E%D0%BF%D0%B8%D1%81%D0%B0%D0%BD%D0%B8%D0%B5%3A%2A+adsdsadasdasdqd%0A%2A%D0%A1%D1%81%D1%8B%D0%BB%D0%BA%D0%B0%3A%2A+https%3A%2F%2Fwww.scenario.com%2F%0A%2A%D0%94%D0%B0%D1%82%D0%B0+%D1%81%D0%BE%D0%B7%D0%B4%D0%B0%D0%BD%D0%B8%D1%8F%3A%2A2024-06-05&parse_mode=Markdown HTTP/1.1" 200 1741, urllib3.connectionpool
+2024-06-09 02:51:49,441, INFO, Отправка данных о нейросети, root
+2024-06-09 02:51:49,446, DEBUG, Starting new HTTP connection (1): 127.0.0.1:8000, urllib3.connectionpool
+2024-06-09 02:51:49,521, DEBUG, http://127.0.0.1:8000 "GET /media/images/network/default_Uf.jpg HTTP/1.1" 200 18056, urllib3.connectionpool
+2024-06-09 02:51:49,661, DEBUG, https://api.telegram.org:443 "POST /bot6823805203:AAHsrZP-6-SnkCeRiTAeiinLNCUI5uaR_cw/sendPhoto?chat_id=641371098&caption=%2A%D0%9D%D0%B0%D0%B7%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5%3A%2A+numquam+cedere+et+pergedwq+ads%0A%2A%D0%9E%D0%BF%D0%B8%D1%81%D0%B0%D0%BD%D0%B8%D0%B5%3A%2A+adsdsadasdasdqdDS%0A%2A%D0%A1%D1%81%D1%8B%D0%BB%D0%BA%D0%B0%3A%2A+https%3A%2F%2Fwww.dalle3.org%2Fru%0A%2A%D0%94%D0%B0%D1%82%D0%B0+%D1%81%D0%BE%D0%B7%D0%B4%D0%B0%D0%BD%D0%B8%D1%8F%3A%2A2024-06-05&parse_mode=Markdown HTTP/1.1" 200 1211, urllib3.connectionpool
+2024-06-09 02:51:49,661, INFO, Отправка данных о нейросети, root
+2024-06-09 02:51:49,745, DEBUG, https://api.telegram.org:443 "POST /bot6823805203:AAHsrZP-6-SnkCeRiTAeiinLNCUI5uaR_cw/sendMessage?chat_id=641371098&text=%3Cb%3ENEURAL+NETWORKS%3C%2Fb%3E+%3Cem%3E%D0%97%D0%B4%D0%B5%D1%81%D1%8C+%D0%BE%D0%BF%D0%B8%D1%81%D1%8B%D0%B2%D0%B0%D1%8E%D1%82%D1%81%D1%8F+%D0%B0%D0%BA%D1%82%D1%83%D0%B0%D0%BB%D1%8C%D0%BD%D1%8B%D0%B5+%D1%81%D1%85%D0%B5%D0%BC%D1%8B+%D0%B7%D0%B0%D1%80%D0%B0%D0%B1%D0%B0%D0%BE%D1%82%D0%BA%D0%B0.+%D0%94%D0%B0%D0%BD%D0%BD%D1%8B%D0%B5+%D0%BF%D1%80%D0%B5%D0%B4%D1%81%D1%82%D0%B0%D0%B2%D0%BB%D0%B5%D0%BD%D1%8B+%D0%BB%D0%B8%D1%88%D1%8C+%D0%B2+5+%D0%B7%D0%B0%D0%BF%D0%B8%D1%81%D1%8F%D1%85.%D0%A7%D1%82%D0%BE%D0%B1%D1%8B+%D0%BF%D0%BE%D0%BB%D0%BD%D0%BE%D1%81%D1%82%D1%8C%D1%8E+%D0%BE%D0%B7%D0%BD%D0%B0%D0%BA%D0%BE%D0%BC%D0%B8%D1%82%D1%8C%D1%81%D1%8F+%D0%B2%D1%8B+%D0%BC%D0%BE%D0%B6%D0%B5%D1%82%D0%B5+%D0%BF%D0%BE%D1%81%D0%BC%D0%BE%D1%82%D1%80%D0%B5%D1%82%D1%8C+%D1%82%D1%83%D1%82%3A+http%3A%2F%2Fmax1475.pythonanywhere.com%2Fjob%2Fscheme%2F%3C%2Fem%3E&parse_mode=html HTTP/1.1" 200 1377, urllib3.connectionpool
+2024-06-09 02:51:49,747, INFO, Конец Обработки кнопки neural networks, root
+2024-06-09 02:51:53,089, DEBUG, https://api.telegram.org:443 "GET /bot6823805203:AAHsrZP-6-SnkCeRiTAeiinLNCUI5uaR_cw/getUpdates?offset=230882002&timeout=20 HTTP/1.1" 200 531, urllib3.connectionpool
+2024-06-09 02:51:53,089, INFO, Начало обработки кнопки командс, root
+2024-06-09 02:51:53,174, DEBUG, https://api.telegram.org:443 "POST /bot6823805203:AAHsrZP-6-SnkCeRiTAeiinLNCUI5uaR_cw/sendMessage?chat_id=641371098&text=%3Cb%3Ecommands%3C%2Fb%3E+%3Cem%3E%0A%2Fstart+-+%D0%B4%D0%BB%D1%8F+%D0%BF%D1%80%D0%B8%D0%B2%D0%B5%D1%82%D1%81%D0%B2%D1%82%D0%B8%D1%8F+%0A%2Fhelp+-+%D0%B4%D0%BB%D1%8F+%D0%BF%D0%BE%D0%BC%D0%BE%D1%89%D0%B8+%D0%B2%D0%BE+%D0%B2%D0%B7%D0%B0%D0%B8%D0%BC%D0%BE%D0%B4%D0%B5%D0%B9%D1%81%D1%82%D0%B2%D0%B8%D0%B8+%0A%2Fsite+-+%D0%B4%D0%BB%D1%8F+%D0%BF%D0%B5%D1%80%D0%B5%D1%85%D0%BE%D0%B4%D0%B0+%D0%BD%D0%B0+%D1%81%D0%B0%D0%B9%D1%82+%0A%2Fcommands+-+%D1%81%D0%BF%D0%B8%D1%81%D0%BE%D0%BA+%D0%BA%D0%BE%D0%BC%D0%BC%D0%B0%D0%BD%D0%B4+%0A%2Fprofile+-+%D0%BF%D1%80%D0%BE%D1%84%D0%B8%D0%BB%D1%8C+%D0%BF%D0%BE%D0%BB%D1%8C%D0%B7%D0%BE%D0%B2%D0%B0%D1%82%D0%B5%D0%BB%D1%8F+%0A%2Fneural_networks+-+%D0%B2%D1%81%D0%B5+%D1%81%D1%83%D1%89%D0%B5%D1%81%D1%82%D0%B2%D1%83%D1%8E%D1%88%D0%B8%D0%B5%D0%BD%D0%B0+%D1%81%D0%B0%D0%B9%D1%82%D0%B5+%D0%BD%D0%B5%D0%B9%D1%80%D0%BE%D1%81%D0%B5%D1%82%D0%B8+%0A%2Fearning_cheme+-+%D1%81%D1%85%D0%B5%D0%BC%D1%8B+%D0%B7%D0%B0%D1%80%D0%B0%D0%B1%D0%BE%D1%82%D0%BA%D0%B0%3C%2Fem%3E&parse_mode=html HTTP/1.1" 200 2264, urllib3.connectionpool
+2024-06-09 02:51:53,175, INFO, Конец обработки кнопки командс, root
+2024-06-09 02:51:56,637, DEBUG, https://api.telegram.org:443 "GET /bot6823805203:AAHsrZP-6-SnkCeRiTAeiinLNCUI5uaR_cw/getUpdates?offset=230882003&timeout=20 HTTP/1.1" 200 539, urllib3.connectionpool
+2024-06-09 02:51:56,638, INFO, Обработка кнопки neural networks, root
+2024-06-09 02:51:56,641, DEBUG, Starting new HTTP connection (1): 127.0.0.1:8000, urllib3.connectionpool
+2024-06-09 02:51:56,673, DEBUG, http://127.0.0.1:8000 "GET /api/v1/neuronet HTTP/1.1" 200 842, urllib3.connectionpool
+2024-06-09 02:51:56,674, DEBUG, Starting new HTTP connection (1): 127.0.0.1:8000, urllib3.connectionpool
+2024-06-09 02:51:56,693, DEBUG, http://127.0.0.1:8000 "GET /media/images/network/AHMR0882.JPG HTTP/1.1" 200 2736107, urllib3.connectionpool
+2024-06-09 02:51:56,706, DEBUG, tag: ExifIFD (34665) - type: long (4) - value: b'\x00\x00\x00\x1a', PIL.TiffImagePlugin
+2024-06-09 02:52:02,211, DEBUG, https://api.telegram.org:443 "POST /bot6823805203:AAHsrZP-6-SnkCeRiTAeiinLNCUI5uaR_cw/sendPhoto?chat_id=641371098&caption=%2A%D0%9D%D0%B0%D0%B7%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5%3A%2A+dsDSda%0A%2A%D0%9E%D0%BF%D0%B8%D1%81%D0%B0%D0%BD%D0%B8%D0%B5%3A%2A+dsdddaddaaddaadad%0A%2A%D0%A1%D1%81%D1%8B%D0%BB%D0%BA%D0%B0%3A%2A+https%3A%2F%2Fwww.dalle3.org%2Fru%0A%2A%D0%94%D0%B0%D1%82%D0%B0+%D1%81%D0%BE%D0%B7%D0%B4%D0%B0%D0%BD%D0%B8%D1%8F%3A%2A2024-06-05&parse_mode=Markdown HTTP/1.1" 200 1722, urllib3.connectionpool
+2024-06-09 02:52:02,215, INFO, Отправка данных о нейросети, root
+2024-06-09 02:52:02,221, DEBUG, Starting new HTTP connection (1): 127.0.0.1:8000, urllib3.connectionpool
+2024-06-09 02:52:02,281, DEBUG, http://127.0.0.1:8000 "GET /media/images/network/IMG_3979.PNG HTTP/1.1" 200 3106760, urllib3.connectionpool
+2024-06-09 02:52:02,305, DEBUG, STREAM b'IHDR' 16 13, PIL.PngImagePlugin
+2024-06-09 02:52:02,305, DEBUG, STREAM b'iCCP' 41 353, PIL.PngImagePlugin
+2024-06-09 02:52:02,305, DEBUG, iCCP profile name b'kCGColorSpaceDisplayP3', PIL.PngImagePlugin
+2024-06-09 02:52:02,305, DEBUG, Compression method 0, PIL.PngImagePlugin
+2024-06-09 02:52:02,305, DEBUG, STREAM b'eXIf' 406 130, PIL.PngImagePlugin
+2024-06-09 02:52:02,305, DEBUG, STREAM b'iTXt' 548 495, PIL.PngImagePlugin
+2024-06-09 02:52:02,305, DEBUG, STREAM b'IDAT' 1055 16384, PIL.PngImagePlugin
+2024-06-09 02:52:03,046, DEBUG, https://api.telegram.org:443 "POST /bot6823805203:AAHsrZP-6-SnkCeRiTAeiinLNCUI5uaR_cw/sendPhoto?chat_id=641371098&caption=%2A%D0%9D%D0%B0%D0%B7%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5%3A%2A+numquam+cedere+et+perge%0A%2A%D0%9E%D0%BF%D0%B8%D1%81%D0%B0%D0%BD%D0%B8%D0%B5%3A%2A+dadfdfdad%0A%2A%D0%A1%D1%81%D1%8B%D0%BB%D0%BA%D0%B0%3A%2A+https%3A%2F%2Fwww.scenario.com%2F%0A%2A%D0%94%D0%B0%D1%82%D0%B0+%D1%81%D0%BE%D0%B7%D0%B4%D0%B0%D0%BD%D0%B8%D1%8F%3A%2A2024-06-05&parse_mode=Markdown HTTP/1.1" 200 1730, urllib3.connectionpool
+2024-06-09 02:52:03,049, INFO, Отправка данных о нейросети, root
+2024-06-09 02:52:03,060, DEBUG, Starting new HTTP connection (1): 127.0.0.1:8000, urllib3.connectionpool
+2024-06-09 02:52:03,106, DEBUG, http://127.0.0.1:8000 "GET /media/images/network/BWBE6223.JPG HTTP/1.1" 200 261738, urllib3.connectionpool
+2024-06-09 02:52:03,108, DEBUG, tag: Orientation (274) - type: short (3) - value: b'\x00\x01', PIL.TiffImagePlugin
+2024-06-09 02:52:03,108, DEBUG, tag: Software (305) - type: string (2) Tag Location: 34 - Data Location: 50 - value: b'Instagram\x00', PIL.TiffImagePlugin
+2024-06-09 02:52:03,108, DEBUG, tag: ExifIFD (34665) - type: long (4) - value: b'\x00\x00\x00<', PIL.TiffImagePlugin
+2024-06-09 02:52:04,533, DEBUG, https://api.telegram.org:443 "POST /bot6823805203:AAHsrZP-6-SnkCeRiTAeiinLNCUI5uaR_cw/sendPhoto?chat_id=641371098&caption=%2A%D0%9D%D0%B0%D0%B7%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5%3A%2A+numquam+cedere+et+pergedwq%0A%2A%D0%9E%D0%BF%D0%B8%D1%81%D0%B0%D0%BD%D0%B8%D0%B5%3A%2A+adsdsadasdasdqd%0A%2A%D0%A1%D1%81%D1%8B%D0%BB%D0%BA%D0%B0%3A%2A+https%3A%2F%2Fwww.scenario.com%2F%0A%2A%D0%94%D0%B0%D1%82%D0%B0+%D1%81%D0%BE%D0%B7%D0%B4%D0%B0%D0%BD%D0%B8%D1%8F%3A%2A2024-06-05&parse_mode=Markdown HTTP/1.1" 200 1741, urllib3.connectionpool
+2024-06-09 02:52:04,535, INFO, Отправка данных о нейросети, root
+2024-06-09 02:52:04,541, DEBUG, Starting new HTTP connection (1): 127.0.0.1:8000, urllib3.connectionpool
+2024-06-09 02:52:04,605, DEBUG, http://127.0.0.1:8000 "GET /media/images/network/default_Uf.jpg HTTP/1.1" 200 18056, urllib3.connectionpool
+2024-06-09 02:52:04,782, DEBUG, https://api.telegram.org:443 "POST /bot6823805203:AAHsrZP-6-SnkCeRiTAeiinLNCUI5uaR_cw/sendPhoto?chat_id=641371098&caption=%2A%D0%9D%D0%B0%D0%B7%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5%3A%2A+numquam+cedere+et+pergedwq+ads%0A%2A%D0%9E%D0%BF%D0%B8%D1%81%D0%B0%D0%BD%D0%B8%D0%B5%3A%2A+adsdsadasdasdqdDS%0A%2A%D0%A1%D1%81%D1%8B%D0%BB%D0%BA%D0%B0%3A%2A+https%3A%2F%2Fwww.dalle3.org%2Fru%0A%2A%D0%94%D0%B0%D1%82%D0%B0+%D1%81%D0%BE%D0%B7%D0%B4%D0%B0%D0%BD%D0%B8%D1%8F%3A%2A2024-06-05&parse_mode=Markdown HTTP/1.1" 200 1211, urllib3.connectionpool
+2024-06-09 02:52:04,783, INFO, Отправка данных о нейросети, root
+2024-06-09 02:52:04,886, DEBUG, https://api.telegram.org:443 "POST /bot6823805203:AAHsrZP-6-SnkCeRiTAeiinLNCUI5uaR_cw/sendMessage?chat_id=641371098&text=%3Cb%3ENEURAL+NETWORKS%3C%2Fb%3E+%3Cem%3E%D0%97%D0%B4%D0%B5%D1%81%D1%8C+%D0%BE%D0%BF%D0%B8%D1%81%D1%8B%D0%B2%D0%B0%D1%8E%D1%82%D1%81%D1%8F+%D0%B0%D0%BA%D1%82%D1%83%D0%B0%D0%BB%D1%8C%D0%BD%D1%8B%D0%B5+%D1%81%D1%85%D0%B5%D0%BC%D1%8B+%D0%B7%D0%B0%D1%80%D0%B0%D0%B1%D0%B0%D0%BE%D1%82%D0%BA%D0%B0.+%D0%94%D0%B0%D0%BD%D0%BD%D1%8B%D0%B5+%D0%BF%D1%80%D0%B5%D0%B4%D1%81%D1%82%D0%B0%D0%B2%D0%BB%D0%B5%D0%BD%D1%8B+%D0%BB%D0%B8%D1%88%D1%8C+%D0%B2+5+%D0%B7%D0%B0%D0%BF%D0%B8%D1%81%D1%8F%D1%85.%D0%A7%D1%82%D0%BE%D0%B1%D1%8B+%D0%BF%D0%BE%D0%BB%D0%BD%D0%BE%D1%81%D1%82%D1%8C%D1%8E+%D0%BE%D0%B7%D0%BD%D0%B0%D0%BA%D0%BE%D0%BC%D0%B8%D1%82%D1%8C%D1%81%D1%8F+%D0%B2%D1%8B+%D0%BC%D0%BE%D0%B6%D0%B5%D1%82%D0%B5+%D0%BF%D0%BE%D1%81%D0%BC%D0%BE%D1%82%D1%80%D0%B5%D1%82%D1%8C+%D1%82%D1%83%D1%82%3A+http%3A%2F%2Fmax1475.pythonanywhere.com%2Fjob%2Fscheme%2F%3C%2Fem%3E&parse_mode=html HTTP/1.1" 200 1298, urllib3.connectionpool
+2024-06-09 02:52:04,887, INFO, Конец Обработки кнопки neural networks, root
+2024-06-09 02:52:05,303, DEBUG, https://api.telegram.org:443 "GET /bot6823805203:AAHsrZP-6-SnkCeRiTAeiinLNCUI5uaR_cw/getUpdates?offset=230882004&timeout=20 HTTP/1.1" 200 537, urllib3.connectionpool
+2024-06-09 02:52:05,303, INFO, Обработка кнопки neural earning_cheme, root
+2024-06-09 02:52:05,308, DEBUG, Starting new HTTP connection (1): 127.0.0.1:8000, urllib3.connectionpool
+2024-06-09 02:52:05,349, DEBUG, http://127.0.0.1:8000 "GET /api/v1/earning_scheme HTTP/1.1" 200 467, urllib3.connectionpool
+2024-06-09 02:52:05,353, DEBUG, Starting new HTTP connection (1): 127.0.0.1:8000, urllib3.connectionpool
+2024-06-09 02:52:05,437, DEBUG, http://127.0.0.1:8000 "GET /media/images/scheme/IMG_3149.PNG HTTP/1.1" 200 452845, urllib3.connectionpool
+2024-06-09 02:52:05,440, DEBUG, STREAM b'IHDR' 16 13, PIL.PngImagePlugin
+2024-06-09 02:52:05,441, DEBUG, STREAM b'iCCP' 41 353, PIL.PngImagePlugin
+2024-06-09 02:52:05,441, DEBUG, iCCP profile name b'kCGColorSpaceDisplayP3', PIL.PngImagePlugin
+2024-06-09 02:52:05,441, DEBUG, Compression method 0, PIL.PngImagePlugin
+2024-06-09 02:52:05,441, DEBUG, STREAM b'eXIf' 406 130, PIL.PngImagePlugin
+2024-06-09 02:52:05,441, DEBUG, STREAM b'iTXt' 548 495, PIL.PngImagePlugin
+2024-06-09 02:52:05,441, DEBUG, STREAM b'IDAT' 1055 16384, PIL.PngImagePlugin
+2024-06-09 02:52:05,776, DEBUG, https://api.telegram.org:443 "POST /bot6823805203:AAHsrZP-6-SnkCeRiTAeiinLNCUI5uaR_cw/sendPhoto?chat_id=641371098&caption=%D0%9D%D0%B0%D0%B7%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5%3A+ChatGPT%0A%D0%9E%D0%BF%D0%B8%D1%81%D0%B0%D0%BD%D0%B8%D0%B5%3A+dff%0A%D0%9D%D0%B5%D0%B9%D1%80%D0%BE%D1%81%D0%B5%D1%82%D1%8C%3A+1%0A%D0%98%D1%81%D1%82%D0%BE%D1%87%D0%BD%D0%B8%D0%BA+%D0%B7%D0%B0%D1%80%D0%B0%D0%B1%D0%BE%D1%82%D0%BA%D0%B0%3ANone%0A%D0%A1%D1%81%D1%8B%D0%BB%D0%BA%D0%B0%3A+https%3A%2F%2Fopenai.com%2Fchatgpt%0A%D0%94%D0%B0%D1%82%D0%B0+%D1%81%D0%BE%D0%B7%D0%B4%D0%B0%D0%BD%D0%B8%D1%8F%3A2024-06-05&parse_mode=Markdown HTTP/1.1" 200 1721, urllib3.connectionpool
+2024-06-09 02:52:05,778, INFO, Отправка данных о другом источнике, root
+2024-06-09 02:52:05,782, DEBUG, Starting new HTTP connection (1): 127.0.0.1:8000, urllib3.connectionpool
+2024-06-09 02:52:05,891, DEBUG, http://127.0.0.1:8000 "GET /media/images/scheme/IMG_3149_45EkfN9.PNG HTTP/1.1" 200 452845, urllib3.connectionpool
+2024-06-09 02:52:05,894, DEBUG, STREAM b'IHDR' 16 13, PIL.PngImagePlugin
+2024-06-09 02:52:05,894, DEBUG, STREAM b'iCCP' 41 353, PIL.PngImagePlugin
+2024-06-09 02:52:05,894, DEBUG, iCCP profile name b'kCGColorSpaceDisplayP3', PIL.PngImagePlugin
+2024-06-09 02:52:05,894, DEBUG, Compression method 0, PIL.PngImagePlugin
+2024-06-09 02:52:05,894, DEBUG, STREAM b'eXIf' 406 130, PIL.PngImagePlugin
+2024-06-09 02:52:05,895, DEBUG, STREAM b'iTXt' 548 495, PIL.PngImagePlugin
+2024-06-09 02:52:05,895, DEBUG, STREAM b'IDAT' 1055 16384, PIL.PngImagePlugin
+2024-06-09 02:52:06,272, DEBUG, https://api.telegram.org:443 "POST /bot6823805203:AAHsrZP-6-SnkCeRiTAeiinLNCUI5uaR_cw/sendPhoto?chat_id=641371098&caption=%D0%9D%D0%B0%D0%B7%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5%3A+%D0%A1%D0%B2%D0%B0%D1%80%D1%89%D0%B8%D0%BA%0A%D0%9E%D0%BF%D0%B8%D1%81%D0%B0%D0%BD%D0%B8%D0%B5%3A+vvzc%0A%D0%9D%D0%B5%D0%B9%D1%80%D0%BE%D1%81%D0%B5%D1%82%D1%8C%3A+2%0A%D0%98%D1%81%D1%82%D0%BE%D1%87%D0%BD%D0%B8%D0%BA+%D0%B7%D0%B0%D1%80%D0%B0%D0%B1%D0%BE%D1%82%D0%BA%D0%B0%3A1%0A%D0%A1%D1%81%D1%8B%D0%BB%D0%BA%D0%B0%3A+https%3A%2F%2Fwww.dalle3.org%2Fru%0A%D0%94%D0%B0%D1%82%D0%B0+%D1%81%D0%BE%D0%B7%D0%B4%D0%B0%D0%BD%D0%B8%D1%8F%3A2024-06-05&parse_mode=Markdown HTTP/1.1" 200 1753, urllib3.connectionpool
+2024-06-09 02:52:06,273, INFO, Отправка данных о другом источнике, root
+2024-06-09 02:52:06,396, DEBUG, https://api.telegram.org:443 "POST /bot6823805203:AAHsrZP-6-SnkCeRiTAeiinLNCUI5uaR_cw/sendMessage?chat_id=641371098&text=%3Cb%3EEARNING+CHEME%3C%2Fb%3E+%3Cem%3E%D0%97%D0%B4%D0%B5%D1%81%D1%8C+%D0%BE%D0%BF%D0%B8%D1%81%D1%8B%D0%B2%D0%B0%D1%8E%D1%82%D1%81%D1%8F+%D0%B0%D0%BA%D1%82%D1%83%D0%B0%D0%BB%D1%8C%D0%BD%D1%8B%D0%B5+%D1%81%D1%85%D0%B5%D0%BC%D1%8B+%D0%B7%D0%B0%D1%80%D0%B0%D0%B1%D0%B0%D0%BE%D1%82%D0%BA%D0%B0.+%D0%94%D0%B0%D0%BD%D0%BD%D1%8B%D0%B5+%D0%BF%D1%80%D0%B5%D0%B4%D1%81%D1%82%D0%B0%D0%B2%D0%BB%D0%B5%D0%BD%D1%8B+%D0%BB%D0%B8%D1%88%D1%8C+%D0%B2+5+%D0%B7%D0%B0%D0%BF%D0%B8%D1%81%D1%8F%D1%85.%D0%A7%D1%82%D0%BE%D0%B1%D1%8B+%D0%BF%D0%BE%D0%BB%D0%BD%D0%BE%D1%81%D1%82%D1%8C%D1%8E+%D0%BE%D0%B7%D0%BD%D0%B0%D0%BA%D0%BE%D0%BC%D0%B8%D1%82%D1%8C%D1%81%D1%8F+%D0%B2%D1%8B+%D0%BC%D0%BE%D0%B6%D0%B5%D1%82%D0%B5+%D0%BF%D0%BE%D1%81%D0%BC%D0%BE%D1%82%D1%80%D0%B5%D1%82%D1%8C+%D1%82%D1%83%D1%82%3A+http%3A%2F%2Fmax1475.pythonanywhere.com%2Fjob%2Fscheme%2F%3C%2Fem%3E&parse_mode=html HTTP/1.1" 200 1296, urllib3.connectionpool
+2024-06-09 02:52:06,397, INFO, Конец Обработки кнопки earning_cheme, root
+2024-06-09 02:52:09,966, DEBUG, https://api.telegram.org:443 "GET /bot6823805203:AAHsrZP-6-SnkCeRiTAeiinLNCUI5uaR_cw/getUpdates?offset=230882005&timeout=20 HTTP/1.1" 200 537, urllib3.connectionpool
+2024-06-09 02:52:09,967, INFO, Обработка кнопки neural earning_cheme, root
+2024-06-09 02:52:09,971, DEBUG, Starting new HTTP connection (1): 127.0.0.1:8000, urllib3.connectionpool
+2024-06-09 02:52:10,010, DEBUG, http://127.0.0.1:8000 "GET /api/v1/earning_scheme HTTP/1.1" 200 467, urllib3.connectionpool
+2024-06-09 02:52:10,013, DEBUG, Starting new HTTP connection (1): 127.0.0.1:8000, urllib3.connectionpool
+2024-06-09 02:52:10,045, DEBUG, http://127.0.0.1:8000 "GET /media/images/scheme/IMG_3149.PNG HTTP/1.1" 200 452845, urllib3.connectionpool
+2024-06-09 02:52:10,048, DEBUG, STREAM b'IHDR' 16 13, PIL.PngImagePlugin
+2024-06-09 02:52:10,048, DEBUG, STREAM b'iCCP' 41 353, PIL.PngImagePlugin
+2024-06-09 02:52:10,049, DEBUG, iCCP profile name b'kCGColorSpaceDisplayP3', PIL.PngImagePlugin
+2024-06-09 02:52:10,049, DEBUG, Compression method 0, PIL.PngImagePlugin
+2024-06-09 02:52:10,049, DEBUG, STREAM b'eXIf' 406 130, PIL.PngImagePlugin
+2024-06-09 02:52:10,049, DEBUG, STREAM b'iTXt' 548 495, PIL.PngImagePlugin
+2024-06-09 02:52:10,049, DEBUG, STREAM b'IDAT' 1055 16384, PIL.PngImagePlugin
+2024-06-09 02:52:10,329, DEBUG, https://api.telegram.org:443 "POST /bot6823805203:AAHsrZP-6-SnkCeRiTAeiinLNCUI5uaR_cw/sendPhoto?chat_id=641371098&caption=%D0%9D%D0%B0%D0%B7%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5%3A+ChatGPT%0A%D0%9E%D0%BF%D0%B8%D1%81%D0%B0%D0%BD%D0%B8%D0%B5%3A+dff%0A%D0%9D%D0%B5%D0%B9%D1%80%D0%BE%D1%81%D0%B5%D1%82%D1%8C%3A+1%0A%D0%98%D1%81%D1%82%D0%BE%D1%87%D0%BD%D0%B8%D0%BA+%D0%B7%D0%B0%D1%80%D0%B0%D0%B1%D0%BE%D1%82%D0%BA%D0%B0%3ANone%0A%D0%A1%D1%81%D1%8B%D0%BB%D0%BA%D0%B0%3A+https%3A%2F%2Fopenai.com%2Fchatgpt%0A%D0%94%D0%B0%D1%82%D0%B0+%D1%81%D0%BE%D0%B7%D0%B4%D0%B0%D0%BD%D0%B8%D1%8F%3A2024-06-05&parse_mode=Markdown HTTP/1.1" 200 1721, urllib3.connectionpool
+2024-06-09 02:52:10,330, INFO, Отправка данных о другом источнике, root
+2024-06-09 02:52:10,335, DEBUG, Starting new HTTP connection (1): 127.0.0.1:8000, urllib3.connectionpool
+2024-06-09 02:52:10,407, DEBUG, http://127.0.0.1:8000 "GET /media/images/scheme/IMG_3149_45EkfN9.PNG HTTP/1.1" 200 452845, urllib3.connectionpool
+2024-06-09 02:52:10,412, DEBUG, STREAM b'IHDR' 16 13, PIL.PngImagePlugin
+2024-06-09 02:52:10,413, DEBUG, STREAM b'iCCP' 41 353, PIL.PngImagePlugin
+2024-06-09 02:52:10,413, DEBUG, iCCP profile name b'kCGColorSpaceDisplayP3', PIL.PngImagePlugin
+2024-06-09 02:52:10,413, DEBUG, Compression method 0, PIL.PngImagePlugin
+2024-06-09 02:52:10,413, DEBUG, STREAM b'eXIf' 406 130, PIL.PngImagePlugin
+2024-06-09 02:52:10,413, DEBUG, STREAM b'iTXt' 548 495, PIL.PngImagePlugin
+2024-06-09 02:52:10,413, DEBUG, STREAM b'IDAT' 1055 16384, PIL.PngImagePlugin
+2024-06-09 02:52:10,725, DEBUG, https://api.telegram.org:443 "POST /bot6823805203:AAHsrZP-6-SnkCeRiTAeiinLNCUI5uaR_cw/sendPhoto?chat_id=641371098&caption=%D0%9D%D0%B0%D0%B7%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5%3A+%D0%A1%D0%B2%D0%B0%D1%80%D1%89%D0%B8%D0%BA%0A%D0%9E%D0%BF%D0%B8%D1%81%D0%B0%D0%BD%D0%B8%D0%B5%3A+vvzc%0A%D0%9D%D0%B5%D0%B9%D1%80%D0%BE%D1%81%D0%B5%D1%82%D1%8C%3A+2%0A%D0%98%D1%81%D1%82%D0%BE%D1%87%D0%BD%D0%B8%D0%BA+%D0%B7%D0%B0%D1%80%D0%B0%D0%B1%D0%BE%D1%82%D0%BA%D0%B0%3A1%0A%D0%A1%D1%81%D1%8B%D0%BB%D0%BA%D0%B0%3A+https%3A%2F%2Fwww.dalle3.org%2Fru%0A%D0%94%D0%B0%D1%82%D0%B0+%D1%81%D0%BE%D0%B7%D0%B4%D0%B0%D0%BD%D0%B8%D1%8F%3A2024-06-05&parse_mode=Markdown HTTP/1.1" 200 1753, urllib3.connectionpool
+2024-06-09 02:52:10,726, INFO, Отправка данных о другом источнике, root
+2024-06-09 02:52:11,179, DEBUG, https://api.telegram.org:443 "POST /bot6823805203:AAHsrZP-6-SnkCeRiTAeiinLNCUI5uaR_cw/sendMessage?chat_id=641371098&text=%3Cb%3EEARNING+CHEME%3C%2Fb%3E+%3Cem%3E%D0%97%D0%B4%D0%B5%D1%81%D1%8C+%D0%BE%D0%BF%D0%B8%D1%81%D1%8B%D0%B2%D0%B0%D1%8E%D1%82%D1%81%D1%8F+%D0%B0%D0%BA%D1%82%D1%83%D0%B0%D0%BB%D1%8C%D0%BD%D1%8B%D0%B5+%D1%81%D1%85%D0%B5%D0%BC%D1%8B+%D0%B7%D0%B0%D1%80%D0%B0%D0%B1%D0%B0%D0%BE%D1%82%D0%BA%D0%B0.+%D0%94%D0%B0%D0%BD%D0%BD%D1%8B%D0%B5+%D0%BF%D1%80%D0%B5%D0%B4%D1%81%D1%82%D0%B0%D0%B2%D0%BB%D0%B5%D0%BD%D1%8B+%D0%BB%D0%B8%D1%88%D1%8C+%D0%B2+5+%D0%B7%D0%B0%D0%BF%D0%B8%D1%81%D1%8F%D1%85.%D0%A7%D1%82%D0%BE%D0%B1%D1%8B+%D0%BF%D0%BE%D0%BB%D0%BD%D0%BE%D1%81%D1%82%D1%8C%D1%8E+%D0%BE%D0%B7%D0%BD%D0%B0%D0%BA%D0%BE%D0%BC%D0%B8%D1%82%D1%8C%D1%81%D1%8F+%D0%B2%D1%8B+%D0%BC%D0%BE%D0%B6%D0%B5%D1%82%D0%B5+%D0%BF%D0%BE%D1%81%D0%BC%D0%BE%D1%82%D1%80%D0%B5%D1%82%D1%8C+%D1%82%D1%83%D1%82%3A+http%3A%2F%2Fmax1475.pythonanywhere.com%2Fjob%2Fscheme%2F%3C%2Fem%3E&parse_mode=html HTTP/1.1" 200 1296, urllib3.connectionpool
+2024-06-09 02:52:11,181, INFO, Конец Обработки кнопки earning_cheme, root
