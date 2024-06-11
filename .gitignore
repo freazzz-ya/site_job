@@ -9,3 +9,4 @@ data_base.db
 migrations
 helper.py
 /migrations/*.rb
+migrations/
