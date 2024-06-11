@@ -8,3 +8,4 @@ db.sqlite3
 data_base.db
 migrations
 helper.py
+/migrations/*.rb
