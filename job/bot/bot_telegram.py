@@ -14,12 +14,12 @@ CURRENT_MONTH = datetime.datetime.now().month
 CURRENT_YEAR = datetime.datetime.now().year
 
 API_USERS = 'http://127.0.0.1:8000/api/v1/users'
-API_NEURAL_NETWORKS = 'http://127.0.0.1:8000/api/v1/neuronet'
-API_EARNING_CHEME = 'http://127.0.0.1:8000/api/v1/earning_scheme'
-API_EXPENSES = 'http://127.0.0.1:8000/api/v1/epxenses'
-API_OTHER_PAYMENT = 'http://127.0.0.1:8000/api/v1/other_payment'
-API_JOB_PAYMENT = 'http://127.0.0.1:8000/api/v1/job_payment'
-API_NETWORK_PAYMENT = 'http://127.0.0.1:8000/api/v1/network_payment'
+API_NEURAL_NETWORKS = 'http://max1475.pythonanywhere.com/api/v1/neuronet'
+API_EARNING_CHEME = 'http://max1475.pythonanywhere.com/api/v1/earning_scheme'
+API_EXPENSES = 'http://max1475.pythonanywhere.comapi/v1/epxenses'
+API_OTHER_PAYMENT = 'http://max1475.pythonanywhere.com/api/v1/other_payment'
+API_JOB_PAYMENT = 'http://max1475.pythonanywhere.com/api/v1/job_payment'
+API_NETWORK_PAYMENT = 'http://max1475.pythonanywhere.com/api/v1/network_payment'
 
 TELEGRAM_TOKEN = os.getenv('TELEGRAM_TOKEN', '')
 TELEGRAM_CHAT_ID = os.getenv('TELEGRAM_CHAT_ID', '')

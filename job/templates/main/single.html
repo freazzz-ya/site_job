@@ -100,7 +100,7 @@
               <div class="col-md-8 blog-content">
             <p class="lead">Конечно, всегда важно знать, сколько у вас денег и где они находятся.</p>
             <p>Ведение учета финансов может помочь вам принимать осознанные финансовые решения, позволяет контролировать
-              свои расходы и доходы, и, конечно, держать все под контролем.</p>
+              свои расходы и доходы, и, конечно, держать все под контролем и у себя в кармане,  к примеру в телеграм.<a href="https://web.telegram.org/a/#6823805203">Карманный помощник <span class="icon-telegram"></span></a></p>
             <blockquote>
               <p>Ведь, когда вы знаете свои деньги, вы можете легче планировать свое будущее, выделять средства на
                 важные цели, а также уменьшить стресс связанный с финансовыми вопросами.</p>
@@ -195,11 +195,16 @@
                     <p>Дата регистрации: {{ user.date_joined }}</p>
                 </div>
                 <br>
-                <h3 class="text-black">Описание профиля</h3>
-                <p id="shortDescription">{{ user.description_for_profil|slice:":40" }} ...</p>
-                <p id="fullDescription" style="display:none">{{ user.description_for_profil }}</p>
-                <button style="border: 1px solid black; padding: 10px;" onclick="toggleDescription()">Читать
-                    далее</button>
+                <div class="telegram-link">
+                  <a href="https://web.telegram.org/a/#6823805203">Мини - приложение в боте <span class="icon-telegram"></span></a>
+                </div>
+                <br>
+                <div class="profile-description">
+                  <h3 class="text-black">Описание профиля</h3>
+                  <p id="shortDescription">{{ user.description_for_profil|slice:":40" }} ...</p>
+                  <p id="fullDescription" style="display:none">{{ user.description_for_profil }}</p>
+                  <button style="border: 1px solid black; padding: 10px;" onclick="toggleDescription()">Читать далее</button>
+                </div>
         
                 <br>
                 <br>
@@ -314,6 +319,7 @@
             <a href="#" class="pl-3 pr-3"><span class="icon-twitter"></span></a>
             <a href="#" class="pl-3 pr-3"><span class="icon-instagram"></span></a>
             <a href="#" class="pl-3 pr-3"><span class="icon-linkedin"></span></a>
+            
             </form>
           </div>
         </div>
@@ -321,12 +327,7 @@
           <div class="col-md-12">
             <div class="border-top pt-5">
               <p>
-                <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-                Copyright &copy;
-                <script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made
-                with <i class="icon-heart" aria-hidden="true"></i> by <a href="https://colorlib.com"
-                  target="_blank">Colorlib</a>
-                <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                <a href="https://web.telegram.org/a/#6823805203">Карманный помощник <span class="icon-telegram"></span></a>
               </p>
             </div>
           </div>
