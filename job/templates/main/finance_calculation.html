@@ -57,7 +57,7 @@
         <div class="col-md-4">
             <div class="card">
                 <div class="card-header">
-                    Подсчет ваших средств
+                    Подсчет средств c основной работы
                 </div>
                 <div class="card-body">
                     <form method="post" enctype="multipart/form-data">
@@ -68,7 +68,7 @@
                       <br>
                       <form method="post" action="{% url 'job:finance_add_view' %}">
                         {% csrf_token %}
-                        <input type="hidden" name="next" value="{{ next }}">
+                        
                         {% bootstrap_button button_type="submit" content="Добавить свою работу" %}
                       </form>
                 </div>
@@ -77,7 +77,7 @@
         <div class="col-md-4">
             <div class="card">
                 <div class="card-header">
-                    Добавить нейросеть
+                    Подсчет средств c нейросетей
                 </div>
                 <div class="card-body">
                 <form method="post" enctype="multipart/form-data">
@@ -94,7 +94,7 @@
         <div class="col-md-4">
             <div class="card">
                 <div class="card-header">
-                    Добавить подработку
+                    Подсчет средств c подработки
                 </div>
                 <div class="card-body">
                     <form method="post" enctype="multipart/form-data">
@@ -105,7 +105,7 @@
                       <br>
                       <form method="post" action="{% url 'job:finance_other_add_view' %}">
                         {% csrf_token %}
-                        <input type="hidden" name="next" value="{{ next }}">
+                        
                         {% bootstrap_button button_type="submit" content="Добавить свою подработку" %}
                       </form>
                 </div>

@@ -9,17 +9,18 @@ import telebot
 from dotenv import load_dotenv
 from PIL import Image
 from telebot import types
+from helper.bot_helper import main_helper
 
 CURRENT_MONTH = datetime.datetime.now().month
 CURRENT_YEAR = datetime.datetime.now().year
 
 API_USERS = 'http://127.0.0.1:8000/api/v1/users'
-API_NEURAL_NETWORKS = 'http://max1475.pythonanywhere.com/api/v1/neuronet'
-API_EARNING_CHEME = 'http://max1475.pythonanywhere.com/api/v1/earning_scheme'
-API_EXPENSES = 'http://max1475.pythonanywhere.comapi/v1/epxenses'
-API_OTHER_PAYMENT = 'http://max1475.pythonanywhere.com/api/v1/other_payment'
-API_JOB_PAYMENT = 'http://max1475.pythonanywhere.com/api/v1/job_payment'
-API_NETWORK_PAYMENT = 'http://max1475.pythonanywhere.com/api/v1/network_payment'
+API_NEURAL_NETWORKS = 'http://127.0.0.1:8000/api/v1/neuronet'
+API_EARNING_CHEME = 'http://127.0.0.1:8000/api/v1/earning_scheme'
+API_EXPENSES = 'http://127.0.0.1:8000/api/v1/epxenses'
+API_OTHER_PAYMENT = 'http://127.0.0.1:8000/api/v1/other_payment'
+API_JOB_PAYMENT = 'http://127.0.0.1:8000/api/v1/job_payment'
+API_NETWORK_PAYMENT = 'http://127.0.0.1:8000/api/v1/network_payment'
 
 TELEGRAM_TOKEN = os.getenv('TELEGRAM_TOKEN', '')
 TELEGRAM_CHAT_ID = os.getenv('TELEGRAM_CHAT_ID', '')
@@ -45,6 +46,8 @@ CONSTANTS_FOR_COMMANDS = '\n/start - для приветсвтия \n'\
                          '/earning_cheme - схемы заработка'
 
 CONSTANTS_FOR_SITE = 'Перейти на сайт'
+CONSTANT_FOR_ERROR = 'Произошла ошибка при подключении к системе \n' \
+                     'аналитики. Попробуйте позже.'
 
 CONSTANTS_FOR_NEURAL_NETWORK = 'Актуалбные новости о самых свежих нейросетях.'\
                             ' Данные представлены лишь о последних 5 ' \
@@ -58,6 +61,9 @@ CONSTANTS_FOR_NEURAL_NETWORK = 'Здесь описываются актуаль
                             'посмотреть тут: '\
                             'http://max1475.pythonanywhere.com/job/scheme/'
 
+CONSTANT_FOR_NOUNAME_USER = 'Вы еще не зарегистрированы на сайте. \n'\
+                            'Зареугистрируйтесь: http://max1475.pythonanywhere.com/job/scheme/ \n'\
+                            'И укажите telegram_id в таком формате: 641371098'
 URL = 'http://max1475.pythonanywhere.com/job/'
 
 load_dotenv()
@@ -109,7 +115,9 @@ def search_profit(id: int) -> dict:
          respone_profit_other_source if profit['worker'] == id])
     total_profit = user_profit_job + user_profit_network + user_profit_other
     context = {
-                'total_profit': total_profit,
+                'total_profit': total_profit, 'user_profit_job': user_profit_job,
+                'user_profit_network': user_profit_network,
+                'user_profit_other': user_profit_other,
     }
     return context
 
@@ -143,7 +151,39 @@ def search_profit_month(id: int) -> list:
              '%Y-%m-%dT%H:%M:%SZ').year == CURRENT_YEAR])
     profit_month = user_job_month + user_network_month + user_other_month
     context = {
-        'profit_month': profit_month,
+        'profit_month': profit_month, 'user_job_month': user_job_month,
+        'user_other_month': user_other_month,
+        'user_network_month': user_network_month,
+    }
+    return context
+
+
+def search_expenses(id: int) -> dict:
+    """Находит общий расход
+       за все время"""
+    respone_expenses = requests.get(API_EXPENSES).json()
+    user_expenses = sum(
+            [expense['price'] for expense in
+             respone_expenses if expense['author'] == id])
+    context = {
+        'user_expenses': user_expenses,
+    }
+    return context
+
+
+def search_expenses_month(id: int) -> list:
+    """Находит общий расход
+       за текущий месяц"""
+    respone_expenses = requests.get(API_EXPENSES).json()
+    user_expenses_month = sum(
+            [expense['price'] for expense in
+             respone_expenses if expense['author'] == id
+             and datetime.datetime.strptime(expense['date'],
+             '%Y-%m-%dT%H:%M:%SZ').month == CURRENT_MONTH
+             and datetime.datetime.strptime(expense['date'],
+             '%Y-%m-%dT%H:%M:%SZ').year == CURRENT_YEAR])
+    context = {
+        'user_expenses_month': user_expenses_month,
     }
     return context
 
@@ -200,12 +240,12 @@ def send_profile(message):
             image_response = requests.get(user_site['image'])
             image = Image.open(BytesIO(image_response.content))
             # Отправка изображения
-            photo = BytesIO()
-            image.save(photo, 'PNG')
-            photo.seek(0)
+            photo1 = BytesIO()
+            image.save(photo1, 'PNG')
+            photo1.seek(0)
             logging.info('Фото сайта открывается')
         except (FileNotFoundError, OSError) as error:
-            photo = open('media/nouname.jpg', 'rb')
+            photo1 = open('media/nouname.jpg', 'rb')
             logging.error(f'Открылось запасное фото. Ошибка {error}')
         logging.info('Совпадение с профилем сайта')
         with sqlite3.connect('data_base.db') as data_base:
@@ -219,7 +259,7 @@ def send_profile(message):
                     "INSERT INTO users (user_id, username, "
                     "first_name, last_name, image) VALUES (?, ?, ?, ?, ?)",
                     (user.id, user_site['username'], user_site['first_name'],
-                     user_site['last_name'], photo.read()))
+                     user_site['last_name'], photo1.read()))
                 data_base.commit()  # Commit the transaction
                 logging.info('Пользователь добавлен в базу с сайта')
                 cur.close()
@@ -228,7 +268,7 @@ def send_profile(message):
                 cur.execute(
                     "UPDATE users SET username = ?, first_name = ?, last_name = ?, image = ? WHERE user_id = ?",
                     (user_site['username'], user_site['first_name'],
-                     user_site['last_name'], photo.read(), user.id))
+                     user_site['last_name'], photo1.read(), user.id))
                 data_base.commit()  # Commit the transaction
                 logging.info('Пользователь обновлен данными с сайта')
                 cur.close()
@@ -263,19 +303,19 @@ def send_profile(message):
                     f'<em>Сумма доходов за все время: '
                     f'{user_profit["total_profit"]} рублей</em>\n'
                     f'<em>Сумма доходов за текущий месяц: '
-                    f'{user_profit_month["profit_month"]} рублей</em>',
-
+                    f'{user_profit_month["profit_month"]} рублей</em>\n'
+                    f'/analytics - финансовый помощник вашим финансам',
             parse_mode='html'
         )
         cur.close()
-        photo.close()
+        photo1.close()
     except IndexError:
         logging.info('Не совпадение с профилем сайта')
         try:
-            photo = open('media/nouname.jpg', 'rb')
+            photo1 = open('media/nouname.jpg', 'rb')
             logging.info('Фото основное открывается')
         except FileNotFoundError:
-            photo = open('media/piggy.png', 'rb')
+            photo1 = open('media/piggy.png', 'rb')
             logging.error('Открылось запасное фото')
         with sqlite3.connect('data_base.db') as data_base:
             cur = data_base.cursor()
@@ -288,7 +328,7 @@ def send_profile(message):
                     "INSERT INTO users (user_id, username, "
                     "first_name, last_name, image) VALUES (?, ?, ?, ?, ?)",
                     (user.id, user.username, user.first_name,
-                     user.last_name, photo.read()))
+                     user.last_name, photo1.read()))
                 data_base.commit()  # Commit the transaction
                 logging.info('Новый пользователь добавлен в базу')
                 cur.close()
@@ -308,7 +348,7 @@ def send_profile(message):
         )
         logging.info('Конец обработки кнопки профиль')
         # Close the file
-        photo.close()
+        photo1.close()
 
 
 @bot.message_handler(commands=['help'])
@@ -350,6 +390,7 @@ def send_neural_networks(message):
             try:
                 # Загрузка изображения
                 image_response = requests.get(network['image'])
+                print(image_response)
                 image = Image.open(BytesIO(image_response.content))
                 # Отправка изображения
                 bio = BytesIO()
@@ -409,14 +450,14 @@ def send_earning_cheme(message):
                 bot.send_photo(
                     chat_id=message.chat.id,
                     photo=bio, caption=message_text,
-                    parse_mode="Markdown")
+                    )
                 logging.info('Отправка данных о другом источнике')
             except Exception as e:
                 logging.error(f"Ошибка при отправке фото: {e}")
                 bot.send_message(
                     chat_id=message.chat.id,
                     text=message_text,
-                    parse_mode="Markdown")
+                    )
         bot.send_message(
             message.chat.id,
             f'<b>EARNING CHEME</b> <em>{CONSTANTS_FOR_NEURAL_NETWORK}</em>',
@@ -427,6 +468,61 @@ def send_earning_cheme(message):
         bot.send_message(chat_id=message.chat.id, text=message_text)
         logging.critical('Отсутсвтие данных в запросе')
     logging.info('Конец Обработки кнопки earning_cheme')
+
+
+@bot.message_handler(commands=['analytics'])
+def send_analytics(message):
+    """Обрабатывает команду /analytics"""
+    logging.info(f'Обработка команды /analytics от пользователя {message.from_user.id}')
+    try:
+        response = requests.get(API_USERS).json()
+        user_found = False
+        for user in response:
+            if user['telegram_id'] == message.from_user.id:
+                logging.info('Пользователь найден в API')
+                user_found = True
+                break
+        if user_found:
+            logging.info('Пользователь найден в API')
+            response = requests.get(API_USERS).json()
+            user_site = [
+                user1 for user1 in response if user1['telegram_id'] == message.from_user.id
+            ][0]
+            # Блок кода, если пользователь найден
+            profit = search_profit(user_site['id'])
+            profit_month = search_profit_month(user_site['id'])
+            expenses = search_expenses(user_site['id'])
+            expenses_month = search_expenses_month(user_site['id'])
+            message_bot = f'Дай анализ моему финансовому состоянию: \n' \
+                          f'Общий доход - {profit["total_profit"]} \n' \
+                          f'Доход с основной работы - {profit["user_profit_job"]} \n' \
+                          f'Доход с нейросетей - {profit["user_profit_network"]} \n' \
+                          f'Доход с других источников - {profit["user_profit_other"]} \n' \
+                          f'Общий месячный доход - {profit_month["profit_month"]} \n' \
+                          f'Доход с основной работы за месяц - {profit_month["user_job_month"]} \n' \
+                          f'Доход с нейросетей за месяц - {profit_month["user_network_month"]} \n' \
+                          f'Доход с других источников за месяц - {profit_month["user_other_month"]} \n' \
+                          f'Общий расход - {expenses["user_expenses"]} \n' \
+                          f'Общий  месячеый расход - {expenses_month["user_expenses_month"]} \n'\
+                          f'Дай небольшой финансовое напутсвие, как исходя моих финансов их стоит улучшить \n'\
+                          f'Как экономить, или же напутсвие, что с такими расходами жить в принципе нельзя \n'\
+                          f'Все операции представлены в рублях'
+            print(message_bot)
+            bot.send_message(
+                message.chat.id, main_helper(message_bot),
+            )
+        else:  # Пользователь не найден
+            logging.info('Пользователь не найден в API')
+            # Блок кода, если пользователь не найден
+            bot.send_message(
+                message.chat.id, CONSTANT_FOR_NOUNAME_USER,
+            )
+    except requests.exceptions.RequestException as e:
+        logging.error(f'Ошибка при запросе к API: {e}')
+        bot.send_message(
+            message.chat.id, CONSTANT_FOR_ERROR,
+        )
+    logging.info('Конец обработки команды /analytics')
 
 
 # обрабатывает фото

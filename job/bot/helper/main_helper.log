@@ -1,0 +1,8 @@
+2024-06-15 19:20:30,474, INFO, Делает пост запрос на получение токена, root
+2024-06-15 19:20:30,479, DEBUG, Starting new HTTPS connection (1): ngw.devices.sberbank.ru:9443, urllib3.connectionpool
+2024-06-15 19:20:30,805, DEBUG, https://ngw.devices.sberbank.ru:9443 "POST /api/v2/oauth HTTP/1.1" 200 1279, urllib3.connectionpool
+2024-06-15 19:20:30,805, INFO, Успешный пост запрос на получение токена, root
+2024-06-15 19:20:30,806, INFO, Отправка запроса на сообщение, root
+2024-06-15 19:20:30,807, DEBUG, Starting new HTTPS connection (1): gigachat.devices.sberbank.ru:443, urllib3.connectionpool
+2024-06-15 19:20:32,136, DEBUG, https://gigachat.devices.sberbank.ru:443 "POST /api/v1/chat/completions HTTP/1.1" 200 463, urllib3.connectionpool
+2024-06-15 19:20:32,137, INFO, Успешная отправка запроса, root

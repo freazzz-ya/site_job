@@ -2,7 +2,7 @@ from django.contrib.auth.decorators import login_required, user_passes_test
 from django.db import transaction
 from django.db.models import Sum
 from django.shortcuts import get_object_or_404, redirect, render
-from django.urls import reverse_lazy
+from django.urls import reverse_lazy, reverse
 from django.utils import timezone
 from django.utils.decorators import method_decorator
 from django.views.generic import ListView, UpdateView
@@ -376,31 +376,37 @@ class CryptoListView(ListView):
 
 @login_required
 def finance_calculation_view(request):
+    redirect_after_save = False  # Flag to control redirect
     if request.method == 'POST':
         form = JobForm(request.POST, request.FILES)
         form1 = NetworkForm(request.POST, request.FILES)
         form2 = Other_Source_Form(request.POST, request.FILES)
         form3 = Expenses_model_form(request.POST, request.FILES)
+
         if form.is_valid():
             job_payment = form.save(commit=False)
             job_payment.worker = request.user
             job_payment.save()
-            return redirect(request.META.get('HTTP_REFERER'))
-        if form1.is_valid():
+            redirect_after_save = True
+        elif form1.is_valid():
             network_payment = form1.save(commit=False)
             network_payment.worker = request.user
             network_payment.save()
-            return redirect(request.META.get('HTTP_REFERER'))
-        if form2.is_valid():
+            redirect_after_save = True
+        elif form2.is_valid():
             other_payment = form2.save(commit=False)
             other_payment.worker = request.user
             other_payment.save()
-            return redirect(request.META.get('HTTP_REFERER'))
-        if form3.is_valid():
+            redirect_after_save = True
+        elif form3.is_valid():
             other_payment = form3.save(commit=False)
             other_payment.author = request.user
             other_payment.save()
-            return redirect(request.META.get('HTTP_REFERER'))
+            redirect_after_save = True
+
+        if redirect_after_save:
+            return redirect(reverse('job:finance_view'))
+
     else:
         form = JobForm()
         form1 = NetworkForm()
@@ -413,6 +419,7 @@ def finance_calculation_view(request):
         'form3': form3,
     }
     return render(request, 'main/finance_calculation.html', context)
+
 
 
 @login_required
