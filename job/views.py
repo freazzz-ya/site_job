@@ -2,7 +2,7 @@ from django.contrib.auth.decorators import login_required, user_passes_test
 from django.db import transaction
 from django.db.models import Sum
 from django.shortcuts import get_object_or_404, redirect, render
-from django.urls import reverse_lazy, reverse
+from django.urls import reverse, reverse_lazy
 from django.utils import timezone
 from django.utils.decorators import method_decorator
 from django.views.generic import ListView, UpdateView
@@ -419,7 +419,6 @@ def finance_calculation_view(request):
         'form3': form3,
     }
     return render(request, 'main/finance_calculation.html', context)
-
 
 
 @login_required

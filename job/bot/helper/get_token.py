@@ -1,8 +1,8 @@
-import requests
-import uuid
 import json
 import logging
+import uuid
 
+import requests
 
 logging.basicConfig(
     level=logging.DEBUG,

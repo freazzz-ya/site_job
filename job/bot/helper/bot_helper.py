@@ -1,7 +1,8 @@
 import os
-import logging
+
 from dotenv import load_dotenv
-from .get_token import get_token, get_chat_completion
+
+from .get_token import get_chat_completion, get_token
 
 load_dotenv()
 CLIENT_SECRET_GIGA = os.getenv('CLIENT_SECRET_GIGA', '')

@@ -137,7 +137,7 @@ class NetworkForm(forms.ModelForm):
         label='Нейросеть',
         widget=forms.Select(attrs={'style': 'width: 200px'}),
     )
-    date = forms.DateField(
+    date = forms.DateTimeField(
         widget=DateInput(attrs={'type': 'date'}),
         initial=timezone.now().date(),
         label='Дата',
@@ -152,7 +152,7 @@ class NetworkForm(forms.ModelForm):
 
 
 class Other_Source_Form(forms.ModelForm):
-    date = forms.DateField(
+    date = forms.DateTimeField(
         widget=DateInput(attrs={'type': 'date'}),
         initial=timezone.now().date(),
         label='Дата',
@@ -179,7 +179,7 @@ class Other_Source_Reg_Form(forms.ModelForm):
 
 
 class JobForm(forms.ModelForm):
-    date = forms.DateField(
+    date = forms.DateTimeField(
         widget=DateInput(attrs={'type': 'date'}),
         initial=timezone.now().date(),
         label='Дата',
@@ -285,7 +285,7 @@ class Expenses_model_form(forms.ModelForm):
             attrs={'class': 'form-control', 'style': 'width: 100%;'}
             ),
     )
-    date = forms.DateField(
+    date = forms.DateTimeField(
         widget=DateInput(attrs={'type': 'date'}),
         initial=timezone.now().date(),
         label='Дата',
